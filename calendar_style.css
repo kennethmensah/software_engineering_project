@@ -1,0 +1,131 @@
+/*a{
+    text-decoration: none;
+    
+}*/
+
+/***** Flip Calendar *****/
+
+/*flip */
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+        //margin: .1in;
+/*        padding-left: 0.2in;
+        padding-right: .2in;*/
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 1in;
+	height: 1in;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+        
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+        
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+       
+        background: #fff;
+   // border-radius: .1in;
+/*        border-bottom-left-radius: .05in;
+        border-bottom-right-radius: .05in;
+        border-bottom: solid #ccc .1in;*/
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+        //background: #999;
+        color: #000;
+/*        border-bottom-left-radius: .05in;
+        border-bottom-right-radius: .05in;
+        border-bottom: solid #ccc .1in;*/
+}
+
+
+/* calendar */
+#calendar_view table.calendar		{ 
+    //border:1px solid #999; 
+    padding: 20px;
+    border-radius: 5px;
+    //background: #F2F2F2;
+    font-family: lucida sans;
+    border-bottom-left-radius: .05in;
+    border-bottom-right-radius: .05in;
+    border-bottom: solid #ccc .1in;
+    box-shadow: #999 3px 3px 40px;
+    width: 700px;
+}
+
+#calendar_view .table.calendar:hover{
+    border: #169f84 1px solid;
+}
+#calendar_view tr.calendar-row	{  }
+#calendar_view td.calendar-day	{ 
+    min-height:200px; 
+    font-size:11px; 
+    position:relative; 
+} 
+#calendar_view * html div.calendar-day { 
+    height:100px; 
+}
+#calendar_view td.calendar-day:hover	{ 
+    background: #c7f1ff; 
+    color: whitesmoke;
+
+}
+#calendar_view td.calendar-day-np	{ 
+    background:#eee; 
+    min-height:80px; 
+}
+#calendar_view * html div.calendar-day-np { 
+    height:80px; }
+#calendar_view td.calendar-day-head { 
+    background:#ccc; 
+    font-weight:bold; 
+    text-align:center;
+    width:80px;
+    padding:5px; 
+    border-bottom:1px solid #999; 
+    border-top:1px solid #999; 
+    border-right:1px solid #999; 
+}
+#calendar_view div.day-number		
+{ //background:#999; 
+  padding:.1in; 
+  color:#000; 
+  font-weight:bold; 
+  float:right; 
+  /*margin:-5px -5px 0 0;*/
+  width:80px; 
+  text-align:center; 
+}
+/* shared */
+#calendar_view td.calendar-day, td.calendar-day-np { 
+    width:1in; 
+    height: 1in;
+    //border-bottom:1px solid #999; 
+    border-right:1px solid #999; 
+}
