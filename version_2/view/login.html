@@ -27,21 +27,23 @@
         }
 
         function validateLogin(user, pass){
-  				var theUrl="http://localhost/mobile-web/pos/controllers/user-contoller.php?cmd=2&user="+user+"&pass="+pass;
+  				var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=2&user="+user+"&pass="+pass;
   				var obj=sendRequest(theUrl);		//send request to the above url
   				if(obj.result===1){					//check result
-            if(obj.user_type == "teller"){
-              window.location.replace("http://localhost/mobile-web/pos/view/home.html");
-            }else{
-              window.location.replace("http://localhost/mobile-web/pos/view/admin_page.html");
+
+            if(obj.user_type == "admin"){
+              alert("admin logged in");
+              // window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/home.html");
+            }else if(obj.user_type == "supervisor"){
+              alert("supervisor logged in");
+              // window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/supervisor_page.html");
+            }else {
+              alert("nurse logged in");
+              // window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/nurse_page.html");
             }
-  					//$("#divDesc").text(obj.desc);		//set div with the description from the result
-  					//$("#divDesc").css("top",event.y);	//set the location of the div
-  					//$("#divDesc").css("left",event.x);
-  					//$("#divDesc").show();				//show the div element
   				}else{
   					//show error message
-            // alert("login failed");
+             alert("login failed");
   					// $("#divStatus").text("error while getting description");
   					// $("#divStatus").css("backgroundColor","red");
   				}
@@ -80,7 +82,7 @@
                   <div class="row">
                       <form class="col s12">
                         <div class="row">
-                                                                              <div class="input-field col s12">
+                            <div class="input-field col s12">
 
                            <h5>Log In</h5>
                             </div>
