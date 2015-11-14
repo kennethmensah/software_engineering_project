@@ -45,4 +45,8 @@
 //else{
 //    echo 'sth';
 //}
+
+// $obj = new user();
+// $obj->add_user("kwasi_ansah", "demo", "admin");
+
 ?>

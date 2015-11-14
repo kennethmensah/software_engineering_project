@@ -34,11 +34,14 @@ function user_signup_control(){
         
         if ($obj->add_user($username, $password, $usertype)){
              if( strcmp($usertype, 'admin') == 0){
-                admin_signup($obj->get_insert_id());
+                //functionality not added yet
+                //admin_signup($obj->get_insert_id());
              }elseif( strcmp($usertype, 'nurse') == 0){
-                 nurse_signup($obj->get_insert_id());
+                //functionality not added yet
+                 //nurse_signup($obj->get_insert_id());
              }elseif( strcmp($usertype, 'supervisor') == 0){
-                 supervisor_signup($obj->get_insert_id());
+                //functionality not added yet
+                 //supervisor_signup($obj->get_insert_id());
              }
                 
         }else{
@@ -89,7 +92,7 @@ function supervisor_signup($admin_id){
 function nurse_signup($teller_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'email')){
-        $obj = get_teller_model();
+        $obj = get_nurse_model();
         $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
         $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
         $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
