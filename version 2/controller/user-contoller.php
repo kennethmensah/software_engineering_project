@@ -35,8 +35,10 @@ function user_signup_control(){
         if ($obj->add_user($username, $password, $usertype)){
              if( strcmp($usertype, 'admin') == 0){
                 admin_signup($obj->get_insert_id());
-             }elseif( strcmp($usertype, 'teller') == 0){
-                 teller_signup($obj->get_insert_id());
+             }elseif( strcmp($usertype, 'nurse') == 0){
+                 nurse_signup($obj->get_insert_id());
+             }elseif( strcmp($usertype, 'supervisor') == 0){
+                 supervisor_signup($obj->get_insert_id());
              }
                 
         }else{
@@ -64,11 +66,11 @@ function admin_signup($admin_id){
     }
 }
 
-//add new admin
+//add new supervisor
 function supervisor_signup($admin_id){
     $obj = $sname = $fname = $phone = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')){
-        $obj = get_admin_model();
+        $obj = get_supervisor_model();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
@@ -94,7 +96,7 @@ function nurse_signup($teller_id){
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         $email = sanitize_string(filter_input (INPUT_GET, 'email'));
         
-        if($obj->add_teller($teller_id, $sname, $fname, $phone, $gender, $email)){
+        if($obj->add_nurse($teller_id, $sname, $fname, $phone, $gender, $email)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -105,7 +107,7 @@ function nurse_signup($teller_id){
 
 
 
-//login 
+//login function
 function user_login_control(){
 
     $obj = $username = $pass = '';
@@ -164,14 +166,14 @@ function get_user_model(){
 }
 
 
-//function to get teller model
+//function to get nurse model
 function get_nurse_model(){
     require_once '../model/nurse.php';
     $obj = new teller();
     return $obj;
 }
 
-//function to get teller model
+//function to get supervisor model
 function get_supervisor_model(){
     require_once '../model/supervisor.php';
     $obj = new teller();
