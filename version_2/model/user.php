@@ -17,7 +17,9 @@
         }
         
         
-        //function edit user password details
+        /**
+         * function edit user password details
+         */
         function edit_password($username, $password){
             $str_query = "UPDATE se_users SET
                 password = '$password'
@@ -25,12 +27,32 @@
             
             return $this->query($str_query);
         }
+
+        /**
+         * function edit user password details
+         */
+        function edit_password_byId($id, $password){
+            $str_query = "UPDATE se_users SET
+                password = '$password'
+                WHERE user_id = $id";
+
+            return $this->query($str_query);
+        }
         
-        //function get user 
+        /*
+         *
+         */
         function get_user($username, $pass){
             $str_query = "SELECT * FROM se_users
                 WHERE username = '$username' AND password = '$pass'";
             
+            return $this->query($str_query);
+        }
+
+        function get_user_byId($id){
+            $str_query = "SELECT * FROM se_users
+                WHERE user_id = $id";
+
             return $this->query($str_query);
         }
         

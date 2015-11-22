@@ -15,13 +15,18 @@ if(filter_input (INPUT_GET, 'cmd')){
             break;
         case 3:
             user_edit_control();
+            break;
+        case 4:
+            edit_password_control();
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
 }
 
-//signup admin user
+/**
+ *
+ */
 function user_signup_control(){
     
     $obj  = $username = $password = $usertype = $row = '';
@@ -162,8 +167,8 @@ function user_login_control(){
     }else{
         echo '{"result":0,"message": "Invalid Credentials"}';
     }
-
 }
+
 
 function set_user_details(){
     
@@ -171,6 +176,27 @@ function set_user_details(){
 
 function user_edit_control(){
 
+}
+
+function edit_password_control(){
+    $obj  = $username = $password = '';
+
+    if( filter_input (INPUT_GET, 'id') && filter_input(INPUT_GET, 'pass')){
+
+        $obj = get_user_model();
+        $user_id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
+        $password = encrypt($password);
+
+        if ($obj->edit_password_byId($user_id,$password)){
+            echo '{"result":1,"message": "password changed successfully"}';
+        }
+        else
+        {
+            echo '{"result":0,"message": "signup unsuccessful"}';
+        }
+
+    }
 }
 
 /**
