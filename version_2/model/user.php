@@ -1,6 +1,6 @@
 <?php
     
-    include_once 'adb.php';
+    include_once 'adb2.php';
 
     class user extends adb{
        
@@ -46,7 +46,7 @@
 //    echo 'sth';
 //}
 
-// $obj = new user();
-// $obj->add_user("kwasi_ansah", "demo", "admin");
+ $obj = new user();
+ $obj->add_user("kwasi_bansah", "demo", "admin");
 
 ?>
