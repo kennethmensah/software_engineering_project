@@ -13,6 +13,8 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 2:
             user_login_control();
             break;
+        case 3:
+            user_edit_control();
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -24,43 +26,55 @@ function user_signup_control(){
     
     $obj  = $username = $password = $usertype = $row = '';
     
-    if( filter_input (INPUT_GET, 'username') && filter_input(INPUT_GET, 'password') && filter_input(INPUT_GET, 'usertype')){
+    if( filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')
+        && filter_input(INPUT_GET, 'type') && filter_input(INPUT_GET, 'email')){
     
         $obj = get_user_model();
-        $username = sanitize_string(filter_input (INPUT_GET, 'username'));
-        $password = sanitize_string(filter_input (INPUT_GET, 'password'));
+        $username = sanitize_string(filter_input (INPUT_GET, 'user'));
+        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
-        $usertype = sanitize_string(filter_input (INPUT_GET, 'usertype'));
+        $usertype = sanitize_string(filter_input (INPUT_GET, 'type'));
+        $email = sanitize_string(filter_input(INPUT_GET, 'email'));
         
         if ($obj->add_user($username, $password, $usertype)){
-             if( strcmp($usertype, 'admin') == 0){
-                //functionality not added yet
-                //admin_signup($obj->get_insert_id());
-             }elseif( strcmp($usertype, 'nurse') == 0){
-                //functionality not added yet
-                 //nurse_signup($obj->get_insert_id());
-             }elseif( strcmp($usertype, 'supervisor') == 0){
-                //functionality not added yet
-                 //supervisor_signup($obj->get_insert_id());
+             if( strcmp($usertype, 'admin') == 0)
+             {
+                //if user type is admin
+                admin_signup($obj->get_insert_id());
+             }
+             elseif( strcmp($usertype, 'nurse') == 0)
+             {
+                //if user is a nurse
+                 nurse_signup($obj->get_insert_id());
+             }
+             elseif( strcmp($usertype, 'supervisor') == 0){
+                //if user is a supervisor
+                 supervisor_signup($obj->get_insert_id());
              }
                 
-        }else{
+        }
+        else
+        {
             echo '{"result":0,"message": "signup unsuccessful"}';
         }
         
     }
 }
 
-//add new admin
+/**
+ * @param $admin_id
+ */
 function admin_signup($admin_id){
     $obj = $sname = $fname = $phone = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')){
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')){
         $obj = get_admin_model();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
+        $district = filter_input (INPUT_GET, 'district');
         
-        if($obj->add_admin($admin_id, $sname, $fname, $phone)){
+        if($obj->add_admin($admin_id, $sname, $fname,$district, $phone)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -69,16 +83,20 @@ function admin_signup($admin_id){
     }
 }
 
-//add new supervisor
-function supervisor_signup($admin_id){
-    $obj = $sname = $fname = $phone = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')){
+/**
+ * @param $supervisor_id
+ */
+function supervisor_signup($supervisor_id){
+    $obj = $sname = $fname = $district = $phone = '';
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')){
         $obj = get_supervisor_model();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
+        $district = filter_input (INPUT_GET, 'district');
         
-        if($obj->add_supervisor($admin_id, $sname, $fname, $phone)){
+        if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -99,7 +117,7 @@ function nurse_signup($teller_id){
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         $email = sanitize_string(filter_input (INPUT_GET, 'email'));
         
-        if($obj->add_nurse($teller_id, $sname, $fname, $phone, $gender, $email)){
+        if($obj->add_nurses($teller_id, $sname, $fname, $phone, $gender, $email)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -144,7 +162,14 @@ function set_user_details(){
     
 }
 
-//sanitize command sent
+function user_edit_control(){
+
+}
+
+/**
+ * @param $val
+ * @return string
+ */
 function sanitize_string($val){
     $val = stripslashes($val);
     $val = strip_tags($val);
@@ -153,7 +178,10 @@ function sanitize_string($val){
     return $val;
 }
 
-//encrypt password
+/**
+ * @param $pass
+ * @return string
+ */
 function encrypt($pass){
     $salt1 = "qm&h*";
     $salt2 = "pg!@";
@@ -161,7 +189,9 @@ function encrypt($pass){
     return $token;
 }
 
-//create an instance of the user class
+/**
+ * @return user
+ */
 function get_user_model(){
     require_once '../model/user.php';
     $obj = new user();
@@ -169,14 +199,18 @@ function get_user_model(){
 }
 
 
-//function to get nurse model
+/**
+ * @return nurses
+ */
 function get_nurse_model(){
     require_once '../model/nurse.php';
     $obj = new nurses();
     return $obj;
 }
 
-//function to get supervisor model
+/**
+ * @return supervisors
+ */
 function get_supervisor_model(){
     require_once '../model/supervisor.php';
     $obj = new supervisors();
@@ -184,7 +218,9 @@ function get_supervisor_model(){
 }
 
 
-//function to get admin model
+/**
+ * @return admin
+ */
 function get_admin_model(){
     require_once '../model/admin.php';
     $obj = new admin();
