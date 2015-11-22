@@ -155,12 +155,16 @@ function user_login_control(){
         
         if($obj->get_user($username, $pass)){
             $row = $obj->fetch();
-            
-            $_SESSION['user'] = $row['username'];
-            $_SESSION['id'] = $row['user_id'];
-            $_SESSION['user_type'] = $user_type = $row['user_type'];
 
-            echo '{"result":1,"user_type":"'.$user_type .'"}';
+            if($row == 0){
+                echo "Invalid user";
+            }else {
+                $_SESSION['user'] = $row['username'];
+                $_SESSION['id'] = $row['user_id'];
+                $_SESSION['user_type'] = $user_type = $row['user_type'];
+
+                echo '{"result":1,"user_type":"' . $user_type . '"}';
+            }
         }
         else{
             echo '{"result":0,"message": "Invalid User"}';
