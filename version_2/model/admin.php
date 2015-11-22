@@ -14,12 +14,13 @@ class admin extends adb{
      * @param $phone
      * @return bool
      */
-    function add_admin($admin_id, $fname, $sname, $district, $phone){
+    function add_admin($admin_id, $fname, $sname, $district, $phone, $gender){
         $str_query =  "INSERT into se_admin SET
                    admin_id = $admin_id,
                    fname = '$fname',
                    sname = '$sname',
                    district = $district,
+                   gender = '$gender',
                    phone = '$phone'";
 
         return $this->query($str_query);
@@ -34,11 +35,12 @@ class admin extends adb{
      * @param $phone
      * @return bool
      */
-    function update_admin_details($admin_id, $fname, $sname, $district, $phone){
+    function update_admin_details($admin_id, $fname, $sname, $district, $phone, $gender){
         $str_query = "UPDATE se_admin SET
                    fname = '$fname',
                    sname = '$sname',
                    district = $district,
+                   gender = $gender,
                    phone = '$phone'
                 WHERE admin_id = $admin_id";
 

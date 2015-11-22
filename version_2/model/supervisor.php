@@ -20,12 +20,13 @@ class supervisors extends adb{
      * @param $phone
      * @return bool
      */
-    function add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone){
+    function add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender){
         $str_query =  "INSERT into se_supervisors SET
                    supervisor_id = $supervisor_id,
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
+                   gender = '$gender',
                    phone = '$phone'";
 
         return $this->query($str_query);
@@ -40,11 +41,12 @@ class supervisors extends adb{
      * @param $phone
      * @return bool
      */
-    function update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone){
+    function update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone,$gender){
         $str_query = "UPDATE se_supervisors SET
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
+                   gender = '$gender',
                    phone = '$phone'
                 WHERE supervisor_id = $supervisor_id";
 

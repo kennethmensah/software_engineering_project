@@ -20,12 +20,13 @@ class nurses extends adb{
      * @param $phone
      * @return bool
      */
-    function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone){
+    function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone,$gender){
         $str_query =  "INSERT into se_nurses SET
                    nurse_id = $nurse_id,
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
+                   gender = '$gender',
                    phone = '$phone'";
 
         return $this->query($str_query);
@@ -40,11 +41,12 @@ class nurses extends adb{
      * @param $phone
      * @return bool
      */
-    function update_nurses_details($nurse_id, $fname, $sname, $district_zone, $phone){
+    function update_nurses_details($nurse_id, $fname, $sname, $district_zone, $phone, $gender){
         $str_query = "UPDATE se_nurses SET
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
+                   gender = '$gender',
                    phone = '$phone'
                 WHERE nurse_id = $nurse_id";
 
