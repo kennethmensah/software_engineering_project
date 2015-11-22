@@ -59,11 +59,13 @@ class admin extends adb{
     }
 
 
-
-
+    /**
+     * @param $admin_id
+     * @return bool
+     */
     function get_details($admin_id){
         $str_query = "SELECT * FROM se_admin
-                WHERE adminname = $admin_id";
+                WHERE admin_id = $admin_id";
 
         return $this->query($str_query);
     }
@@ -71,9 +73,12 @@ class admin extends adb{
 }
 
 $obj = new admin();
-$obj->update_district(1, 3);
+$obj->get_details(1);
+if($row = $obj->fetch()){
+    echo "admin name:  ".$row['fname'];
+}
 
 
 
-?>
+
 
