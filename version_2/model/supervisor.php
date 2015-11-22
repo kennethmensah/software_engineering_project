@@ -94,6 +94,8 @@ class supervisors extends adb{
 /**
  * Unit Test and usage
  */
+$obj = new supervisors();
+$obj->add_supervisors(1,'Aelaf','Dafla',2,'+233200393945');
 //$obj = new supervisors();
 //$obj->get_details(1);
 //if($row = $obj->fetch()){
