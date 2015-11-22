@@ -128,8 +128,9 @@ function nurse_signup($nurse_id){
         $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         $district = sanitize_string(filter_input (INPUT_GET, 'district'));
-        
-        if($obj->add_nurses($nurse_id, $sname, $fname, $phone,$district, $gender)){
+
+
+        if($obj->add_nurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
