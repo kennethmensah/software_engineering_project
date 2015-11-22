@@ -95,7 +95,7 @@ class adb
             echo mysqli_error($this->link);
             return false;
         }
-//            echo "connected";
+            echo "connected";
         if (!mysqli_select_db(DB_NAME)) {
 
             $log_id = $this->log_error(LOG_LEVEL_DB_FAIL,2, "select db failed   in db:connect()", mysqli_error($this->link));
@@ -139,7 +139,7 @@ class adb
      */
     function get_num_rows ( )
     {
-        return mysql_num_rows($this->result);
+        return mysqli_num_rows($this->result);
     }
 
     /**
