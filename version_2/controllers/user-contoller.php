@@ -67,14 +67,16 @@ function user_signup_control(){
 function admin_signup($admin_id){
     $obj = $sname = $fname = $phone = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
-        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')){
+        && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'district') && filter_input(INPUT_GET, 'gender')){
         $obj = get_admin_model();
-        $sname = filter_input (INPUT_GET, 'sname');
-        $fname = filter_input (INPUT_GET, 'fname');
-        $phone = filter_input (INPUT_GET, 'phone');
-        $district = filter_input (INPUT_GET, 'district');
+        $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
+        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_admin($admin_id, $sname, $fname,$district, $phone)){
+        if($obj->add_admin($admin_id, $sname, $fname,$district, $phone, $gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -89,14 +91,16 @@ function admin_signup($admin_id){
 function supervisor_signup($supervisor_id){
     $obj = $sname = $fname = $district = $phone = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
-        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')){
+        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')
+        && filter_input(INPUT_GET, 'gender')){
         $obj = get_supervisor_model();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
         $district = filter_input (INPUT_GET, 'district');
+        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone)){
+        if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -106,18 +110,21 @@ function supervisor_signup($supervisor_id){
 }
 
 
-//add new teller
-function nurse_signup($teller_id){
+/**
+ * @param $nurse_id
+ */
+function nurse_signup($nurse_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'email')){
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
         $obj = get_nurse_model();
         $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
         $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
         $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
-        $email = sanitize_string(filter_input (INPUT_GET, 'email'));
+        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
         
-        if($obj->add_nurses($teller_id, $sname, $fname, $phone, $gender, $email)){
+        if($obj->add_nurses($nurse_id, $sname, $fname, $phone,$district, $gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
