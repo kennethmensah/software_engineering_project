@@ -172,14 +172,14 @@ function get_user_model(){
 //function to get nurse model
 function get_nurse_model(){
     require_once '../model/nurse.php';
-    $obj = new teller();
+    $obj = new nurses();
     return $obj;
 }
 
 //function to get supervisor model
 function get_supervisor_model(){
     require_once '../model/supervisor.php';
-    $obj = new teller();
+    $obj = new supervisors();
     return $obj;
 }
 
