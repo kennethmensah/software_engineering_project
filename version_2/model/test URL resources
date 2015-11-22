@@ -4,4 +4,8 @@ http://localhost/SE/software_engineering_project/version_2/controllers/user-cont
 
 
 User login URL
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=2&user=user&pass=pass
 
+
+User password edit
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=4&id=id&pass=pass

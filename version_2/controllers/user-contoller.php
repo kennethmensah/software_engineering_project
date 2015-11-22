@@ -18,6 +18,7 @@ if(filter_input (INPUT_GET, 'cmd')){
             break;
         case 4:
             edit_password_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
