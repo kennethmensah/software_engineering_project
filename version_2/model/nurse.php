@@ -8,21 +8,21 @@
 
 include_once 'adb.php';
 
-class supervisors extends adb{
+class nurses extends adb{
 
-    function supervisors(){}
+    function nurses(){}
 
     /**
-     * @param $supervisors_id
+     * @param $nurses_id
      * @param $fname
      * @param $sname
      * @param $district_zone
      * @param $phone
      * @return bool
      */
-    function add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone){
-        $str_query =  "INSERT into se_supervisors SET
-                   supervisor_id = $supervisor_id,
+    function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone){
+        $str_query =  "INSERT into se_nurses SET
+                   nurse_id = $nurse_id,
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
@@ -33,58 +33,58 @@ class supervisors extends adb{
 
 
     /**
-     * @param $supervisors_id
+     * @param $nurses_id
      * @param $fname
      * @param $sname
      * @param $district_zone
      * @param $phone
      * @return bool
      */
-    function update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone){
-        $str_query = "UPDATE se_supervisors SET
+    function update_nurses_details($nurse_id, $fname, $sname, $district_zone, $phone){
+        $str_query = "UPDATE se_nurses SET
                    fname = '$fname',
                    sname = '$sname',
                    district_zone = $district_zone,
                    phone = '$phone'
-                WHERE supervisor_id = $supervisor_id";
+                WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
 
     /**
-     * @param $supervisors_id
+     * @param $nurses_id
      * @param $district_zone
      * @return bool
      */
-    function update_district_zone($supervisor_id, $district_zone){
-        $str_query = "UPDATE se_supervisors SET
+    function update_district_zone($nurse_id, $district_zone){
+        $str_query = "UPDATE se_nurses SET
                    district_zone = $district_zone
-                WHERE supervisor_id = $supervisor_id";
+                WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
 
     /**
-     * @param $supervisors_id
+     * @param $nurses_id
      * @param $phone
      * @return bool
      */
-    function update_phone($supervisor_id, $phone){
-        $str_query = "UPDATE se_supervisors SET
+    function update_phone($nurse_id, $phone){
+        $str_query = "UPDATE se_nurses SET
                    phone = '$phone'
-                WHERE supervisor_id = $supervisor_id";
+                WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
 
 
     /**
-     * @param $supervisors_id
+     * @param $nurses_id
      * @return bool
      */
-    function get_details($supervisor_id){
-        $str_query = "SELECT * FROM se_supervisors
-                WHERE supervisor_id = $supervisor_id";
+    function get_details($nurse_id){
+        $str_query = "SELECT * FROM se_nurses
+                WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
@@ -94,12 +94,12 @@ class supervisors extends adb{
 /**
  * Unit Test and usage
  */
-//$obj = new supervisors();
-//$obj->add_supervisors(1,'Aelaf','Dafla',2,'+233200393945');
-//$obj = new supervisors();
+//$obj = new nurses();
+//$obj->add_nurses(1,'Araba','Maison',2,'+233244393945');
+//$obj = new nurses();
 //$obj->get_details(1);
 //if($row = $obj->fetch()){
-//    echo "supervisors name:  ".$row['fname'];
+//    echo "nurses name:  ".$row['fname'];
 //}
 
 
