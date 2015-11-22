@@ -58,6 +58,19 @@ class admin extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * @param $admin_id
+     * @param $phone
+     * @return bool
+     */
+    function update_phone($admin_id, $phone){
+        $str_query = "UPDATE se_admin SET
+                   phone = '$phone'
+                WHERE admin_id = $admin_id";
+
+        return $this->query($str_query);
+    }
+
 
     /**
      * @param $admin_id
@@ -72,11 +85,14 @@ class admin extends adb{
 
 }
 
-$obj = new admin();
-$obj->get_details(1);
-if($row = $obj->fetch()){
-    echo "admin name:  ".$row['fname'];
-}
+/**
+ * Unit Test and usage
+ */
+//$obj = new admin();
+//$obj->get_details(1);
+//if($row = $obj->fetch()){
+//    echo "admin name:  ".$row['fname'];
+//}
 
 
 
