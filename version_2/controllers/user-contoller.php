@@ -41,7 +41,7 @@ function user_signup_control(){
         $usertype = sanitize_string(filter_input (INPUT_GET, 'type'));
         $email = sanitize_string(filter_input(INPUT_GET, 'email'));
         
-        if ($obj->add_user($username, $password, $usertype)){
+        if ($obj->add_user($username, $password, $usertype, $email)){
              if( strcmp($usertype, 'admin') == 0)
              {
                 //if user type is admin
