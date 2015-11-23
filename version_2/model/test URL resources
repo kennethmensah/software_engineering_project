@@ -1,0 +1,11 @@
+User signup URL
+
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=1&user=kenneth.mensah&pass=kenneth.mensah&type=admin&email=kenneth.mensah@gmail.com&sname=Mensah&fname=Kenneth%20Mintah&phone=+233200393945&district=2&gender=M
+
+
+User login URL
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=2&user=user&pass=pass
+
+
+User password edit
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=4&id=id&pass=pass
