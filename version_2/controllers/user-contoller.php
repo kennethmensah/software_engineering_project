@@ -13,54 +13,76 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 2:
             user_login_control();
             break;
+        case 3:
+            user_edit_control();
+            break;
+        case 4:
+            edit_password_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
 }
 
-//signup admin user
+/**
+ *
+ */
 function user_signup_control(){
     
     $obj  = $username = $password = $usertype = $row = '';
     
-    if( filter_input (INPUT_GET, 'username') && filter_input(INPUT_GET, 'password') && filter_input(INPUT_GET, 'usertype')){
+    if( filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')
+        && filter_input(INPUT_GET, 'type') && filter_input(INPUT_GET, 'email')){
     
         $obj = get_user_model();
-        $username = sanitize_string(filter_input (INPUT_GET, 'username'));
-        $password = sanitize_string(filter_input (INPUT_GET, 'password'));
+        $username = sanitize_string(filter_input (INPUT_GET, 'user'));
+        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
-        $usertype = sanitize_string(filter_input (INPUT_GET, 'usertype'));
+        $usertype = sanitize_string(filter_input (INPUT_GET, 'type'));
+        $email = sanitize_string(filter_input(INPUT_GET, 'email'));
         
-        if ($obj->add_user($username, $password, $usertype)){
-             if( strcmp($usertype, 'admin') == 0){
-                //functionality not added yet
-                //admin_signup($obj->get_insert_id());
-             }elseif( strcmp($usertype, 'nurse') == 0){
-                //functionality not added yet
-                 //nurse_signup($obj->get_insert_id());
-             }elseif( strcmp($usertype, 'supervisor') == 0){
-                //functionality not added yet
-                 //supervisor_signup($obj->get_insert_id());
+        if ($obj->add_user($username, $password, $usertype, $email)){
+             if( strcmp($usertype, 'admin') == 0)
+             {
+                //if user type is admin
+                admin_signup($obj->get_insert_id());
+             }
+             elseif( strcmp($usertype, 'nurse') == 0)
+             {
+                //if user is a nurse
+                 nurse_signup($obj->get_insert_id());
+             }
+             elseif( strcmp($usertype, 'supervisor') == 0){
+                //if user is a supervisor
+                 supervisor_signup($obj->get_insert_id());
              }
                 
-        }else{
+        }
+        else
+        {
             echo '{"result":0,"message": "signup unsuccessful"}';
         }
         
     }
 }
 
-//add new admin
+/**
+ * @param $admin_id
+ */
 function admin_signup($admin_id){
     $obj = $sname = $fname = $phone = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')){
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'district') && filter_input(INPUT_GET, 'gender')){
         $obj = get_admin_model();
-        $sname = filter_input (INPUT_GET, 'sname');
-        $fname = filter_input (INPUT_GET, 'fname');
-        $phone = filter_input (INPUT_GET, 'phone');
+        $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
+        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_admin($admin_id, $sname, $fname, $phone)){
+        if($obj->add_admin($admin_id, $sname, $fname,$district, $phone, $gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -69,16 +91,22 @@ function admin_signup($admin_id){
     }
 }
 
-//add new supervisor
-function supervisor_signup($admin_id){
-    $obj = $sname = $fname = $phone = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')){
+/**
+ * @param $supervisor_id
+ */
+function supervisor_signup($supervisor_id){
+    $obj = $sname = $fname = $district = $phone = '';
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')
+        && filter_input(INPUT_GET, 'gender')){
         $obj = get_supervisor_model();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
+        $district = filter_input (INPUT_GET, 'district');
+        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_supervisor($admin_id, $sname, $fname, $phone)){
+        if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -88,18 +116,22 @@ function supervisor_signup($admin_id){
 }
 
 
-//add new teller
-function nurse_signup($teller_id){
+/**
+ * @param $nurse_id
+ */
+function nurse_signup($nurse_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
-    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'email')){
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
         $obj = get_nurse_model();
         $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
         $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
         $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
-        $email = sanitize_string(filter_input (INPUT_GET, 'email'));
-        
-        if($obj->add_nurse($teller_id, $sname, $fname, $phone, $gender, $email)){
+        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+
+
+        if($obj->add_nurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -124,12 +156,16 @@ function user_login_control(){
         
         if($obj->get_user($username, $pass)){
             $row = $obj->fetch();
-            
-            $_SESSION['user'] = $row['username'];
-            $_SESSION['id'] = $row['user_id'];
-            $_SESSION['user_type'] = $user_type = $row['user_type'];
 
-            echo '{"result":1,"user_type":"'.$user_type .'"}';
+            if($row == 0){
+                echo "Invalid user";
+            }else {
+                $_SESSION['user'] = $row['username'];
+                $_SESSION['id'] = $row['user_id'];
+                $_SESSION['user_type'] = $user_type = $row['user_type'];
+
+                echo '{"result":1,"user_type":"' . $user_type . '"}';
+            }
         }
         else{
             echo '{"result":0,"message": "Invalid User"}';
@@ -137,14 +173,42 @@ function user_login_control(){
     }else{
         echo '{"result":0,"message": "Invalid Credentials"}';
     }
-
 }
+
 
 function set_user_details(){
     
 }
 
-//sanitize command sent
+function user_edit_control(){
+
+}
+
+function edit_password_control(){
+    $obj  = $username = $password = '';
+
+    if( filter_input (INPUT_GET, 'id') && filter_input(INPUT_GET, 'pass')){
+
+        $obj = get_user_model();
+        $user_id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
+        $password = encrypt($password);
+
+        if ($obj->edit_password_byId($user_id,$password)){
+            echo '{"result":1,"message": "password changed successfully"}';
+        }
+        else
+        {
+            echo '{"result":0,"message": "signup unsuccessful"}';
+        }
+
+    }
+}
+
+/**
+ * @param $val
+ * @return string
+ */
 function sanitize_string($val){
     $val = stripslashes($val);
     $val = strip_tags($val);
@@ -153,7 +217,10 @@ function sanitize_string($val){
     return $val;
 }
 
-//encrypt password
+/**
+ * @param $pass
+ * @return string
+ */
 function encrypt($pass){
     $salt1 = "qm&h*";
     $salt2 = "pg!@";
@@ -161,7 +228,9 @@ function encrypt($pass){
     return $token;
 }
 
-//create an instance of the user class
+/**
+ * @return user
+ */
 function get_user_model(){
     require_once '../model/user.php';
     $obj = new user();
@@ -169,22 +238,28 @@ function get_user_model(){
 }
 
 
-//function to get nurse model
+/**
+ * @return nurses
+ */
 function get_nurse_model(){
     require_once '../model/nurse.php';
-    $obj = new teller();
+    $obj = new nurses();
     return $obj;
 }
 
-//function to get supervisor model
+/**
+ * @return supervisors
+ */
 function get_supervisor_model(){
     require_once '../model/supervisor.php';
-    $obj = new teller();
+    $obj = new supervisors();
     return $obj;
 }
 
 
-//function to get admin model
+/**
+ * @return admin
+ */
 function get_admin_model(){
     require_once '../model/admin.php';
     $obj = new admin();
