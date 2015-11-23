@@ -1,6 +1,6 @@
 <?php
     
-    include_once 'adb.php';
+    include_once 'dbmodel.php';
 
     class user extends adb{
        
@@ -69,8 +69,12 @@
 //    echo 'sth';
 //}
 
-// $obj = new user();
-// $result = $obj->add_user("kwasi_bansah", "demo", "admin");
-// echo "sth". $result;
+ $obj = new user();
+ if($obj->add_user("kwasi_banmmnjkj", "demo", "admin",'dffdfdfd')){
+     echo "sth". $result;
+ }else{
+     echo "nana";
+ }
+
 
 ?>
