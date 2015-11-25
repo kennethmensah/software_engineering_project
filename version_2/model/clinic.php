@@ -30,6 +30,15 @@ class clinic extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * @return bool
+     */
+    function get_clinics(){
+        $str_query = "SELECT * FROM se_clinics";
+
+        return $this->query($str_query);
+    }
+
 
 }
 
@@ -38,4 +47,10 @@ class clinic extends adb{
  */
 
 $obj = new clinic();
-$obj->add_clinic('Kwashieman Community Clinic', 'Kwashieman');
+//$obj->add_clinic('Kwashieman Community Clinic', 'Kwashieman');
+if($obj->get_clinics()){
+    $row = $obj->fetch();
+    echo "clinic name ". $row['clinic_name'];
+}else{
+    echo "query failed";
+}
