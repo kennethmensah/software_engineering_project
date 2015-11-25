@@ -39,6 +39,12 @@ class clinic extends adb{
         return $this->query($str_query);
     }
 
+    function get_clinic($id){
+        $str_query = "SELECT * FROM se_clinics where clinic_id = $id";
+
+        return $this->query($str_query);
+    }
+
 
 }
 
@@ -48,7 +54,7 @@ class clinic extends adb{
 
 $obj = new clinic();
 //$obj->add_clinic('Kwashieman Community Clinic', 'Kwashieman');
-if($obj->get_clinics()){
+if($obj->get_clinic(1)){
     $row = $obj->fetch();
     echo "clinic name ". $row['clinic_name'];
 }else{
