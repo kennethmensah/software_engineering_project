@@ -13,7 +13,7 @@
             <div class="nav-wrapper" class="teal lighten-2">
                 <a href="#" class="brand-logo">Task Management</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a onclick="">View District Tasks</a></li>
+                    <li><a href="view_district_tasks.php" onclick="">View District Tasks</a></li>
                     <li><a href="">Assign Tasks</a></li>
                 </ul>
             </div>
