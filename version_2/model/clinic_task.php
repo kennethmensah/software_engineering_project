@@ -176,6 +176,27 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * executes a search query to find a task by the given title
+     * @param $search_task
+     * @return bool
+     */
+    function search_task($search_task){
+        $str_query = "SELECT * FROM se_clinic_tasks
+                      WHERE task_title LIKE '%$search_task%'";
+
+        return $this->query($str_query);
+    }
+
+    function search_task_by_nurse($nurse, $search_text){
+        $str_query = "SELECT * FROM se_clinic_tasks
+                      WHERE task_title LIKE '%$search_text%'
+                      AND assigned_to = $nurse";
+
+        return $this->query($str_query);
+    }
+
+
 
 }
 
