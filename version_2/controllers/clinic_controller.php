@@ -76,7 +76,9 @@ function get_clinics_control(){
 function get_clinic_control(){
 
     if(filter_input (INPUT_GET, 'id')){
+
         $obj = get_clinic_model();
+
         $clinic_id = sanitize_string(filter_input (INPUT_GET, 'id'));
 
         if ($obj->get_clinic($clinic_id)){
