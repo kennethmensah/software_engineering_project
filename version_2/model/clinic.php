@@ -39,8 +39,26 @@ class clinic extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     function get_clinic($id){
         $str_query = "SELECT * FROM se_clinics where clinic_id = $id";
+
+        return $this->query($str_query);
+    }
+
+    /**
+     * @param $clinic_id
+     * @param $clinic_name
+     * @param $clinic_location
+     * @return bool
+     */
+    function edit_details($clinic_id, $clinic_name, $clinic_location){
+        $str_query = "UPDATE se_clinics SET
+                      clinic_name = '$clinic_name',
+                      clinic_location = '$clinic_location'";
 
         return $this->query($str_query);
     }
@@ -54,9 +72,10 @@ class clinic extends adb{
 
 $obj = new clinic();
 //$obj->add_clinic('Kwashieman Community Clinic', 'Kwashieman');
-if($obj->get_clinic(1)){
-    $row = $obj->fetch();
-    echo "clinic name ". $row['clinic_name'];
-}else{
-    echo "query failed";
-}
+//if($obj->get_clinic(1)){
+//    $row = $obj->fetch();
+//    echo "clinic name ". $row['clinic_name'];
+//}else{
+//    echo "query failed";
+//}
+//$obj->edit_details(1,'Bubuashie Community Clinic', 'Bubuashie');
