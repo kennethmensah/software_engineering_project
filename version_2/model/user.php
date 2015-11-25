@@ -1,6 +1,6 @@
 <?php
     
-    include_once 'dbmodel.php';
+    include_once 'adb.php';
 
     class user extends adb{
        
