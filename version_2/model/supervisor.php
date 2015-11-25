@@ -90,6 +90,17 @@ class supervisors extends adb{
 
         return $this->query($str_query);
     }
+    
+    
+    /**
+    * @param
+    * @return bool
+    */
+    function view_admin_tasks(){
+        $str_query = "SELECT * FROM se_district_tasks";
+        
+        return $this->query($str_query);
+    }
 
 }
 
