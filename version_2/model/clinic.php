@@ -70,7 +70,7 @@ class clinic extends adb{
  * Unit test and usage
  */
 
-$obj = new clinic();
+//$obj = new clinic();
 //$obj->add_clinic('Kwashieman Community Clinic', 'Kwashieman');
 //if($obj->get_clinic(1)){
 //    $row = $obj->fetch();
