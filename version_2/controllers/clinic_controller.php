@@ -56,9 +56,43 @@ function add_clinic_control(){
 
 function get_clinics_control(){
 
+    $obj = get_clinic_model();
+    if ($obj->get_clinics()){
+        echo '{"result":1, "clinics":[';
+        $row = $obj->fetch();
+        while($row){
+            echo json_encode($row);
+            if( $row = $obj->fetch()){
+                echo ',';
+            }
+        }
+        echo ']}';
+    }else{
+        echo '{"result":0,"message": "query unsuccessful"}';
+    }
+
 }
 
 function get_clinic_control(){
+
+    if(filter_input (INPUT_GET, 'id')){
+        $obj = get_clinic_model();
+        $clinic_id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_clinic($clinic_id)){
+            echo '{"result":1, "clinics":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
 
 }
 
