@@ -39,6 +39,9 @@ if(filter_input (INPUT_GET, 'cmd')){
             get_nurse_task_control();
             break;
         case 6:
+            /**
+             * get tasks overdue
+             */
 
             break;
         default:
@@ -150,6 +153,9 @@ function get_nurse_task_control(){
     }
 }
 
+/**
+ * confirm task
+ */
 function confirm_task_control(){
     if( filter_input (INPUT_GET, 'id')){
 
