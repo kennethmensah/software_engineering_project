@@ -19,6 +19,9 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 4:
             edit_password_control();
             break;
+        case 5:
+            user_logout_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -157,8 +160,9 @@ function nurse_signup($nurse_id){
 }
 
 
-
-//login function
+/**
+ * controller function to login users
+ */
 function user_login_control(){
 
     $obj = $username = $pass = '';
@@ -242,6 +246,9 @@ function user_edit_control(){
 
 }
 
+/**
+ * controller function to edit user password
+ */
 function edit_password_control(){
     $obj  = $username = $password = '';
 
@@ -264,6 +271,16 @@ function edit_password_control(){
 }
 
 /**
+ *
+ */
+function user_logout_control(){
+    session_destroy();
+    //redirect to logout screen
+    header("Location: http://localhost/SE/software_engineering_project/version_2/view/login.html");
+}
+
+/**
+ * sanitize input from url
  * @param $val
  * @return string
  */
