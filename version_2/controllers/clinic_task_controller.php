@@ -18,13 +18,25 @@ if(filter_input (INPUT_GET, 'cmd')){
             add_task_control();
             break;
         case 2:
+            /**
+             * retrieve all tasks
+             */
             get_tasks_control();
             break;
         case 3:
-            edit_task_control();
+            confirm_task_control();
             break;
         case 4:
+            /**
+             * retrieve particular task
+             */
             get_task_control();
+            break;
+        case 5:
+            /**
+             * get task by nurse id
+             */
+            get_nurse_task_control();
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
@@ -64,11 +76,13 @@ function add_task_control(){
     }
 }
 
-
-function get_task_control(){
+/**
+ * function to get all tasks
+ */
+function get_tasks_control(){
     $obj = get_clinic_task_model();
     if ($obj->get_clinic_tasks()){
-        echo '{"result":1, "clinics":[';
+        echo '{"result":1, "clinic_tasks":[';
         $row = $obj->fetch();
         while($row){
             echo json_encode($row);
@@ -82,7 +96,56 @@ function get_task_control(){
     }
 }
 
+/**
+ * function that retrieve a particular task
+ */
+function get_task_control(){
+    if( filter_input (INPUT_GET, 'id')){
 
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_task_by_Id($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+
+/**
+ * returns all nurse task for the last 30 days
+ */
+function get_nurse_task_control(){
+    if( filter_input (INPUT_GET, 'id')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_all_nurse_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
 
 
 

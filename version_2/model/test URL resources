@@ -26,3 +26,25 @@ http://localhost/SE/software_engineering_project/version_2/controllers/clinic_co
 
 Edit A clinic
 http://localhost/SE/software_engineering_project/version_2/controllers/clinic_controller.php?cmd=4&id=2&name=Obaatan%20Pa%20Clinic&loc=East%20Legon%20(American%20House)
+
+
+Clinic Tasks
+
+View All Confirmed Tasks(Nurses)
+
+
+View All Completed Tasks(Nurses)
+
+
+View Due Tasks(Nurses)
+
+
+Search Tasks(Nurses)
+
+
+
+View All tasks assigned to nurses
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=5&id=1
+
+View task by Id
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=4&id=3

@@ -91,7 +91,19 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_by_date_completed($date){
-        $str_query = "SELECT * FROM se_clinic_tasks WHERE date_completed = '$date'";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.date_completed = '$date'";
 
         return $this->query($str_query);
     }
@@ -101,7 +113,19 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_by_date_assigned($date){
-        $str_query = "SELECT * FROM se_clinic_tasks WHERE date_assigned = '$date'";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.date_assigned = '$date'";
 
         return $this->query($str_query);
     }
@@ -273,6 +297,33 @@ class clinic_task extends adb{
                       WHERE CT.assigned_to = N.nurse_id
                       AND CT.task_title LIKE '%$search_text%'
                       AND CT.assigned_to = $nurse";
+
+        return $this->query($str_query);
+    }
+
+
+    /**
+     * executes a query to show tasks assigned to nurses in the
+     * last 30 days
+     * @param $nurse
+     * @return bool
+     */
+    function get_all_nurse_tasks($nurse){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.assigned_to = $nurse
+                      AND DATEDIFF(CT.date_assigned, CURDATE()) <= 30 ";
 
         return $this->query($str_query);
     }
