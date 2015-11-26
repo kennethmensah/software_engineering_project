@@ -32,28 +32,33 @@ if(filter_input (INPUT_GET, 'cmd')){
     }
 }
 
-
+/**
+ * controller method to add a task
+ */
 function add_task_control(){
 
-    if( filter_input (INPUT_GET, 'title') && filter_input(INPUT_GET, 'loc')){
+    if( filter_input (INPUT_GET, 'title') && filter_input (INPUT_GET, 'desc')
+        && filter_input (INPUT_GET, 'nurse') && filter_input (INPUT_GET, 'supervisor')
+        && filter_input (INPUT_GET, 'date') && filter_input (INPUT_POST, 'time')
+        && filter_input (INPUT_POST, 'clinic')){
 
         $obj =  get_clinic_task_model();
 
-        $title = sanitize_string(filter_input (INPUT_GET, 'title'));
-        $desc = sanitize_string(filter_input (INPUT_GET, 'desc'));
+        $title = sanitize_string(filter_input (INPUT_POST, 'title'));
+        $desc = sanitize_string(filter_input (INPUT_POST, 'desc'));
         $nurse = sanitize_string(filter_input (INPUT_GET, 'nurse'));
-        $supervisor = sanitize_string(filter_input (INPUT_GET, 'supervisor'));
-        $due_date = sanitize_string(filter_input (INPUT_GET, 'date'));
-        $due_time = sanitize_string(filter_input (INPUT_GET, 'time'));
-        $clinic  = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $supervisor = sanitize_string(filter_input (INPUT_POST, 'supervisor'));
+        $due_date = sanitize_string(filter_input (INPUT_POST, 'date'));
+        $due_time = sanitize_string(filter_input (INPUT_POST, 'time'));
+        $clinic  = sanitize_string(filter_input (INPUT_POST, 'clinic'));
 
 
         if ($obj->$obj->add_clinic_task($title, $desc, $nurse, $supervisor, $due_date,$due_time, $clinic)){
-            echo '{"result":1,"message": "clinic added successfully"}';
+            echo '{"result":1,"message": "task added successfully"}';
         }
         else
         {
-            echo '{"result":0,"message": "unable to add clinic"}';
+            echo '{"result":0,"message": "unable to add task"}';
         }
 
     }
@@ -61,8 +66,8 @@ function add_task_control(){
 
 
 function get_task_control(){
-    $obj = get_clinic_model();
-    if ($obj->get_clinics()){
+    $obj = get_clinic_task_model();
+    if ($obj->get_clinic_tasks()){
         echo '{"result":1, "clinics":[';
         $row = $obj->fetch();
         while($row){

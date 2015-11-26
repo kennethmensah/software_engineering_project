@@ -46,7 +46,19 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_clinic_tasks(){
-        $str_query = "SELECT * FROM se_clinic_tasks";
+
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id";
 
         return $this->query($str_query);
     }
@@ -56,7 +68,20 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_task_by_Id($id){
-        $str_query = "SELECT * FROM se_clinic_tasks WHERE task_id = $id";
+
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND task_id = $id";
 
         return $this->query($str_query);
     }
@@ -123,18 +148,22 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_nurse_due_task($id){
-        $str_query = "SELECT task_id,
-                      task_title,
-                      task_desc,
-                      assigned_by,
-                      assigned_to,
-                      date_assigned,
-                      due_date,
-                      due_time,
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname,
                       DATEDIFF(CURDATE(), due_date) As overdue_days,
                       TIMEDIFF(CURTIME(), due_time) As overdue_time
-                      FROM se_clinic_tasks
-                      WHERE assigned_to = $id";
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND assigned_to = $id";
 
         return $this->query($str_query);
     }
@@ -144,8 +173,19 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_all_tasks(){
-        $str_query = "SELECT * FROM se_clinic_tasks
-                      ORDER BY due_date DESC";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      ORDER BY CT.due_date DESC";
 
         return $this->query($str_query);
     }
@@ -170,8 +210,19 @@ class clinic_task extends adb{
      * @return bool
      */
     function get_completed_for_week(){
-        $str_query = "SELECT * FROM se_clinic_tasks
-                      WHERE DATEDIFF(CURDATE(), date_completed) <= 7";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND DATEDIFF(CURDATE(), CT.date_completed) <= 7";
 
         return $this->query($str_query);
     }
@@ -182,8 +233,20 @@ class clinic_task extends adb{
      * @return bool
      */
     function search_task($search_task){
-        $str_query = "SELECT * FROM se_clinic_tasks
-                      WHERE task_title LIKE '%$search_task%'";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.task_title LIKE '%$search_task%'";
 
         return $this->query($str_query);
     }
@@ -195,9 +258,21 @@ class clinic_task extends adb{
      * @return bool
      */
     function search_task_by_nurse($nurse, $search_text){
-        $str_query = "SELECT * FROM se_clinic_tasks
-                      WHERE task_title LIKE '%$search_text%'
-                      AND assigned_to = $nurse";
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      N.fname,
+                      N.sname
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.task_title LIKE '%$search_text%'
+                      AND CT.assigned_to = $nurse";
 
         return $this->query($str_query);
     }
