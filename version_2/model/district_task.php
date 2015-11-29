@@ -47,7 +47,7 @@ class district_task extends adb{
     *@param String $date this is the date on which the new task was added  
     *@return bool the result will return true/false whether the sql query is successful
     */
-    function edit_district_task($taskTitle, $taskDesc, $clinics,$date)
+    function update_district_task($id, $taskTitle, $taskDesc, $clinics,$date)
     {
         $str_query = "update se_district_tasks set " .  "task_title = '$taskTitle'," . "task_desc = '$taskDesc'". "clinics = '$clinics'," . "due_date = '$date'". "where task_id = '$id'";
         return $this->query($str_query);
