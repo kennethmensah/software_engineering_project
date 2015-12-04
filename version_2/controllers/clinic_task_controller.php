@@ -112,7 +112,7 @@ function get_task_control(){
         $id = sanitize_string(filter_input (INPUT_GET, 'id'));
 
         if ($obj->get_task_by_Id($id)){
-            echo '{"result":1, "clinic_tasks":[';
+            echo '{"result":1, "overdue_tasks":[';
             $row = $obj->fetch();
             while($row){
                 echo json_encode($row);
@@ -168,6 +168,24 @@ function confirm_task_control(){
             echo '{"result":0,"message":"query unsuccessful"}';
         }
     }
+}
+
+function overdue_tasks(){
+    $obj = get_clinic_task_model();
+    if ($obj->get_overdue_tasks()){
+        echo '{"result":1, "clinic_tasks":[';
+        $row = $obj->fetch();
+        while($row){
+            echo json_encode($row);
+            if( $row = $obj->fetch()){
+                echo ',';
+            }
+        }
+        echo ']}';
+    }else{
+        echo '{"result":0,"message": "query unsuccessful"}';
+    }
+}
 }
 
 
