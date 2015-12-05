@@ -33,7 +33,7 @@ class district_task extends adb{
     function add_district_task($taskTitle, $taskDesc, $clinics, $date)
     {
         
-        $str_query = "insert into se_district_tasks set "  . "task_title = '$taskTitle'," . "task_desc = '$taskDesc'". "clinics = '$clinics'," . "due_date = '$date'";
+        $str_query = "insert into se_district_tasks set " . " task_title = '$taskTitle'," . "task_desc = '$taskDesc',". "clinics = '$clinics'," . "due_date = '$date'";
         return $this->query($str_query);
     }
     
@@ -47,7 +47,7 @@ class district_task extends adb{
     *@param String $date this is the date on which the new task was added  
     *@return bool the result will return true/false whether the sql query is successful
     */
-    function edit_district_task($taskTitle, $taskDesc, $clinics, $date)
+    function update_district_task($id, $taskTitle, $taskDesc, $clinics,$date)
     {
         $str_query = "update se_district_tasks set " .  "task_title = '$taskTitle'," . "task_desc = '$taskDesc'". "clinics = '$clinics'," . "due_date = '$date'". "where task_id = '$id'";
         return $this->query($str_query);
@@ -96,16 +96,12 @@ class district_task extends adb{
     *@return bool the result will return true/false whether the sql query is successful
     */
     
-    function search_task_by_name($sn)
+    function search_district_task_by_name($sn)
     {
-        $str_query = "select task_id, task_title, task_desc,clinics,due_date from se_district_tasks where task_title like '%$sn%'";
-    if($result = $this->query($str_query))
-      return $result;
-      else
-     echo "the search query was not successful";
+        $str_query = "select task_id, task_title, task_desc,clinics,due_date from se_district_tasks where task_name like '%$sn%'";
+        return $this->query($str_query);
     }
     
 }
 
 ?>
-}
