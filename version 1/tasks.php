@@ -175,7 +175,7 @@ class tasks extends adb{
     function search_task_by_description($desc){
         $str_query = "select task_id,nurse_id, nurse_fname, nurse_sname,
                 task_status, description, due_date from webPro_tasks, webPro_nurses 
-                where description like '$$desc%' and nurse=nurse_id";
+                where description like '%$desc%' and nurse=nurse_id";
         return $this->query($str_query);
     } 
     
