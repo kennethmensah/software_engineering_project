@@ -9,7 +9,7 @@
 define("DB_HOST", 'localhost');
 //define("DB_NAME", 'csashesi_fredrick-abayie');
 
-define("DB_NAME", 'nurse_task_managerV2');
+define("DB_NAME", 'test');
 define("DB_PORT", 3306);
 define("DB_USER","root");
 define("DB_PWORD","");
@@ -131,7 +131,7 @@ class adb
             return false;
         }
 
-        return $this->result;
+        return true;
     }
 
     /**

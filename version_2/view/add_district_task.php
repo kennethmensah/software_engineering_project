@@ -6,7 +6,7 @@
     <?php
 
 if (isset($_REQUEST['tt']) && isset($_REQUEST['td']) && isset($_REQUEST['cli']) && isset($_REQUEST['dt'])) {
-    include("district_task.php");
+    include("../model/district_task.php");
     $obj = new district_task();
     
 
