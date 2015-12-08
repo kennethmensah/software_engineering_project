@@ -1,12 +1,14 @@
 <?php
-session_start();
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/25/15
- * Time: 10:50 AM
- */
+    *@author Group 4
+    *@version 2.0.0
+    *@copyright Copyright (c) 2015, Group 4
+*/
 
+/**
+*@method void session_start() Starts the session
+*/
+session_start();
 
 if(filter_input (INPUT_GET, 'cmd')){
     $cmd = $cmd_sanitize = '';
@@ -15,6 +17,9 @@ if(filter_input (INPUT_GET, 'cmd')){
 
     switch ($cmd){
         case 1:
+            /*
+            *Adds Task to database
+            */
             add_task_control();
             break;
         case 2:
@@ -28,7 +33,7 @@ if(filter_input (INPUT_GET, 'cmd')){
             break;
         case 4:
             /**
-             * retrieve particular task
+             * retrieve a particular task
              */
             get_task_control();
             break;
@@ -51,7 +56,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 }
 
 /**
- * controller method to add a task
+ *@method void add_task_control() Adds a task to the database
  */
 function add_task_control(){
 
@@ -83,7 +88,7 @@ function add_task_control(){
 }
 
 /**
- * function to get all tasks
+ *@method void get_tasks_control() Gets tasks from the database
  */
 function get_tasks_control(){
     $obj = get_clinic_task_model();
@@ -103,7 +108,7 @@ function get_tasks_control(){
 }
 
 /**
- * function that retrieve a particular task
+ *@method get_task_control() Get a task from the database
  */
 function get_task_control(){
     if( filter_input (INPUT_GET, 'id')){
@@ -129,7 +134,7 @@ function get_task_control(){
 
 
 /**
- * returns all nurse task for the last 30 days
+ *@method void get_nurse_task_control() Gets tasks assigned a particular nurse
  */
 function get_nurse_task_control(){
     if( filter_input (INPUT_GET, 'id')){
@@ -154,7 +159,7 @@ function get_nurse_task_control(){
 }
 
 /**
- * confirm task
+ *@method void confirm_task_control() Confirms tasks finished by nurse
  */
 function confirm_task_control(){
     if( filter_input (INPUT_GET, 'id')){
@@ -170,6 +175,9 @@ function confirm_task_control(){
     }
 }
 
+/**
+ *@method void overdue_tasks() Gets all overdue tasks in database
+ */
 function overdue_tasks(){
     $obj = get_clinic_task_model();
     if ($obj->get_overdue_tasks()){
@@ -188,8 +196,10 @@ function overdue_tasks(){
 }
 }
 
-
-
+/**
+ * @param $val
+ * @return string
+ */
 function sanitize_string($val){
     $val = stripslashes($val);
     $val = strip_tags($val);
