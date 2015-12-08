@@ -42,7 +42,7 @@ if(filter_input (INPUT_GET, 'cmd')){
             /**
              * get tasks overdue
              */
-
+            overdue_tasks();
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
