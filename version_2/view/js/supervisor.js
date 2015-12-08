@@ -2,8 +2,8 @@
  * Created by StreetHustling on 12/7/15.
  */
 $(document).ready(function(){
-
-    getDistrictNurses();
+    load_dashboard();
+    //getDistrictNurses();
 });
 
 $("#addTaskBtn").click(function(){
@@ -134,3 +134,72 @@ function clearAddNurseForm(){
     $("input[name=pass]").val("");
     $("input[name=phone]").val("");
 }
+
+
+function load_dashboard(){
+    $("#main_content").load("supervisor_pages/dashboard.html");
+    $("#sub_content").load("supervisor_pages/to_do_list.html");
+}
+
+
+function loadAddTaskForm(){
+    $("#main_content").load("supervisor_pages/add_task.html");
+}
+
+function loadAddNurseForm(){
+    //var add_nurse = addNurseForm();
+    //$("#sub_content").html(add_nurse);
+    $("#sub_content").load("supervisor_pages/add_nurse.html");
+}
+
+
+function loadClinicTasks(){
+    $("#sub_content").load("supervisor_pages/clinic_task_page.html");
+}
+
+
+function addNurseForm(){
+    var add = '<div class="col-md-6">';
+    add += '<div class="box box-primary"> ' +
+        '<div class="box-header">' +
+        '<h3 class="box-title">Add New Nurse</h3>'+
+        '</div>' +
+        '<div class="box-body">' +
+        '<!-- text input for username-->' +
+        '<div class="form-group"> <div class="input-group">' +
+        ' <span class="input-group-addon"><i class="fa fa-user"></i></span>' +
+        '<input type="text" name="username" class="form-control" placeholder="username"> </div> </div>' +
+        '<!-- text input for first name-->' +
+        '<div class="form-group"> <div class="input-group">' +
+        '<span class="input-group-addon"><i class="fa fa-user"></i></span>' +
+        '<input type="text" name="firstname" class="form-control" placeholder="first name"> </div> </div>' +
+        ' <!-- text input for surname name-->' +
+        '<div class="form-group"> <div class="input-group">' +
+        '<span class="input-group-addon"><i class="fa fa-user-md"></i></span>' +
+        '<input type="text" name="surname" class="form-control" placeholder="surname"></div></div>' +
+        '<!-- text input for nurse email-->' +
+        ' <div class="form-group"><div class="input-group">' +
+        '<span class="input-group-addon"><i class="fa fa-envelope"></i></span>' +
+        '<input type="text" name="email" class="form-control" placeholder="email"> </div> </div>' +
+        '<!-- text input for nurse password-->' +
+        '<div class="form-group"> <div class="input-group">' +
+        '<span class="input-group-addon"><i class="fa fa-lock"></i></span>' +
+        '<input name="pass" type="password" class="form-control" placeholder="password"> </div> </div>' +
+        '<!-- text input for nurse telephone -->' +
+        '<div class="form-group"> <div class="input-group"> <div class="input-group-addon">' +
+        '<i class="fa fa-phone"></i> </div>' +
+        '<input name="phone" type="tel" class="form-control pull-right" placeholder="phone"/> </div><!-- /.input group -->' +
+        '</div><!-- /.form group -->' +
+        '<!-- Date and time range -->' +
+        '<div class="form-group">' +
+        '<select name="gender" class="form-control"> <option selected>gender</option>' +
+        '<option value="M">M</option> <option value="F">F</option>' +
+        '</select><!-- /.input group --> </div><!-- /.form group --> </div><!-- /.box-body -->' +
+        '<div class="box-footer">' +
+        '<button id="addNurseBtn" type="button" class="btn btn-primary" onclick="addNurse()">Submit</button>' +
+        '</div> </div><!-- /.box --> </div>';
+
+    return add;
+}
+
+
