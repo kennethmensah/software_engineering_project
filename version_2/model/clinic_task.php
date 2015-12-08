@@ -131,27 +131,27 @@ class clinic_task extends adb{
     }
 
 
-    /**
-     * Function For supervisors to view due tasks of all nurses
-     * @return bool
-     */
-    function get_due_tasks(){
-        $str_query = "SELECT
-                      task_id,
-                      task_title,
-                      task_desc,
-                      assigned_by,
-                      assigned_to,
-                      date_assigned,
-                      due_date,
-                      due_time,
-                      DATEDIFF(CURDATE(), due_date) As overdue_days,
-                      TIMEDIFF(CURTIME(), due_date) As overdue_time
-                      FROM se_clinic_tasks WHERE DATEDIFF(CURDATE(), due_date) > 0";
-
-        return $this->query($str_query);
-    }
-    
+//    /**
+//     * Function For supervisors to view due tasks of all nurses
+//     * @return bool
+//     */
+//    function get_due_tasks(){
+//        $str_query = "SELECT
+//                      task_id,
+//                      task_title,
+//                      task_desc,
+//                      assigned_by,
+//                      assigned_to,
+//                      date_assigned,
+//                      due_date,
+//                      due_time,
+//                      DATEDIFF(CURDATE(), due_date) As overdue_days,
+//                      TIMEDIFF(CURTIME(), due_date) As overdue_time
+//                      FROM se_clinic_tasks WHERE DATEDIFF(CURDATE(), due_date) > 0";
+//
+//        return $this->query($str_query);
+//    }
+//    
     /**
      * Function For supervisors to view overdue tasks of all nurses
      * @return bool
@@ -168,7 +168,7 @@ class clinic_task extends adb{
                       due_time,
                       DATEDIFF(CURDATE(), due_date) As overdue_days,
                       TIMEDIFF(CURTIME(), due_date) As overdue_time
-                      FROM se_clinic_tasks WHERE DATEDIFF(CURDATE(), due_date) = 0";
+                      FROM se_clinic_tasks WHERE DATEDIFF(CURDATE(), due_date) >= 0";
 
         return $this->query($str_query);
     }
