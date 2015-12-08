@@ -67,9 +67,26 @@ function assignTask(){
         "cmd=1&title="+title+"&desc="+desc+"&nurse="+nurse+"&supervisor="+user_id+"&date="+due_date+"&time="+due_time+"&clinic="+district;
     var obj=sendRequest(theUrl);		//send request to the above url
     if(obj.result===1) {					//check result
-        alert("task added");
+        clearAddTaskForm();
+        var success = '<div class="alert alert-success alert-dismissible" role="alert">'+obj.message+'' +
+            '</div>';
+
+        $("#message").html(success).fadeIn().fadeOut(4000);
+
+
     }
     else{
-        alert("task failed");
+        var failed = '<div class="alert alert-danger alert-dismissible" role="alert">'+obj.message+'' +
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+            '</div>';
+        $("#message").html(failed).fadeIn();
     }
+}
+
+
+function clearAddTaskForm(){
+    var title = $("#title").val("");
+    var desc = $("#desc").val("");
+    var due_date = $("#due_date").val("");
+    var due_time = $("#due_time").val("");
 }

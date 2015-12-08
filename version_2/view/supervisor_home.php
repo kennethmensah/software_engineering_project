@@ -405,6 +405,10 @@ include_once 'sessionValues.php';
             </ol>
         </section>
 
+        <section class="content" id="message">
+
+        </section>
+
         <!-- Main content -->
         <section class="content">
 
@@ -426,6 +430,73 @@ include_once 'sessionValues.php';
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea id="desc" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <!-- select -->
+                            <div class="form-group" id="nurses">
+
+                            </div>
+
+                            <!-- Due date -->
+                            <div class="form-group">
+                                <label>Due Date:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input id="due_date" type="date" class="form-control pull-right" id="due_date"/>
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+
+                            <!-- Date and time range -->
+                            <div class="form-group">
+                                <label>Due time:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input id="due_time" type="time" class="form-control pull-right" id="reservationtime"/>
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button id="addTaskBtn" type="button" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </div><!-- /.box -->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">Add New Nurse</h3>
+                        </div>
+                        <div class="box-body">
+
+                            <!-- text input for username-->
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" class="form-control" placeholder="Email">
+                            </div>
+
+                            <!-- text input for nurse email-->
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" class="form-control" placeholder="Email">
+                            </div>
+
+                            <!-- text input for nurse email-->
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="password">
+                            </div>
+
+                            <!-- text input for task title-->
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input id="title" type="text" class="form-control" placeholder="Enter ..."/>
                             </div>
 
                             <!-- select -->
