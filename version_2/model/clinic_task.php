@@ -13,6 +13,7 @@ class clinic_task extends adb{
     function clinic_task(){
 
     }
+<<<<<<< Updated upstream
 
     /**
      * executes a query to add a new task
@@ -368,3 +369,25 @@ class clinic_task extends adb{
 //}
 //$obj->confirm_task(1);
 //$obj->update_time_completed(3, 1);
+=======
+ /*This functions updates the tasks date of completion by the nurse in the database.
+ *@param int $task_id this represents the unique identifier for each task
+ *@return bool the result will return true/false whether the sql query is successful
+  */
+    function update_task_date($task_id){
+    	$date = date("Y,=/m/d");
+    	$str_query = "update clinic_task 
+    	set date_completed = '$date' where comfirmed = yes";
+    	return $this->query($str_query);
+    }
+
+ /*This function is to delete tasks form the database.
+ *@param int $task_id this represents the unique identifier for each task
+ *@return bool the result will return true/false whether the sql query is successful
+  */
+    function delete_task($task_id){
+    	$str_query = "delete from clinic_task where id = $task_id";
+    	return $this->query($str_query);
+    }
+}
+>>>>>>> Stashed changes

@@ -104,4 +104,15 @@ class district_task extends adb{
     
 }
 
-?>
+
+/**
+ * Unit Test and usage
+ */
+$obj = new district_task();
+//$obj->add_district_task('Vacination','vaccination for polio kids in the north','Berekuso clinic', '21/03/2015');
+//$obj = new district_task();
+//$obj->get_district_task(1);
+if($row = $obj->fetch()){
+echo "Task:  " .$row ['task_title'];
+}
+echo "hello";
