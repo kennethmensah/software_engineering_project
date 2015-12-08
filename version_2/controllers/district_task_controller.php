@@ -1,11 +1,14 @@
 <?php
-session_start();
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/25/15
- * Time: 10:51 AM
- */
+    *@author Group 4
+    *@version 2.0.0
+    *@copyright Copyright (c) 2015, Group 4
+    */
+
+/**
+*@method void session_start() Starts the session
+*/
+session_start();
 
 if(filter_input (INPUT_GET, 'cmd')){
     $cmd = $cmd_sanitize = '';
@@ -14,18 +17,33 @@ if(filter_input (INPUT_GET, 'cmd')){
 
     switch ($cmd){
         case 1:
+            /*
+            *Adds a Task to database
+            */
             add_task_control();
             break;
         case 2:
+            /*
+            *Gets Tasks from database
+            */
             get_tasks_control();
             break;
         case 3:
+            /*
+            *Edits a Task in database
+            */
             edit_task_control();
             break;
         case 4:
+            /*
+            *Gets a Task from database
+            */
             get_task_control();
             break;
         default:
+            /*
+            *Default value returns an error message
+            */
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
