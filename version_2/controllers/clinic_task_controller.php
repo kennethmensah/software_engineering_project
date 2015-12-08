@@ -50,6 +50,9 @@ if(filter_input (INPUT_GET, 'cmd')){
             overdue_tasks();
             break;
         default:
+            /*
+            *Default value sends an error message
+            */
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
