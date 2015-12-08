@@ -43,6 +43,7 @@ class clinic_task extends adb{
 
     /**
      * executes a query to select all tasks
+     * For district Admins
      * @return bool
      */
     function get_clinic_tasks(){
@@ -56,9 +57,30 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id";
+
+        return $this->query($str_query);
+    }
+
+
+    function get_all_clinic_tasks($clinic){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      CT.confirmed,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id AND CT.clinic = $clinic
+                      ORDER BY CT.due_date DESC";
 
         return $this->query($str_query);
     }
@@ -78,6 +100,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
@@ -100,6 +123,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
@@ -122,6 +146,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
@@ -144,6 +169,7 @@ class clinic_task extends adb{
                       assigned_to,
                       date_assigned,
                       due_date,
+                      confirmed,
                       due_time,
                       DATEDIFF(CURDATE(), due_date) As overdue_days,
                       TIMEDIFF(CURTIME(), due_date) As overdue_time
@@ -181,6 +207,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname,
                       DATEDIFF(CURDATE(), due_date) As overdue_days,
@@ -205,6 +232,7 @@ class clinic_task extends adb{
                       CT.assigned_to,
                       CT.date_assigned,
                       CT.due_date,
+                      CT.confirmed,
                       CT.due_time,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
@@ -242,6 +270,7 @@ class clinic_task extends adb{
                       CT.assigned_to,
                       CT.date_assigned,
                       CT.due_date,
+                      CT.confirmed,
                       CT.due_time,
                       N.fname,
                       N.sname FROM se_clinic_tasks CT, se_nurses N
@@ -266,6 +295,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname
                       FROM se_clinic_tasks CT, se_nurses N
@@ -291,6 +321,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname
                       FROM se_clinic_tasks CT, se_nurses N
@@ -318,6 +349,7 @@ class clinic_task extends adb{
                       CT.date_assigned,
                       CT.due_date,
                       CT.due_time,
+                      CT.confirmed,
                       N.fname,
                       N.sname
                       FROM se_clinic_tasks CT, se_nurses N
@@ -336,8 +368,8 @@ class clinic_task extends adb{
 //
 //$nurses = serialize($nurses);
 
-$obj = new clinic_task();
-$obj->add_clinic_task('Yellow Fever Vaccination', 'Perform vaccination on 30 pregnant women', 1, 1, '2015-12-23','12.00.00',1);
+//$obj = new clinic_task();
+//$obj->add_clinic_task('Yellow Fever Vaccination', 'Perform vaccination on 30 pregnant women', 1, 1, '2015-12-23','12.00.00',1);
 //
 //if($obj->get_nurse_due_task(4)){
 //    $row = $obj->fetch();

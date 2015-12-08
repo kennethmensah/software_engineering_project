@@ -44,9 +44,39 @@ if(filter_input (INPUT_GET, 'cmd')){
              */
 
             break;
+        case 7:
+            get_clinic_tasks();
+            break;
+
+        case 8:
+            generate_report();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
+    }
+}
+
+
+function generate_report(){
+    if( filter_input (INPUT_GET, 'nurse_id')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'nurse_id'));
+
+        if ($obj->get_task_by_Id($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
     }
 }
 
@@ -166,6 +196,31 @@ function confirm_task_control(){
             echo '{"result":1,"message":"task confirmed"}';
         }else{
             echo '{"result":0,"message":"query unsuccessful"}';
+        }
+    }
+}
+
+/**
+ * this function fetches all tasks assigned in a particular clinic
+ */
+function get_clinic_tasks(){
+    if( filter_input (INPUT_GET, 'clinic')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+
+        if ($obj->get_all_clinic_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
         }
     }
 }

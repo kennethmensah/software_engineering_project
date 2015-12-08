@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
     load_dashboard();
-    //getDistrictNurses();
+    //
 });
 
 $("#addTaskBtn").click(function(){
@@ -26,8 +26,53 @@ function sendRequest(u){
 }
 
 
+function getClinicTasks(){
+    var district = localStorage.getItem("district");
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=7&clinic="+district;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        showTasks(obj);
+    }
+    else{
+
+    }
+}
+
+function showTasks(obj){
+
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="unread">';
+        }else{
+            task_list = '<tr class="read">';
+        }
+
+        task_list += '<td class="small-col"><input type="checkbox" class="confirm"/></td>';
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            $('.confirm').attr('checked', true);
+        }
+
+
+        task_list += '<td class="small-col"><i class="fa fa-star"></i></td>';
+        task_list += '<td class="name"><a href="javascript: ">'+obj.clinic_tasks[index].fname+" "+
+            obj.clinic_tasks[index].sname+ '</a></td>';
+        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
+        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+        task_list += '<td class="time">'+obj.clinic_tasks[index].due_time+'</td>';
+        task_list += '</tr>';
+
+        $("#clinic_tasks_div").append(task_list);
+    }
+}
+
+
 function getDistrictNurses(){
     var district = localStorage.getItem("district");
+
     var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?" +
         "cmd=6&district="+district;
     var obj=sendRequest(theUrl);		//send request to the above url
@@ -96,7 +141,6 @@ function clearAddTaskForm(){
 function addNurse(){
 
     var username = $("input[name=username]").val();
-    alert(username);
     var fname = $("input[name=firstname]").val();
     var gender = $("select[name=gender] option:selected").val();
     var sname = $("input[name=surname]").val();
@@ -114,8 +158,6 @@ function addNurse(){
             '</div>';
 
         $("#message").html(success).fadeIn().fadeOut(4000);
-
-
     }
     else{
         var failed = '<div class="alert alert-danger alert-dismissible" role="alert">'+obj.message+'' +
@@ -147,6 +189,7 @@ function loadAddTaskForm(){
 }
 
 function loadAddNurseForm(){
+    $("#page_name").text("Nurses");
     //var add_nurse = addNurseForm();
     //$("#sub_content").html(add_nurse);
     $("#sub_content").load("supervisor_pages/add_nurse.html");
@@ -154,7 +197,12 @@ function loadAddNurseForm(){
 
 
 function loadClinicTasks(){
-    $("#sub_content").load("supervisor_pages/clinic_task_page.html");
+    $("#page_name").text("Clinic Tasks");
+    $("#sub_content").load("supervisor_pages/clinic_task_page.html", function(){
+        getClinicTasks();
+        getDistrictNurses();
+    });
+
 }
 
 

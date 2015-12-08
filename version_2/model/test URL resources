@@ -48,6 +48,9 @@ Search Tasks(Nurses)
 
 View Individual Task
 
+View All Tasks Assigned In a Clinic
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=7&clinic=2
+
 
 View All tasks assigned to nurses
 http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=5&id=1

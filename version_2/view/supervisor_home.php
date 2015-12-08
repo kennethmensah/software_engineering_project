@@ -361,7 +361,7 @@ include_once 'sessionValues.php';
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Supervisor's Page
+                <span id="page_name">Supervisor's Page</span>
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
