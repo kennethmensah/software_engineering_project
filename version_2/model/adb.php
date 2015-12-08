@@ -1,18 +1,20 @@
 <?php
 
+
+
 /**
  * author:
  * date:
  * description: A root class for all manage classes. This class communicates with DB
  */
 
-define("DB_HOST", 'localhost');
+define("DB_HOST", 'localhost:8888');
 //define("DB_NAME", 'csashesi_fredrick-abayie');
 
 define("DB_NAME", 'nurse_task_managerV2');
-define("DB_PORT", 3306);
+define("DB_PORT", 8889);
 define("DB_USER","root");
-define("DB_PWORD","");
+define("DB_PWORD","root");
 
 
 //define("DB_HOST", 'localhost');
@@ -82,10 +84,12 @@ class adb
     function establish_connection  ( )
     {
 
+        echo "link ". $this->link;
         if($this->link)
         {
             return true;
         }
+
         //try to connect to db
         $this->link = mysql_connect(DB_HOST , DB_USER, DB_PWORD);
 
@@ -94,6 +98,8 @@ class adb
             echo "not connected";	//debug line
             $this->log_error(LOG_LEVEL_DB_FAIL,1, "connection failed  in db:connect()", mysql_error());
             return false;
+        }else{
+            echo "connected";
         }
 //            echo "connected";
         if (!mysql_select_db(DB_NAME)) {
@@ -120,6 +126,7 @@ class adb
     function query ( $str_sql )
     {
 
+        echo "string";
         if ( !$this->establish_connection ( ) )
             {
             return false;

@@ -91,6 +91,11 @@ class supervisors extends adb{
         return $this->query($str_query);
     }
 
+    function alert_superviser(){
+        
+
+    }
+
 }
 
 /**
