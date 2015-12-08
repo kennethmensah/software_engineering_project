@@ -1,5 +1,12 @@
 <?php
-include_once 'sessionValues.php';
+
+session_start();
+$username = $_SESSION['username'];
+$user_id = $_SESSION['user_id'];
+$user_type = $_SESSION['user_type'];
+$email = $_SESSION['email'];
+$loggedIn = $_SESSION['logged_in'];
+
 ?>
 
 <!DOCTYPE html>
@@ -285,7 +292,7 @@ include_once 'sessionValues.php';
                     <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Hello, <?php echo $fname ?></p>
+                    <p>Hello, <?php echo $username ?></p>
 
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -396,7 +403,7 @@ include_once 'sessionValues.php';
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Supervisor's Page
+                Blank page
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
@@ -408,76 +415,8 @@ include_once 'sessionValues.php';
         <!-- Main content -->
         <section class="content">
 
-            <div id="content_area">
-                <div class="col-md-6">
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">Assign New Task</h3>
-                        </div>
-                        <div class="box-body">
-
-                            <!-- text input for task title-->
-                            <div class="form-group">
-                                <label>Title</label>
-                                <input type="text" class="form-control" placeholder="Enter ..."/>
-                            </div>
-
-                            <!-- textarea for task description-->
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                            </div>
-
-                            <!-- select -->
-                            <div class="form-group" id="nurses">
-                                <label>Select Nurse</label>
-                                <select class="form-control">
-                                    <option selected>Select a nurse</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-
-                            </div>
-
-                            <!-- Due date -->
-                            <div class="form-group">
-                                <label>Due Date:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="date" class="form-control pull-right" id="due_date"/>
-                                </div><!-- /.input group -->
-                            </div><!-- /.form group -->
-
-                            <!-- Date and time range -->
-                            <div class="form-group">
-                                <label>Due time:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
-                                    <input type="time" class="form-control pull-right" id="reservationtime"/>
-                                </div><!-- /.input group -->
-                            </div><!-- /.form group -->
-
-                        </div><!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                    </div><!-- /.box -->
-                </div>
-            </div>
-
 
         </section><!-- /.content -->
-
-
-
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
@@ -488,16 +427,6 @@ include_once 'sessionValues.php';
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="js/AdminLTE/app.js" type="text/javascript"></script>
-
-<!-- InputMask -->
-<script src="js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
-<script src="js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-<script src="js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
-
-<!-- bootstrap time picker -->
-<script src="js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
-
-<script src="js/supervisor.js"></script>
 
 </body>
 </html>

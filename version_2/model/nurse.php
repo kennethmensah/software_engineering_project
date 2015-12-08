@@ -91,15 +91,23 @@ class nurses extends adb{
         return $this->query($str_query);
     }
 
+    function get_nurse_by_location($district){
+        $str_query = "SELECT * FROM se_nurses
+                WHERE district_zone = $district";
+
+        return $this->query($str_query);
+    }
+
 }
 
 /**
  * Unit Test and usage
  */
 //$obj = new nurses();
+
 //$obj->add_nurses(1,'Araba','Maison',2,'+233244393945');
 //$obj = new nurses();
-//$obj->get_details(1);
+//$obj->get_nurse_by_location(2);
 //if($row = $obj->fetch()){
 //    echo "nurses name:  ".$row['fname'];
 //}

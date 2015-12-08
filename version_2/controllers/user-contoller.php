@@ -22,6 +22,9 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 5:
             user_logout_control();
             break;
+        case 6:
+            get_nurses_in_district();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -186,7 +189,7 @@ function user_login_control(){
                 $email = $row['email'];
 
                 setUserSessionDetails($username,$user_id, $user_type,$email);
-                echo '{"result":1,"user_type":"' . $user_type . '"}';
+
 
                 if(strcmp($user_type, 'admin') == 0){
                     $admin = get_admin_model();
@@ -198,8 +201,10 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
-                        //echo "user_name ". $sname. " phone ". $phone;
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/admin_home.php");
                     }
+
                 }elseif(strcmp($user_type, 'nurse') == 0){
                     $nurse = get_nurse_model();
                     if($nurse->get_details($user_id)){
@@ -210,10 +215,12 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
                         //echo "user_name ". $sname. " phone ". $phone;
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/nurse_home.php");
                     }
                 }elseif(strcmp($user_type, 'supervisor') == 0){
-                    $supervisor = get_admin_model();
+                    $supervisor = get_supervisor_model();
                     if($supervisor->get_details($user_id)){
                         $row = $supervisor->fetch();
                         $sname = $row['sname'];
@@ -222,7 +229,9 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
                         //echo "user_name ". $sname. " phone ". $phone;
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/supervisor_home.php");
                     }
                 }
             }
@@ -244,6 +253,27 @@ function set_user_details(){
 
 function user_edit_control(){
 
+}
+
+
+function get_nurses_in_district(){
+    if( filter_input (INPUT_GET, 'district')){
+        $obj = get_nurse_model();
+        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+        if($obj->get_nurse_by_location($district)){
+            echo '{"result":1, "clinic_nurses":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
 }
 
 /**

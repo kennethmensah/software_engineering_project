@@ -10,7 +10,8 @@ http://localhost/SE/software_engineering_project/version_2/controllers/user-cont
 User password edit
 http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=4&id=id&pass=pass
 
-
+District Nurses
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=6&district=2
 
 Clinic URLs
 
