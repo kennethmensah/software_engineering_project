@@ -6,6 +6,10 @@ $(document).ready(function(){
     getDistrictNurses();
 });
 
+$("#addTaskBtn").click(function(){
+    assignTask();
+});
+
 
 function sendRequest(u){
     // Send request to server
@@ -26,7 +30,6 @@ function getDistrictNurses(){
     var obj=sendRequest(theUrl);		//send request to the above url
     if(obj.result===1) {					//check result
         showNurses(obj);
-        alert(obj);
     }
     else{
 
@@ -38,7 +41,7 @@ function showNurses(obj){
 
     var districtNurses = "";
     districtNurses += '<label>Select Nurse</label>';
-    districtNurses += '<select class="form-control">';
+    districtNurses += '<select name="nurse" class="form-control">';
 
     for(var index in obj.clinic_nurses) {
         districtNurses += '<option selected>Select a nurse</option>';
@@ -52,16 +55,21 @@ function showNurses(obj){
 
 
 function assignTask(){
-
+    var title = $("#title").val();
+    var desc = $("#desc").val();
+    var nurse = $("select[name=nurse] option:selected").val();
+    alert(nurse);
+    var due_date = $("#due_date").val();
+    var due_time = $("#due_time").val();
     var district = localStorage.getItem("district");
-    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?" +
-        "cmd=6&district="+district;
+    var user_id = localStorage.getItem("user_id");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=1&title="+title+"&desc="+desc+"&nurse="+nurse+"&supervisor="+user_id+"&date="+due_date+"&time="+due_time+"&clinic="+district;
     var obj=sendRequest(theUrl);		//send request to the above url
     if(obj.result===1) {					//check result
-        showNurses(obj);
-        alert(obj);
+        alert("task added");
     }
     else{
-
+        alert("task failed");
     }
 }

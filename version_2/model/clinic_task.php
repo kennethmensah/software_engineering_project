@@ -336,8 +336,8 @@ class clinic_task extends adb{
 //
 //$nurses = serialize($nurses);
 
-//$obj = new clinic_task();
-//$obj->add_clinic_task('Yellow Fever Vaccination', 'Perform vaccination on 30 pregnant women', $nurses, 1, '2015-12-23','12.00.00',1);
+$obj = new clinic_task();
+$obj->add_clinic_task('Yellow Fever Vaccination', 'Perform vaccination on 30 pregnant women', 1, 1, '2015-12-23','12.00.00',1);
 //
 //if($obj->get_nurse_due_task(4)){
 //    $row = $obj->fetch();

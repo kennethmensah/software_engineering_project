@@ -201,7 +201,8 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
-                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
                         //header("Location: http://localhost/SE/software_engineering_project/version_2/view/admin_home.php");
                     }
 
@@ -215,7 +216,8 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
-                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
                         //echo "user_name ". $sname. " phone ". $phone;
                         //header("Location: http://localhost/SE/software_engineering_project/version_2/view/nurse_home.php");
                     }
@@ -229,7 +231,8 @@ function user_login_control(){
                         $phone = $row['phone'];
                         $gender = $row['gender'];
                         setUserSessionValues($sname,$fname,$phone, $district,$gender);
-                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'"}';
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
                         //echo "user_name ". $sname. " phone ". $phone;
                         //header("Location: http://localhost/SE/software_engineering_project/version_2/view/supervisor_home.php");
                     }

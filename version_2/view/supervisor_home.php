@@ -419,25 +419,17 @@ include_once 'sessionValues.php';
                             <!-- text input for task title-->
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" placeholder="Enter ..."/>
+                                <input id="title" type="text" class="form-control" placeholder="Enter ..."/>
                             </div>
 
                             <!-- textarea for task description-->
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea id="desc" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                             <!-- select -->
                             <div class="form-group" id="nurses">
-                                <label>Select Nurse</label>
-                                <select class="form-control">
-                                    <option selected>Select a nurse</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
 
                             </div>
 
@@ -448,7 +440,7 @@ include_once 'sessionValues.php';
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control pull-right" id="due_date"/>
+                                    <input id="due_date" type="date" class="form-control pull-right" id="due_date"/>
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
 
@@ -459,14 +451,14 @@ include_once 'sessionValues.php';
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
-                                    <input type="time" class="form-control pull-right" id="reservationtime"/>
+                                    <input id="due_time" type="time" class="form-control pull-right" id="reservationtime"/>
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
 
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="addTaskBtn" type="button" class="btn btn-primary">Submit</button>
                         </div>
 
                     </div><!-- /.box -->

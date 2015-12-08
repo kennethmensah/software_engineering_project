@@ -31,6 +31,9 @@ http://localhost/SE/software_engineering_project/version_2/controllers/clinic_co
 
 Clinic Tasks
 
+Add Task
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=1&title=Vaccination&desc=Plenty%20Things&nurse=1&supervisor=4&date=2015-12-12&time=12:00&clinic=1
+
 View All Confirmed Tasks(Nurses)
 
 

@@ -57,21 +57,21 @@ function add_task_control(){
 
     if( filter_input (INPUT_GET, 'title') && filter_input (INPUT_GET, 'desc')
         && filter_input (INPUT_GET, 'nurse') && filter_input (INPUT_GET, 'supervisor')
-        && filter_input (INPUT_GET, 'date') && filter_input (INPUT_POST, 'time')
-        && filter_input (INPUT_POST, 'clinic')){
+        && filter_input (INPUT_GET, 'date') && filter_input (INPUT_GET, 'time')
+        && filter_input (INPUT_GET, 'clinic')){
 
         $obj =  get_clinic_task_model();
 
-        $title = sanitize_string(filter_input (INPUT_POST, 'title'));
-        $desc = sanitize_string(filter_input (INPUT_POST, 'desc'));
+        $title = sanitize_string(filter_input (INPUT_GET, 'title'));
+        $desc = sanitize_string(filter_input (INPUT_GET, 'desc'));
         $nurse = sanitize_string(filter_input (INPUT_GET, 'nurse'));
-        $supervisor = sanitize_string(filter_input (INPUT_POST, 'supervisor'));
-        $due_date = sanitize_string(filter_input (INPUT_POST, 'date'));
-        $due_time = sanitize_string(filter_input (INPUT_POST, 'time'));
-        $clinic  = sanitize_string(filter_input (INPUT_POST, 'clinic'));
+        $supervisor = sanitize_string(filter_input (INPUT_GET, 'supervisor'));
+        $due_date = sanitize_string(filter_input (INPUT_GET, 'date'));
+        $due_time = sanitize_string(filter_input (INPUT_GET, 'time'));
+        $clinic  = sanitize_string(filter_input (INPUT_GET, 'clinic'));
 
 
-        if ($obj->$obj->add_clinic_task($title, $desc, $nurse, $supervisor, $due_date,$due_time, $clinic)){
+        if ($obj->add_clinic_task($title, $desc, $nurse, $supervisor, $due_date, $due_time, $clinic)){
             echo '{"result":1,"message": "task added successfully"}';
         }
         else
