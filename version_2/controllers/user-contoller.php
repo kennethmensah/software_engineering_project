@@ -19,6 +19,9 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 4:
             edit_password_control();
             break;
+        case 5:
+            user_logout_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -53,11 +56,10 @@ function user_signup_control(){
                 //if user is a nurse
                  nurse_signup($obj->get_insert_id());
              }
-             elseif( strcmp($usertype, 'supervisor') == 0){
-                //if user is a supervisor
+             elseif( strcmp($usertype, 'supervisor') == 0) {
+                 //if user is a supervisor
                  supervisor_signup($obj->get_insert_id());
              }
-                
         }
         else
         {
@@ -83,12 +85,29 @@ function admin_signup($admin_id){
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
         if($obj->add_admin($admin_id, $sname, $fname,$district, $phone, $gender)){
+
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
             echo '{"result":0,"message": "signup unsuccesful"}';
         }
     }
+}
+
+function setUserSessionDetails($username, $user_id, $user_type, $email){
+    $_SESSION['username'] = $username;
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_type'] = $user_type;
+    $_SESSION['email'] = $email;
+    $_SESSION['logged_in'] = 'true';
+}
+
+function setUserSessionValues($sname, $fname, $phone, $district, $gender){
+    $_SESSION['sname'] = $sname;
+    $_SESSION['fname'] = $fname;
+    $_SESSION['phone'] = $phone;
+    $_SESSION['district'] = $district;
+    $_SESSION['gender'] = $gender;
 }
 
 /**
@@ -141,8 +160,9 @@ function nurse_signup($nurse_id){
 }
 
 
-
-//login function
+/**
+ * controller function to login users
+ */
 function user_login_control(){
 
     $obj = $username = $pass = '';
@@ -160,18 +180,60 @@ function user_login_control(){
             if($row == 0){
                 echo "Invalid user";
             }else {
-                $_SESSION['user'] = $row['username'];
-                $_SESSION['id'] = $row['user_id'];
-                $_SESSION['user_type'] = $user_type = $row['user_type'];
+                $username = $row['username'];
+                $user_id = $row['user_id'];
+                $user_type = $row['user_type'];
+                $email = $row['email'];
 
+                setUserSessionDetails($username,$user_id, $user_type,$email);
                 echo '{"result":1,"user_type":"' . $user_type . '"}';
+
+                if(strcmp($user_type, 'admin') == 0){
+                    $admin = get_admin_model();
+                    if($admin->get_details($user_id)){
+                        $row = $admin->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        //echo "user_name ". $sname. " phone ". $phone;
+                    }
+                }elseif(strcmp($user_type, 'nurse') == 0){
+                    $nurse = get_nurse_model();
+                    if($nurse->get_details($user_id)){
+                        $row = $nurse->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district_zone'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        //echo "user_name ". $sname. " phone ". $phone;
+                    }
+                }elseif(strcmp($user_type, 'supervisor') == 0){
+                    $supervisor = get_admin_model();
+                    if($supervisor->get_details($user_id)){
+                        $row = $supervisor->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district_zone'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        //echo "user_name ". $sname. " phone ". $phone;
+                    }
+                }
             }
         }
         else{
             echo '{"result":0,"message": "Invalid User"}';
+            $_SESSION['logged_in'] = false;
         }
     }else{
         echo '{"result":0,"message": "Invalid Credentials"}';
+        $_SESSION['logged_in'] = false;
     }
 }
 
@@ -184,6 +246,9 @@ function user_edit_control(){
 
 }
 
+/**
+ * controller function to edit user password
+ */
 function edit_password_control(){
     $obj  = $username = $password = '';
 
@@ -206,6 +271,16 @@ function edit_password_control(){
 }
 
 /**
+ *
+ */
+function user_logout_control(){
+    session_destroy();
+    //redirect to logout screen
+    header("Location: http://localhost/SE/software_engineering_project/version_2/view/login.html");
+}
+
+/**
+ * sanitize input from url
  * @param $val
  * @return string
  */
