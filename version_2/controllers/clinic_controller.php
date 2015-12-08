@@ -1,11 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/25/15
- * Time: 9:20 AM
- */
+    *@author Group 4
+    *@version 2.0.0
+    *@copyright Copyright (c) 2015, Group 4
+    */
 
+/**
+*@method void session_start() Starts the session
+*/
 session_start();
 
 if(filter_input (INPUT_GET, 'cmd')){
@@ -15,25 +17,40 @@ if(filter_input (INPUT_GET, 'cmd')){
 
     switch ($cmd){
         case 1:
+            /*
+            *Adds Clinic to database
+            */
             add_clinic_control();
             break;
         case 2:
+            /*
+            *Gets Clinics from database
+            */
             get_clinics_control();
             break;
         case 3:
+            /*
+            *Get a Clinic from database
+            */
             get_clinic_control();
             break;
         case 4:
+            /*
+            *Edits a Clinic in a database
+            */
             edit_clinic_control();
             break;
         default:
+            /*
+            *Default value sends an error message
+            */
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
 }
 
 /*
- *
+ *@method void add_clinic_control() Adds a clinic to database
  */
 function add_clinic_control(){
     if( filter_input (INPUT_GET, 'name') && filter_input(INPUT_GET, 'loc')){
@@ -54,6 +71,9 @@ function add_clinic_control(){
     }
 }
 
+/*
+*@method void get_clinics_control() Gets Clinics from database
+*/
 function get_clinics_control(){
 
     $obj = get_clinic_model();
@@ -73,6 +93,9 @@ function get_clinics_control(){
 
 }
 
+/*
+*@method void get_clinic_control() Gets a Clinic from database
+*/
 function get_clinic_control(){
 
     if(filter_input (INPUT_GET, 'id')){
@@ -98,6 +121,9 @@ function get_clinic_control(){
 
 }
 
+/*
+*@method void edit_clinic_control() Gets Clinics from database
+*/
 function edit_clinic_control(){
     if( filter_input (INPUT_GET, 'id') && filter_input (INPUT_GET, 'name') && filter_input(INPUT_GET, 'loc')){
 
