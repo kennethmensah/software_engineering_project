@@ -31,6 +31,77 @@ if(filter_input (INPUT_GET, 'cmd')){
     }
 }
 
+/**
+ * function to get a particular task
+ */
+function get_task_control(){
+    if( filter_input (INPUT_GET, 'id')){
+
+        $obj = get_district_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_district_task($id)){
+            echo '{"result":1, "district_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+/**
+ * function to get all tasks
+ */
+function get_tasks_control(){
+    $obj = get_district_task();
+    if ($obj->get_district_tasks_model()){
+        echo '{"result":1, "district_tasks":[';
+        $row = $obj->fetch();
+        while($row){
+            echo json_encode($row);
+            if( $row = $obj->fetch()){
+                echo ',';
+            }
+        }
+        echo ']}';
+    }else{
+        echo '{"result":0,"message": "query unsuccessful"}';
+    }
+}
+
+/**
+ * controller method to add a task
+ */
+function add_task_control(){
+    if( filter_input (INPUT_GET, 'task_title') && filter_input (INPUT_GET, 'task_desc')
+        && filter_input (INPUT_POST, 'clinic') && filter_input (INPUT_POST, 'due_date')){
+
+        $obj =  get_district_task_model();
+
+        $taskTitle = sanitize_string(filter_input (INPUT_POST, 'task_title'));
+        $taskDesc = sanitize_string(filter_input (INPUT_POST, 'task_desc'));
+        $date = sanitize_string(filter_input (INPUT_POST, 'due_date'));
+        $clinics  = sanitize_string(filter_input (INPUT_POST, 'clinic'));
+
+
+        if ($obj->$obj->add_district_task($taskTitle, $taskDesc, $clinics, $date)){
+            echo '{"result":1,"message": "task added successfully"}';
+        }
+        else
+        {
+            echo '{"result":0,"message": "unable to add task"}';
+        }
+
+    }
+}
+
 
 
 
@@ -55,3 +126,4 @@ function get_district_task_model(){
     $obj = new district_task();
     return $obj;
 }
+
