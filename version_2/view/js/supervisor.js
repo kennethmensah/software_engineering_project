@@ -10,6 +10,9 @@ $("#addTaskBtn").click(function(){
     assignTask();
 });
 
+$("#addNurseBtn").click(function(){
+    addNurse();
+});
 
 function sendRequest(u){
     // Send request to server
@@ -42,9 +45,9 @@ function showNurses(obj){
     var districtNurses = "";
     districtNurses += '<label>Select Nurse</label>';
     districtNurses += '<select name="nurse" class="form-control">';
-
+    districtNurses += '<option selected>Select a nurse</option>';
     for(var index in obj.clinic_nurses) {
-        districtNurses += '<option selected>Select a nurse</option>';
+
         districtNurses += '<option value="'+obj.clinic_nurses[index].nurse_id+'">' +
             obj.clinic_nurses[index].fname+" "+ obj.clinic_nurses[index].sname+'</option>';
     }
@@ -58,7 +61,6 @@ function assignTask(){
     var title = $("#title").val();
     var desc = $("#desc").val();
     var nurse = $("select[name=nurse] option:selected").val();
-    alert(nurse);
     var due_date = $("#due_date").val();
     var due_time = $("#due_time").val();
     var district = localStorage.getItem("district");
@@ -89,4 +91,46 @@ function clearAddTaskForm(){
     var desc = $("#desc").val("");
     var due_date = $("#due_date").val("");
     var due_time = $("#due_time").val("");
+}
+
+function addNurse(){
+
+    var username = $("input[name=username]").val();
+    alert(username);
+    var fname = $("input[name=firstname]").val();
+    var gender = $("select[name=gender] option:selected").val();
+    var sname = $("input[name=surname]").val();
+    var email = $("input[name=email]").val();
+    var pass = $("input[name=pass]").val();
+    var phone = $("input[name=phone]").val();
+    var clinic = localStorage.getItem("district");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=1" +
+        "&user="+username+"&pass="+pass+"&type=nurse&email="+email+"&sname="+sname+"&fname="+fname+"&phone=+" +
+        phone+"&district="+clinic+"&gender="+gender;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        clearAddNurseForm();
+        var success = '<div class="alert alert-success alert-dismissible" role="alert">'+obj.message+'' +
+            '</div>';
+
+        $("#message").html(success).fadeIn().fadeOut(4000);
+
+
+    }
+    else{
+        var failed = '<div class="alert alert-danger alert-dismissible" role="alert">'+obj.message+'' +
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+            '</div>';
+        $("#message").html(failed).fadeIn();
+    }
+}
+
+function clearAddNurseForm(){
+    $("input[name=username]").val("");
+    $("input[name=firstname]").val("");
+    $("select[name=gender] option:selected").val();
+    $("input[name=surname]").val("");
+    $("input[name=email]").val("");
+    $("input[name=pass]").val("");
+    $("input[name=phone]").val("");
 }

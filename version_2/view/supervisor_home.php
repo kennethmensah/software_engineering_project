@@ -476,60 +476,71 @@ include_once 'sessionValues.php';
                         <div class="box-body">
 
                             <!-- text input for username-->
+                            <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="text" class="form-control" placeholder="Email">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" name="username" class="form-control" placeholder="username">
+                            </div>
                             </div>
 
-                            <!-- text input for nurse email-->
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="text" class="form-control" placeholder="Email">
+                            <!-- text input for first name-->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" name="firstname" class="form-control" placeholder="first name">
+                                </div>
                             </div>
 
+
+                            <!-- text input for surname name-->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-md"></i></span>
+                                    <input type="text" name="surname" class="form-control" placeholder="surname">
+                                </div>
+                            </div>
+
+
                             <!-- text input for nurse email-->
+                            <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" name="email" class="form-control" placeholder="email">
+                            </div>
+                            </div>
+
+                            <!-- text input for nurse password-->
+                            <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="password">
+                                <input name="pass" type="password" class="form-control" placeholder="password">
                             </div>
+                                </div>
 
-                            <!-- text input for task title-->
+                            <!-- text input for nurse telephone -->
                             <div class="form-group">
-                                <label>First Name</label>
-                                <input id="title" type="text" class="form-control" placeholder="Enter ..."/>
-                            </div>
-
-                            <!-- select -->
-                            <div class="form-group" id="nurses">
-
-                            </div>
-
-                            <!-- Due date -->
-                            <div class="form-group">
-                                <label>Due Date:</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-phone"></i>
                                     </div>
-                                    <input id="due_date" type="date" class="form-control pull-right" id="due_date"/>
+                                    <input name="phone" type="tel" class="form-control pull-right" placeholder="phone"/>
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->
 
                             <!-- Date and time range -->
                             <div class="form-group">
-                                <label>Due time:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
-                                    <input id="due_time" type="time" class="form-control pull-right" id="reservationtime"/>
-                                </div><!-- /.input group -->
+
+                                    <select name="gender" class="form-control">
+                                        <option selected>gender</option>
+                                        <option value="M">M</option>
+                                        <option value="F">F</option>
+                                    </select><!-- /.input group -->
                             </div><!-- /.form group -->
 
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button id="addTaskBtn" type="button" class="btn btn-primary">Submit</button>
+                            <button id="addNurseBtn" type="button" class="btn btn-primary">Submit</button>
                         </div>
 
                     </div><!-- /.box -->
