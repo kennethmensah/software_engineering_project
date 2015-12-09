@@ -22,26 +22,39 @@
 
 
 /**
- * This is a "Docblock Comment," also known as a "docblock."  The class'
- * docblock, below, contains a complete description of how to write these.
+ * A database interface class
+ *
+ * The class below contains functions that interface with the database
+ * via MYSQL
  */
 include_once 'adb.php';
 
 class clinic_task extends adb{
 
+    /**
+     * clinic_task constructor.
+     *
+     * this method instantiates an object of the clinic_task class
+     */
     function clinic_task(){
 
     }
 
     /**
-     * executes a query to add a new task
-     * @param $title
-     * @param $desc
-     * @param $nurses
-     * @param $supervisor
-     * @param $due
-     * @param $clinic
-     * @return bool
+     * Executes a query to add a new task
+     *
+     * This method executes a query to assign a new task to a single nurse.
+     * Tasks are assigned to nurses only by supervisors. This method inserts a
+     * a new task into the se_clinic_tasks table if it is successful.
+     *
+     * @param $title: task title
+     * @param $desc: task description
+     * @param $nurses: id of nurse the task is assigned to
+     * @param $supervisor: id of supervisor the task is assigned to
+     * @param $due_date: the due date of the task
+     * @param $due_time: the due time of the task
+     * @param $clinic: id of clinic that the task is being assigned
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function add_clinic_task($title, $desc, $nurses, $supervisor, $due_date, $due_time, $clinic ){
         $str_query = "INSERT INTO se_clinic_tasks SET
@@ -61,9 +74,14 @@ class clinic_task extends adb{
 
 
     /**
-     * executes a query to select all tasks
-     * For district Admins
-     * @return bool
+     * Executes a query to select all tasks
+     *
+     * This method is executes a query that allows district administrators to view
+     * all tasks assigned in various clinics within the district. It should
+     * be accessible to only district administrators
+     *
+     *
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_clinic_tasks(){
 
@@ -84,6 +102,17 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 
+
+    /**
+     * Executes a query to select all tasks
+     *
+     * This method is executes a query that allows district administrators to view
+     * all tasks assigned in various clinics within the district. It should
+     * be accessible to only district administrators
+     *
+     *
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
     function get_all_confirmed_tasks($clinic){
         $str_query = "SELECT
                       CT.task_id,
