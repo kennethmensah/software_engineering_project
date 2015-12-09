@@ -310,21 +310,26 @@ $loggedIn = $_SESSION['logged_in'];
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a href="">
+                    <a href="javascript: loadNurseDashboard()">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-bar-chart-o"></i>
+                        <i class="fa fa-list"></i>
                         <span>Tasks</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript: void(0)"><i class="fa fa-angle-double-right"></i> Completed</a></li>
-                        <li><a href="javascript: void(0)"><i class="fa fa-angle-double-right"></i> Confirmed</a></li>
-                        <li><a href="javascript: void(0)"><i class="fa fa-angle-double-right"></i> Due</a></li>
+                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Completed</a></li>
+                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Confirmed</a></li>
+                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Due</a></li>
                     </ul>
+                </li>
+                <li >
+                    <a href="javascript: loadReport()">
+                        <i class="fa fa-bar-chart-o"></i> <span>My Report</span>
+                    </a>
                 </li>
             </ul>
         </section>

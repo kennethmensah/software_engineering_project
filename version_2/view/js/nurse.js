@@ -22,6 +22,19 @@ function sendRequest(u){
 }
 
 
+function getMyCompletedTasks(){
+    var id = localStorage.getItem("user_id");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=5&id="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        return obj;
+    }
+    else{
+        return false;
+    }
+}
+
 function getNurseTasks(){
     var id = localStorage.getItem("user_id");
     var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
@@ -34,6 +47,9 @@ function getNurseTasks(){
         return false;
     }
 }
+
+
+
 
 
 function showMyTaskPane(){
@@ -53,14 +69,15 @@ function showMyTaskPane(){
 
 
 
-        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+        if(obj.clinic_tasks[index].date_completed != "0000-00-00"){
 
             task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
         }else{
             task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
         }
 
-        task_list += '<td class="subject"><a href="">'+obj.clinic_tasks[index].task_title+'</a><br>';
+        task_list += '<td class="subject"><a href="javascript: getTaskDetails('+obj.clinic_tasks[index].task_id
+        +')">'+obj.clinic_tasks[index].task_title+'</a><br>';
         task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
 
         task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
@@ -70,7 +87,40 @@ function showMyTaskPane(){
         $("#nurse_tasks_div").append(task_list);
     }
 
+    getTaskDetails(obj.clinic_tasks[0].task_id);
+
     $("#unread_tasks").text("("+unread+")");
+}
+
+
+
+
+function getTaskDetails(id){
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=4&id="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        showTaskDetails(obj);
+    }
+    else{
+
+    }
+}
+
+
+function showTaskDetails(obj){
+    $("#info_title").text(obj.clinic_tasks[0].task_title);
+
+    if(obj.clinic_tasks[0].confirmed == 'confirmed'){
+        $("#info_confirmed").text("confirmed");
+    }else{
+        $("#info_confirmed").text("not confirmed");
+    }
+
+    $("#info_desc").text(obj.clinic_tasks[0].task_desc);
+    $("#info_due_date").text("Due: "+obj.clinic_tasks[0].due_date);
+    $("#info_due_time").text("@: "+obj.clinic_tasks[0].due_time);
 }
 
 
@@ -210,6 +260,8 @@ function loadMyTasks(){
         showMyTaskPane();
     });
 }
+
+
 
 
 

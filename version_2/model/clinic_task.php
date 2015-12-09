@@ -276,6 +276,31 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 
+
+    function get_nurse_completed_tasks($id){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      CT.date_completed,
+                      CT.confirmed,
+                      N.fname,
+                      N.sname,
+                      DATEDIFF(CURDATE(), due_date) As overdue_days,
+                      TIMEDIFF(CURTIME(), due_time) As overdue_time
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.assigned_to = $id
+                      AND CT.date_completed <> '0000-00-00'";
+
+        return $this->query($str_query);
+    }
+
     /**
      * function to get all tasks
      * @return bool

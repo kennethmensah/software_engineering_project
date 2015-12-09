@@ -19,10 +19,10 @@
                             <div style="margin-top: 15px;">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li class="header">Folders</li>
-                                    <li class="active"><a href="javascript: getClinicTasks()"><i class="fa fa-inbox"></i> Tasks Inbox <span id="unread_tasks"></span></a></li>
-                                    <li><a href="javascript: getConfirmedTasks()"><i class="mdi-action-done-all"></i> Confirmed Tasks</a></li>
-                                    <li><a href="javascript:  getCompletedTasks()"><i class="ion ion-checkmark"></i> Completed Tasks</a></li>
-                                    <li><a href="javascript: getDueTasks()"><i class="ion ion-android-alarm"></i> Due Tasks</a></li>
+                                    <li class="active"><a href="javascript: getNurseTasks()"><i class="fa fa-inbox"></i> Tasks Inbox <span id="unread_tasks"></span></a></li>
+                                    <li><a href="javascript: getNurseTasks()"><i class="mdi-action-done-all"></i> Confirmed Tasks</a></li>
+                                    <li><a href="javascript:  getNurseTasks()"><i class="ion ion-checkmark"></i> Completed Tasks</a></li>
+                                    <li><a href="javascript: getNurseTasks()"><i class="ion ion-android-alarm"></i> Due Tasks</a></li>
                                 </ul>
                             </div>
                         </div><!-- /.col (LEFT) -->
@@ -65,6 +65,32 @@
 
                                 </table>
                             </div><!-- /.table-responsive -->
+
+                            <div class="col-md-8">
+                                <!-- Info box -->
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title" id="info_title">Task Title</h3>
+                                        <div class="box-tools pull-right">
+                                            <div class="label bg-aqua" id="info_confirmed">Confirmed</div>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <p id="info_desc">Description
+                                        </p>
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer" >
+                                        <span id="info_due_date">Due Date</span>
+                                        <span class="pull-right">
+                                            <span class="ion ion-android-alarm"></span>
+                                            <span id="info_due_time">Due Time</span>
+                                        </span>
+                                    </div><!-- /.box-footer-->
+                                </div><!-- /.box -->
+                            </div><!-- /.col -->
+
                         </div><!-- /.col (RIGHT) -->
                     </div><!-- /.row -->
                 </div><!-- /.box-body -->
