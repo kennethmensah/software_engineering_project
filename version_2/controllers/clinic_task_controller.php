@@ -60,6 +60,10 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 11:
             get_due_tasks();
             break;
+
+        case 12:
+            complete_task_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -304,6 +308,22 @@ function get_due_tasks(){
         }
     }
 }
+
+function complete_task_control(){
+    if( filter_input (INPUT_GET, 'nurse') && filter_input (INPUT_GET, 'task')){
+
+        $obj = get_clinic_task_model();
+        $nurse = sanitize_string(filter_input (INPUT_GET, 'nurse'));
+        $task = sanitize_string(filter_input (INPUT_GET, 'task'));
+
+        if($obj->update_time_completed($task, $nurse)){
+            echo '{"result":1,"message":"task marked as complete"}';
+        }else{
+            echo '{"result":0,"message":"query unsuccessful"}';
+        }
+    }
+}
+
 
 
 

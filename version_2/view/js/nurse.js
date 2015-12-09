@@ -50,8 +50,7 @@ function showMyTaskPane(){
             unread ++;
         }
 
-        task_list += '<td class="small-col"><input type="checkbox" class="confirm" onchange="checkBoxStatus(this)"' +
-            'value="'+obj.clinic_tasks[index].task_id+'"/></td>';
+
 
 
         if(obj.clinic_tasks[index].confirmed == "confirmed"){
@@ -61,15 +60,38 @@ function showMyTaskPane(){
             task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
         }
 
-        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
-        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
-        task_list += '<td class="time">'+obj.clinic_tasks[index].due_time+'</td>';
+        task_list += '<td class="subject"><a href="">'+obj.clinic_tasks[index].task_title+'</a><br>';
+        task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+
+        task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
+            ' <span class="ion ion-android-archive"/></span></a></td>';
         task_list += '</tr>';
 
         $("#nurse_tasks_div").append(task_list);
     }
 
     $("#unread_tasks").text("("+unread+")");
+}
+
+
+function completeTask(id){
+
+    var nurse = localStorage.getItem("user_id");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=12&nurse="+nurse+"&task="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        var success = '<div class="alert alert-success alert-dismissible" role="alert">'+obj.message+'' +
+            '</div>';
+
+        $("#message").html(success).fadeIn().fadeOut(4000);
+    }
+    else{
+        var failed = '<div class="alert alert-danger alert-dismissible" role="alert">'+obj.message+'' +
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+            '</div>';
+        $("#message").html(failed).fadeIn();
+    }
 }
 
 
@@ -168,7 +190,7 @@ function setTasks(id){
 
 
 function loadNurseDashboard(){
-    $("#sub_content").load("nurse_pages/dashboard.html");
+    $("#main_content").load("nurse_pages/dashboard.html");
 }
 
 
