@@ -80,7 +80,6 @@ class clinic_task extends adb{
      * all tasks assigned in various clinics within the district. It should
      * be accessible to only district administrators
      *
-     *
      * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_clinic_tasks(){
@@ -104,13 +103,13 @@ class clinic_task extends adb{
 
 
     /**
-     * Executes a query to select all tasks
+     * Executes a query to select all confirmed tasks in a given clinic
      *
-     * This method is executes a query that allows district administrators to view
-     * all tasks assigned in various clinics within the district. It should
-     * be accessible to only district administrators
+     * This method is executes a query that allows clinic supervisors to view
+     * all confirmed tasks in their clinic. It should be accessible to only
+     * clinic supervisors
      *
-     *
+     * @param $clinic: id of clinic
      * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_all_confirmed_tasks($clinic){
@@ -136,9 +135,14 @@ class clinic_task extends adb{
 
 
     /**
-     * Function to get all completed tasks in a clinic
-     * @param $clinic
-     * @return bool
+     * Executes a query to get all completed tasks in a clinic
+     *
+     * This method is executes a query that allows clinic supervisors to view
+     * all completed tasks in their clinic. It should be accessible to only
+     * clinic supervisors
+     *
+     * @param $clinic: id of clinic
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_completed_tasks_by_clinic($clinic){
         $str_query = "SELECT
@@ -162,9 +166,14 @@ class clinic_task extends adb{
 
 
     /**
-     * Function to get all tasks in a clinic
-     * @param $clinic
-     * @return bool
+     * * Executes a query to get all tasks in a clinic
+     *
+     * This method is executes a query that allows clinic supervisors to view
+     * all tasks in their clinic. It should be accessible to only
+     * clinic supervisors
+     *
+     * @param $clinic: id of clinic
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_all_clinic_tasks($clinic){
         $str_query = "SELECT
