@@ -10,6 +10,10 @@ http://localhost/SE/software_engineering_project/version_2/controllers/user-cont
 User password edit
 http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=4&id=id&pass=pass
 
+
+User Details
+http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=7&id=17
+
 District Nurses
 http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=6&district=2
 
@@ -46,7 +50,8 @@ View Due Tasks(Nurses)
 Search Tasks(Nurses)
 
 
-View Individual Task
+View Individual Task(Nurse)
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=5&id=1
 
 View All Tasks Assigned In a Clinic
 http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=7&clinic=2

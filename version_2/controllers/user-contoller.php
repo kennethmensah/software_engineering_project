@@ -25,6 +25,9 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 6:
             get_nurses_in_district();
             break;
+        case 7:
+            get_user_details();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -256,6 +259,27 @@ function set_user_details(){
 
 function user_edit_control(){
 
+}
+
+
+function get_user_details(){
+    if( filter_input (INPUT_GET, 'id')){
+        $obj = get_user_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        if($obj->get_user_byId($id)){
+            echo '{"result":1, "user_details":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
 }
 
 

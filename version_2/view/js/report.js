@@ -18,18 +18,18 @@ function sendRequest(u){
 }
 
 
-function getNurseTasks(){
-    var district = localStorage.getItem("district");
+function getNurseTasks(id){
+
 
 
     var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
-        "cmd=7&clinic="+district;
+        "cmd=5&id="+id;
     var obj=sendRequest(theUrl);		//send request to the above url
     if(obj.result===1) {					//check result
-        showTasks(obj);
+        return obj;
     }
     else{
-
+        return false;
     }
 }
 
@@ -41,10 +41,30 @@ function getClinic(){
         "cmd=3&id="+district;
     var obj=sendRequest(theUrl);		//send request to the above url
     if(obj.result===1) {					//check result
-
+        return obj;
     }
     else{
-
+        return false;
     }
 }
+
+function getNurseDetails(id){
+
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?cmd=7" +
+        "&id="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        return obj;
+    }
+    else{
+        return false;
+    }
+}
+
+
+
+
+
+
 
