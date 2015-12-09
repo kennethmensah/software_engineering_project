@@ -277,6 +277,12 @@ class clinic_task extends adb{
     }
 
 
+    /**
+     * This function gets all completed tasks assigned to
+     * a nurse
+     * @param $id: this represents the nurse id
+     * @return bool: this represents the success of the sql query
+     */
     function get_nurse_completed_tasks($id){
         $str_query = "SELECT
                       CT.task_id,

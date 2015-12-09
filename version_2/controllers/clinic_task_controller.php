@@ -64,6 +64,10 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 12:
             complete_task_control();
             break;
+
+        case 13:
+            get_nurse_completed_task_control();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -320,6 +324,29 @@ function complete_task_control(){
             echo '{"result":1,"message":"task marked as complete"}';
         }else{
             echo '{"result":0,"message":"query unsuccessful"}';
+        }
+    }
+}
+
+
+function get_nurse_completed_task_control(){
+    if( filter_input (INPUT_GET, 'id')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_nurse_completed_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
         }
     }
 }
