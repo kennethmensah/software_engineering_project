@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
+ * @author: Kenneth Mintah Mensah, Edwina Baddoo, Joshua Aherdermla, Norbert Sackey
  * Date: 11/23/15
  * Time: 6:23 PM
  */

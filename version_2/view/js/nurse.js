@@ -1,4 +1,10 @@
 
+$(document).ready(function(){
+    loadNurseDashboard();
+    //
+});
+
+
 /**
  * This function sends a JSON request to a given url and
  * convert the response into a JSON Object
@@ -16,10 +22,8 @@ function sendRequest(u){
 }
 
 
-function getNurseTasks(id){
-
-
-
+function getNurseTasks(){
+    var id = localStorage.getItem("user_id");
     var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
         "cmd=5&id="+id;
     var obj=sendRequest(theUrl);		//send request to the above url
@@ -30,6 +34,44 @@ function getNurseTasks(id){
         return false;
     }
 }
+
+
+function showMyTaskPane(){
+    $("#nurse_tasks_div").html("");
+    var obj = getNurseTasks();
+    var unread = 0;
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+            unread ++;
+        }
+
+        task_list += '<td class="small-col"><input type="checkbox" class="confirm" onchange="checkBoxStatus(this)"' +
+            'value="'+obj.clinic_tasks[index].task_id+'"/></td>';
+
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
+        }
+
+        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
+        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+        task_list += '<td class="time">'+obj.clinic_tasks[index].due_time+'</td>';
+        task_list += '</tr>';
+
+        $("#nurse_tasks_div").append(task_list);
+    }
+
+    $("#unread_tasks").text("("+unread+")");
+}
+
 
 function getClinic(){
     var district = localStorage.getItem("district");
@@ -124,9 +166,16 @@ function setTasks(id){
 }
 
 
-function loadReport(id){
+
+function loadNurseDashboard(){
+    $("#sub_content").load("nurse_pages/dashboard.html");
+}
+
+
+function loadReport(){
+    var id = localStorage.getItem("user_id");
     $("#page_name").text("Reports");
-    $("#sub_content").load("supervisor_pages/report_file.html", function(){
+    $("#sub_content").load("nurse_pages/report_file.html", function(){
         setDate();
         setUserReportDetails(id);
         setTasks(id);
@@ -134,8 +183,11 @@ function loadReport(id){
 }
 
 
-
-
+function loadMyTasks(){
+    $("#sub_content").load("nurse_pages/nurse_task_page.html", function(){
+        showMyTaskPane();
+    });
+}
 
 
 

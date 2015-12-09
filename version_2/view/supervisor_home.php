@@ -34,7 +34,7 @@ include_once 'sessionValues.php';
 <header class="header">
     <a href="index.html" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
-        AdminLTE
+        NursesTM
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -340,8 +340,7 @@ include_once 'sessionValues.php';
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript:void(0)"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
+                        <li><a href="javascript: loadViewNurses()"><i class="fa fa-angle-double-right"></i> View</a></li>
                     </ul>
                 </li>
                 <li>
