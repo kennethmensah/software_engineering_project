@@ -66,7 +66,9 @@ if(filter_input (INPUT_GET, 'cmd')){
             break;
 
         case 13:
+
             get_nurse_completed_task_control();
+
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
