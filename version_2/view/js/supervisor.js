@@ -148,7 +148,7 @@ function viewClinicNurses(){
 function viewNurses(obj){
     $("#nurse_table").html("");
     var nurse_table_header = '<tr> <th>ID</th> <th>First Name</th> <th>Surname</th> <th>Phone</th> ' +
-        '<th>Gender</th></tr>';
+        '<th>Gender</th><th></th></tr>';
     $("#nurse_table").append(nurse_table_header);
 
     for (var index in obj.clinic_nurses){
@@ -156,7 +156,8 @@ function viewNurses(obj){
         nurse_row += '<td>'+obj.clinic_nurses[index].fname+'</td>';
         nurse_row += '<td>'+obj.clinic_nurses[index].sname+'</td>';
         nurse_row += '<td>'+obj.clinic_nurses[index].phone+'</td>';
-        nurse_row += '<td>'+obj.clinic_nurses[index].gender+'</td></tr>';
+        nurse_row += '<td>'+obj.clinic_nurses[index].gender+'</td>';
+        nurse_row += '<td><a href="javascript: loadReport('+obj.clinic_nurses[index].nurse_id+')">View Report</a></td></tr>';
         $("#nurse_table").append(nurse_row);
     }
 }

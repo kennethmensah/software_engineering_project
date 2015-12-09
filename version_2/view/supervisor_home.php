@@ -413,6 +413,9 @@ include_once 'sessionValues.php';
 <!-- supervisor js -->
 <script src="js/supervisor.js"></script>
 
+<!-- report js -->
+<script src="js/report.js"></script>
+
 <!-- Calendar -->
 <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 

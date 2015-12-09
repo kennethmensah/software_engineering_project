@@ -95,25 +95,39 @@ function setDate(){
 function setTasks(id){
     var obj = getNurseTasks(id);
     $("#nurse_phone").text("Phone: "+ obj.clinic_tasks[0].phone);
+    $("#nurse_name").text(obj.clinic_tasks[0].fname +" "+obj.clinic_tasks[0].sname);
     $("#report_details").html("");
+    var confirmed = 0;
+    var assigned = 0;
+    var completed = 0;
     for (var index in obj.clinic_tasks){
         var task_row = '<tr><td>'+obj.clinic_tasks[index].task_title+'</td>';
         task_row += '<td>'+obj.clinic_tasks[index].task_desc+'</td>';
         task_row += '<td>'+obj.clinic_tasks[index].date_assigned+'</td>';
         task_row += '<td>'+obj.clinic_tasks[index].due_date+'</td>';
         task_row += '<td>'+obj.clinic_tasks[index].date_completed+'</td>';
+        if(obj.clinic_tasks[index].date_completed != '0000-00-00'){
+            completed ++;
+        }
         if(obj.clinic_tasks[index].confirmed == 'confirmed'){
             task_row += '<td><small class="label label-success"><i class="mdi-action-done"></i> Confirmed</small></td>';
+            confirmed ++;
         }else{
             task_row += '<td><small class="label label-warning"><i class="ion ion-alert"></i> Not Confirmed</small></td></tr>';
         }
+
+        assigned++;
         $("#report_details").append(task_row);
 
     }
+    $("#report_confirmed").text(confirmed);
+    $("#report_completed").text(completed);
+    $("#report_assigned").text(assigned);
 }
 
 
 function loadReport(id){
+
     $("#sub_content").load("supervisor_pages/report_file.html", function(){
         setDate();
         setUserReportDetails(id);
