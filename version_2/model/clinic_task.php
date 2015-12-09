@@ -65,7 +65,59 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 
+    function get_all_confirmed_tasks($clinic){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.date_completed,
+                      CT.confirmed,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.clinic = $clinic
+                      AND CT.confirmed = 'confirmed'";
 
+        return $this->query($str_query);
+    }
+
+
+    /**
+     * Function to get all completed tasks in a clinic
+     * @param $clinic
+     * @return bool
+     */
+    function get_completed_tasks_by_clinic($clinic){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.date_completed,
+                      CT.confirmed,
+                      CT.due_time,
+                      N.fname,
+                      N.sname FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id AND CT.clinic = $clinic
+                      AND DATEDIFF(CURDATE(), CT.date_completed) <= 7";
+
+        return $this->query($str_query);
+    }
+
+
+    /**
+     * Function to get all tasks in a clinic
+     * @param $clinic
+     * @return bool
+     */
     function get_all_clinic_tasks($clinic){
         $str_query = "SELECT
                       CT.task_id,
@@ -160,20 +212,25 @@ class clinic_task extends adb{
      * Function For supervisors to view overdue tasks of all nurses
      * @return bool
      */
-    function get_due_tasks(){
+    function get_due_tasks($clinic){
         $str_query = "SELECT
-                      task_id,
-                      task_title,
-                      task_desc,
-                      assigned_by,
-                      assigned_to,
-                      date_assigned,
-                      due_date,
-                      confirmed,
-                      due_time,
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      CT.confirmed,
+                      N.fname,
+                      N.sname,
                       DATEDIFF(CURDATE(), due_date) As overdue_days,
                       TIMEDIFF(CURTIME(), due_date) As overdue_time
-                      FROM se_clinic_tasks WHERE DATEDIFF(CURDATE(), due_date) > 0";
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.clinic = $clinic
+                      AND DATEDIFF(CURDATE(), due_date) >= 0";
 
         return $this->query($str_query);
     }
@@ -258,7 +315,7 @@ class clinic_task extends adb{
     }
 
     /**
-     * Function to get completed tasks for the year
+     * Function to get completed tasks for the week
      * @return bool
      */
     function get_completed_for_week(){

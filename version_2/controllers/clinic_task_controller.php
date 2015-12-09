@@ -51,6 +51,15 @@ if(filter_input (INPUT_GET, 'cmd')){
         case 8:
             generate_report();
             break;
+        case 9:
+            get_completed_tasks();
+            break;
+        case 10:
+            get_confirmed_tasks();
+            break;
+        case 11:
+            get_due_tasks();
+            break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
@@ -210,6 +219,77 @@ function get_clinic_tasks(){
         $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
 
         if ($obj->get_all_clinic_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+
+function get_completed_tasks(){
+    if( filter_input (INPUT_GET, 'clinic')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+
+        if ($obj->get_completed_tasks_by_clinic($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+/**
+ * this function retrieves confirmed tasks
+ */
+function get_confirmed_tasks(){
+    if( filter_input (INPUT_GET, 'clinic')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+
+        if ($obj->get_all_confirmed_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+
+function get_due_tasks(){
+    if( filter_input (INPUT_GET, 'clinic')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+
+        if ($obj->get_due_tasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){

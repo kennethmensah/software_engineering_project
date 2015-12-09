@@ -16,19 +16,18 @@
                                  This is an example of having the box header within the box body -->
                             <div class="box-header">
                                 <i class="fa fa-inbox"></i>
-                                <h3 class="box-title">INBOX</h3>
+                                <h3 class="box-title">Clinic</h3>
                             </div>
                             <!-- compose message btn -->
-                            <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal"><i class="fa fa-pencil"></i> Compose Message</a>
+                            <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal"><i class="fa fa-pencil"></i> Compose Task</a>
                             <!-- Navigation - folders-->
                             <div style="margin-top: 15px;">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li class="header">Folders</li>
-                                    <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
-                                    <li><a href="#"><i class="fa fa-pencil-square-o"></i> Drafts</a></li>
-                                    <li><a href="#"><i class="fa fa-mail-forward"></i> Sent</a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i> Starred</a></li>
-                                    <li><a href="#"><i class="fa fa-folder"></i> Junk</a></li>
+                                    <li class="active"><a href="javascript: getClinicTasks()"><i class="fa fa-inbox"></i> Tasks Inbox <span id="unread_tasks"></span></a></li>
+                                    <li><a href="javascript: getConfirmedTasks()"><i class="mdi-action-done-all"></i> Confirmed Tasks</a></li>
+                                    <li><a href="javascript:  getCompletedTasks()"><i class="ion ion-checkmark"></i> Completed Tasks</a></li>
+                                    <li><a href="javascript: getDueTasks()"><i class="ion ion-android-alarm"></i> Due Tasks</a></li>
                                 </ul>
                             </div>
                         </div><!-- /.col (LEFT) -->

@@ -57,3 +57,20 @@ http://localhost/SE/software_engineering_project/version_2/controllers/clinic_ta
 
 View task by Id
 http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=4&id=3
+
+
+Confirm task
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=3=&id=9
+
+
+
+View Completed Tasks (Supervisors)
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=9&clinic=2
+
+
+View Confirmed Tasks
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=10&clinic=2
+
+
+View Due Tasks
+http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=11&clinic=2

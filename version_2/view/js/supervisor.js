@@ -40,26 +40,61 @@ function getClinicTasks(){
     }
 }
 
-function showTasks(obj){
 
+function checkBoxStatus(obj){
+    if(obj.checked){
+        confirm_task(obj.value);
+    }else {
+
+        alert(obj.value);
+    }
+}
+
+
+function confirm_task(task_id){
+
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=3=&id="+task_id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        var success = '<div class="alert alert-success alert-dismissible" role="alert">'+obj.message+'' +
+            '</div>';
+
+        $("#message").html(success).fadeIn().fadeOut(4000);
+    }
+    else{
+
+    }
+}
+
+function showTasks(obj){
+    var unread = 0;
+    $("#clinic_tasks_div").html("");
     for(var index in obj.clinic_tasks){
         var task_list = "";
 
         if(obj.clinic_tasks[index].confirmed == "confirmed"){
-            task_list = '<tr class="unread">';
-        }else{
             task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+            unread ++;
         }
 
-        task_list += '<td class="small-col"><input type="checkbox" class="confirm"/></td>';
+        task_list += '<td class="small-col"><input type="checkbox" class="confirm" onchange="checkBoxStatus(this)"' +
+            'value="'+obj.clinic_tasks[index].task_id+'"/></td>';
+
+
         if(obj.clinic_tasks[index].confirmed == "confirmed"){
-            $('.confirm').attr('checked', true);
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="fa fa-alert"></i></td>';
         }
 
-
-        task_list += '<td class="small-col"><i class="fa fa-star"></i></td>';
         task_list += '<td class="name"><a href="javascript: ">'+obj.clinic_tasks[index].fname+" "+
             obj.clinic_tasks[index].sname+ '</a></td>';
+
         task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
         task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
         task_list += '<td class="time">'+obj.clinic_tasks[index].due_time+'</td>';
@@ -67,6 +102,9 @@ function showTasks(obj){
 
         $("#clinic_tasks_div").append(task_list);
     }
+
+    $("#unread_tasks").text("("+unread+")");
+
 }
 
 
@@ -84,6 +122,161 @@ function getDistrictNurses(){
     }
 }
 
+function viewClinicNurses(){
+    var district = localStorage.getItem("district");
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/user-contoller.php?" +
+        "cmd=6&district="+district;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        viewNurses(obj);
+    }
+    else{
+
+    }
+}
+
+function viewNurses(obj){
+    $("#nurse_table").html("");
+    var nurse_table_header = '<tr> <th>ID</th> <th></th> <th>First Name</th> <th>Surname</th> <th>Phone</th> ' +
+        '<th>Gender</th></tr>';
+    $("#nurse_table").append(nurse_table_header);
+
+    for (var index in obj.clinic_nurses){
+        var nurse_row = '<tr><td>'+obj.clinic_nurses[index].nurse_id+'</td>';
+        nurse_row += '<td>'+obj.clinic_nurses[index].fname+'</td>';
+        nurse_row += '<td>'+obj.clinic_nurses[index].sname+'</td>';
+        nurse_row += '<td>'+obj.clinic_nurses[index].phone+'</td>';
+        nurse_row += '<td>'+obj.clinic_nurses[index].gender+'</td>';
+        $("#nurse_table").append(nurse_row);
+    }
+}
+
+function getCompletedTasks(){
+
+    var district = localStorage.getItem("district");
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=9" +
+        "&clinic="+district;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        showCompleted(obj);
+    }
+    else{
+
+    }
+}
+
+function showCompleted(obj){
+    $("#clinic_tasks_div").html("");
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+        }
+
+        task_list += '<td class="small-col"><input type="checkbox" class="confirm" onchange="checkBoxStatus(this)"' +
+            'value="'+obj.clinic_tasks[index].task_id+'"/></td>';
+
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="fa fa-alert"></i></td>';
+        }
+
+        task_list += '<td class="name"><a href="javascript: ">'+obj.clinic_tasks[index].fname+" "+
+            obj.clinic_tasks[index].sname+ '</a></td>';
+
+        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
+        task_list += '<td class="time">Due: '+obj.clinic_tasks[index].due_date+'</td>';
+        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].date_completed+'</td>';
+        task_list += '</tr>';
+
+        $("#clinic_tasks_div").append(task_list);
+    }
+}
+
+
+
+function getConfirmedTasks(){
+
+    var district = localStorage.getItem("district");
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=10" +
+        "&clinic="+district;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        showConfirmedTasks(obj);
+    }
+    else{
+
+    }
+}
+
+function showConfirmedTasks(obj){
+    $("#clinic_tasks_div").html("");
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        task_list = '<tr class="read">';
+        task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+
+        task_list += '<td class="small-col"><i class="fa fa-alert"></i></td>';
+
+        task_list += '<td class="name"><a href="javascript: ">'+obj.clinic_tasks[index].fname+" "+
+            obj.clinic_tasks[index].sname+ '</a></td>';
+
+        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
+        task_list += '<td class="time">Due: '+obj.clinic_tasks[index].due_date+'</td>';
+        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].date_completed+'</td>';
+        task_list += '</tr>';
+
+        $("#clinic_tasks_div").append(task_list);
+    }
+}
+
+
+function getDueTasks(){
+
+    var district = localStorage.getItem("district");
+
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?cmd=11" +
+        "&clinic="+district;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        showConfirmedTasks(obj);
+    }
+    else{
+
+    }
+}
+
+function showDueTasks(obj){
+    $("#clinic_tasks_div").html("");
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        task_list = '<tr class="read">';
+        task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+
+        task_list += '<td class="small-col"><i class="fa fa-alert"></i></td>';
+
+        task_list += '<td class="name"><a href="javascript: ">'+obj.clinic_tasks[index].fname+" "+
+            obj.clinic_tasks[index].sname+ '</a></td>';
+
+        task_list += '<td class="subject"><a href="#">'+obj.clinic_tasks[index].task_title+'</a></td>';
+        task_list += '<td class="time">Due: '+obj.clinic_tasks[index].due_date+'</td>';
+        task_list += '<td class="time"><i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_time+'</td>';
+        task_list += '</tr>';
+
+        $("#clinic_tasks_div").append(task_list);
+    }
+}
 
 function showNurses(obj){
 

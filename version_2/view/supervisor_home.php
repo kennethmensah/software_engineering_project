@@ -345,12 +345,6 @@ include_once 'sessionValues.php';
                         <small class="badge pull-right bg-red">3</small>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                        <small class="badge pull-right bg-yellow">12</small>
-                    </a>
-                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
