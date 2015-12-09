@@ -112,6 +112,10 @@ function showTasks(obj){
 
 }
 
+function viewReports(){
+
+}
+
 
 function getDistrictNurses(){
     var district = localStorage.getItem("district");
