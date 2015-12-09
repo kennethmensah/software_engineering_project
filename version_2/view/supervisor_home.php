@@ -14,6 +14,11 @@ include_once 'sessionValues.php';
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- fullCalendar -->
+    <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="css/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media='print' />
+
     <!-- Theme style -->
     <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
@@ -325,7 +330,7 @@ include_once 'sessionValues.php';
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript:void(0)"><i class="fa fa-angle-double-right"></i> View</a></li>
+                        <li><a href="javascript: loadViewNurses()"><i class="fa fa-angle-double-right"></i> View</a></li>
                         <li><a href="javascript: loadAddNurseForm()"><i class="fa fa-angle-double-right"></i> Add</a></li>
                     </ul>
                 </li>
@@ -340,9 +345,8 @@ include_once 'sessionValues.php';
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="javascript: loadCalendar()">
                         <i class="fa fa-calendar"></i> <span>Calendar</span>
-                        <small class="badge pull-right bg-red">3</small>
                     </a>
                 </li>
             </ul>
@@ -406,7 +410,14 @@ include_once 'sessionValues.php';
 <!-- bootstrap time picker -->
 <script src="js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
 
+<!-- supervisor js -->
 <script src="js/supervisor.js"></script>
+
+<!-- Calendar -->
+<script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+
+<!-- Supervisor Calendar -->
+<script src="js/supervisor_calendar.js" type="text/javascript"></script>
 
 </body>
 </html>
