@@ -6,18 +6,12 @@
  *
  * PHP version 5.6
  *
- * LICENSE: This source file is subject to version 3.01 of the PHP license
- * that is available through the world-wide-web at the following URI:
- * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
- * the PHP License and are unable to obtain it through the web, please
- * send a note to license@php.net so we can mail you a copy immediately.
- *
- * @category   Model Class
+ * @category   Model
  * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
  * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
  * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
  * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
- * @version    SVN: 1.2
+ * @version    SVN: 2.0.0
  */
 
 
@@ -76,7 +70,7 @@ class clinic_task extends adb{
     /**
      * Executes a query to select all tasks
      *
-     * This method is executes a query that allows district administrators to view
+     * This method executes a query that allows district administrators to view
      * all tasks assigned in various clinics within the district. It should
      * be accessible to only district administrators
      *
@@ -105,7 +99,7 @@ class clinic_task extends adb{
     /**
      * Executes a query to select all confirmed tasks in a given clinic
      *
-     * This method is executes a query that allows clinic supervisors to view
+     * This method executes a query that allows clinic supervisors to view
      * all confirmed tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
@@ -137,7 +131,7 @@ class clinic_task extends adb{
     /**
      * Executes a query to get all completed tasks in a clinic
      *
-     * This method is executes a query that allows clinic supervisors to view
+     * This method executes a query that allows clinic supervisors to view
      * all completed tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
@@ -166,7 +160,7 @@ class clinic_task extends adb{
 
 
     /**
-     * * Executes a query to get all tasks in a clinic
+     * Executes a query to get all tasks in a clinic
      *
      * This method is executes a query that allows clinic supervisors to view
      * all tasks in their clinic. It should be accessible to only
@@ -195,8 +189,13 @@ class clinic_task extends adb{
     }
 
     /**
-     * @param $id
-     * @return bool
+     * Executes a query to get a task by the tasks id
+     *
+     * This method executes a query to select the details of a single task
+     * by using the tasks unique id
+     *
+     * @param $id: id of the task
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_task_by_Id($id){
 
@@ -219,8 +218,13 @@ class clinic_task extends adb{
     }
 
     /**
-     * @param $date
-     * @return bool
+     * Executes a query to get a task by the date completed
+     *
+     * This method executes a query to select all tasks that were
+     * completed on a given date
+     *
+     * @param $date: date task was completed
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_by_date_completed($date){
         $str_query = "SELECT
@@ -241,9 +245,15 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 
+
     /**
-     * @param $date
-     * @return bool
+     * Executes a query to get a task by the date assigned
+     *
+     * This method executes a query to select all tasks that were
+     * assigned on a given date
+     *
+     * @param $date: date task was assigned
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_by_date_assigned($date){
         $str_query = "SELECT
@@ -266,8 +276,14 @@ class clinic_task extends adb{
 
 
     /**
-     * Function For supervisors to view overdue tasks of all nurses
-     * @return bool
+     * Executes a query to get all due tasks in a clinic
+     *
+     * This method executes a query that allows clinic supervisors to view
+     * all due tasks in their clinic. It should be accessible to only
+     * clinic supervisors
+     *
+     * @param $clinic: id of clinic
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_due_tasks($clinic){
         $str_query = "SELECT
@@ -294,9 +310,15 @@ class clinic_task extends adb{
 
 
     /**
-     * Function for supervisors to confirm tasks
-     * @param $id
-     * @return bool
+     * Executes a query to confirm the execution of a task by a nurse
+     *
+     * This method executes a query that allows clinic supervisors to
+     * confirm that a given task has been executed. It does so by updating
+     * the confirmation status of a given task.
+     * It should be accessible to only clinic supervisors
+     *
+     * @param $id: id of task
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function confirm_task($id){
         $str_query = "UPDATE se_clinic_tasks SET
@@ -307,11 +329,15 @@ class clinic_task extends adb{
     }
 
     /**
-     * Function to view overdue tasks assigned to nurse
-     * @param $id
-     * @return bool
+     * Executes a query to get all due tasks assigned to a nurse
+     *
+     * This method executes a query that allows a nurses to view
+     * all their due tasks.
+     *
+     * @param $nurse: id of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_due_task($id){
+    function get_nurse_due_task($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -328,7 +354,7 @@ class clinic_task extends adb{
                       TIMEDIFF(CURTIME(), CT.due_time) As overdue_time
                       FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
-                      AND assigned_to = $id
+                      AND assigned_to = $nurse
                       AND DATEDIFF(CURDATE(), CT.due_date) >= 0";
 
         return $this->query($str_query);
@@ -336,12 +362,15 @@ class clinic_task extends adb{
 
 
     /**
-     * This function gets all completed tasks assigned to
-     * a nurse
-     * @param $id: this represents the nurse id
-     * @return bool: this represents the success of the sql query
+     * Executes a query to get all tasks assigned to a nurse
+     *
+     * This method executes a query that allows a nurses to view
+     * all their tasks.
+     *
+     * @param $nurse: id of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_completed_tasks($id){
+    function get_nurse_completed_tasks($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -359,7 +388,7 @@ class clinic_task extends adb{
                       TIMEDIFF(CURTIME(), due_time) As overdue_time
                       FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
-                      AND CT.assigned_to = $id
+                      AND CT.assigned_to = $nurse
                       AND CT.date_completed <> '0000-00-00'";
 
         return $this->query($str_query);
@@ -368,12 +397,15 @@ class clinic_task extends adb{
 
 
     /**
-     * This function gets all confirmed tasks assigned to
-     * a nurse
-     * @param $id: this represents the nurse id
-     * @return bool: this represents the success of the sql query
+     * Executes a query to get all confirmed tasks assigned to a nurse
+     *
+     * This method executes a query that allows a nurses to view
+     * all their confirmed tasks.
+     *
+     * @param $nurse: id of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_cofirmed_tasks($id){
+    function get_nurse_cofirmed_tasks($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -391,15 +423,20 @@ class clinic_task extends adb{
                       TIMEDIFF(CURTIME(), due_time) As overdue_time
                       FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
-                      AND CT.assigned_to = $id
+                      AND CT.assigned_to = $nurse
                       AND CT.confirmed = 'confirmed'";
 
         return $this->query($str_query);
     }
 
     /**
-     * function to get all tasks
-     * @return bool
+     * Executes a query to select all tasks and order them in according to due date
+     *
+     * This method executes a query that allows district administrators to view
+     * all tasks assigned in various clinics within the district. It should
+     * be accessible to only district administrators
+     *
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_all_tasks(){
         $str_query = "SELECT
@@ -422,10 +459,15 @@ class clinic_task extends adb{
 
 
     /**
-     * function to set task completed time
-     * @param $task_id
-     * @param $nurse_id
-     * @return bool
+     * Executes a query to get all confirmed tasks assigned to a nurse
+     *
+     * This method executes a query that allows a nurses to view
+     * all their confirmed tasks.
+     *
+     *
+     * @param $task_id: id of task completed
+     * @param $nurse_id: id of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function update_time_completed($task_id, $nurse_id){
         $str_query = "UPDATE se_clinic_tasks SET
