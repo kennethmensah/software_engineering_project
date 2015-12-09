@@ -343,11 +343,6 @@ include_once 'sessionValues.php';
                         <li><a href="javascript: loadViewNurses()"><i class="fa fa-angle-double-right"></i> View</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript: loadCalendar()">
-                        <i class="fa fa-calendar"></i> <span>Calendar</span>
-                    </a>
-                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -414,12 +409,6 @@ include_once 'sessionValues.php';
 
 <!-- report js -->
 <script src="js/report.js"></script>
-
-<!-- Calendar -->
-<script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-
-<!-- Supervisor Calendar -->
-<script src="js/supervisor_calendar.js" type="text/javascript"></script>
 
 </body>
 </html>

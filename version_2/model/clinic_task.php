@@ -1,11 +1,30 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/23/15
- * Time: 6:17 PM
+ * This class interfaces contains queries that interface with the
+ * clinic tasks database. It contains relevant queries necessary for
+ * assigning tasks, retrieving tasks and updating tasks.
+ *
+ * PHP version 5.6
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   Model Class
+ * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
+ * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
+ * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
+ * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
+ * @version    SVN: 1.2
  */
 
+
+/**
+ * This is a "Docblock Comment," also known as a "docblock."  The class'
+ * docblock, below, contains a complete description of how to write these.
+ */
 include_once 'adb.php';
 
 class clinic_task extends adb{
@@ -267,11 +286,12 @@ class clinic_task extends adb{
                       CT.confirmed,
                       N.fname,
                       N.sname,
-                      DATEDIFF(CURDATE(), due_date) As overdue_days,
-                      TIMEDIFF(CURTIME(), due_time) As overdue_time
+                      DATEDIFF(CURDATE(), CT.due_date) As overdue_days,
+                      TIMEDIFF(CURTIME(), CT.due_time) As overdue_time
                       FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
-                      AND assigned_to = $id";
+                      AND assigned_to = $id
+                      AND DATEDIFF(CURDATE(), CT.due_date) >= 0";
 
         return $this->query($str_query);
     }
@@ -303,6 +323,38 @@ class clinic_task extends adb{
                       WHERE CT.assigned_to = N.nurse_id
                       AND CT.assigned_to = $id
                       AND CT.date_completed <> '0000-00-00'";
+
+        return $this->query($str_query);
+    }
+
+
+
+    /**
+     * This function gets all confirmed tasks assigned to
+     * a nurse
+     * @param $id: this represents the nurse id
+     * @return bool: this represents the success of the sql query
+     */
+    function get_nurse_cofirmed_tasks($id){
+        $str_query = "SELECT
+                      CT.task_id,
+                      CT.task_title,
+                      CT.task_desc,
+                      CT.assigned_by,
+                      CT.assigned_to,
+                      CT.date_assigned,
+                      CT.due_date,
+                      CT.due_time,
+                      CT.date_completed,
+                      CT.confirmed,
+                      N.fname,
+                      N.sname,
+                      DATEDIFF(CURDATE(), due_date) As overdue_days,
+                      TIMEDIFF(CURTIME(), due_time) As overdue_time
+                      FROM se_clinic_tasks CT, se_nurses N
+                      WHERE CT.assigned_to = N.nurse_id
+                      AND CT.assigned_to = $id
+                      AND CT.confirmed = 'confirmed'";
 
         return $this->query($str_query);
     }
@@ -450,7 +502,4 @@ class clinic_task extends adb{
 
         return $this->query($str_query);
     }
-
-
-
 }

@@ -42,7 +42,7 @@ if(filter_input (INPUT_GET, 'cmd')){
             /**
              * get tasks overdue
              */
-
+            get_nurse_due_tasks_control();
             break;
         case 7:
             get_clinic_tasks();
@@ -69,6 +69,10 @@ if(filter_input (INPUT_GET, 'cmd')){
 
             get_nurse_completed_task_control();
 
+            break;
+
+        case 14:
+            get_nurse_confirmed_task_control();
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
@@ -354,7 +358,50 @@ function get_nurse_completed_task_control(){
 }
 
 
+function get_nurse_confirmed_task_control(){
+    if( filter_input (INPUT_GET, 'id')){
 
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_nurse_cofirmed_tasks($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
+
+function get_nurse_due_tasks_control(){
+    if( filter_input (INPUT_GET, 'id')){
+
+        $obj = get_clinic_task_model();
+        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+
+        if ($obj->get_nurse_due_task($id)){
+            echo '{"result":1, "clinic_tasks":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
 
 function sanitize_string($val){
     $val = stripslashes($val);

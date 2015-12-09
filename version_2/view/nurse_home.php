@@ -36,7 +36,7 @@ $loggedIn = $_SESSION['logged_in'];
 <header class="header">
     <a href="index.html" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
-        AdminLTE
+        NurseTM
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -321,9 +321,10 @@ $loggedIn = $_SESSION['logged_in'];
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Completed</a></li>
-                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Confirmed</a></li>
-                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Due</a></li>
+                        <li><a href="javascript: loadMyTasks()"><i class="fa fa-angle-double-right"></i> Inbox</a></li>
+                        <li><a href="javascript: loadMyCompletedTasks()"><i class="fa fa-angle-double-right"></i> Completed</a></li>
+                        <li><a href="javascript: loadMyConfirmedTasks()"><i class="fa fa-angle-double-right"></i> Confirmed</a></li>
+                        <li><a href="javascript: loadMyDueTasks()"><i class="fa fa-angle-double-right"></i> Due</a></li>
                     </ul>
                 </li>
                 <li >

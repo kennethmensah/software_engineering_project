@@ -22,6 +22,111 @@ function sendRequest(u){
 }
 
 
+function getMyConfirmedTasks(){
+    var id = localStorage.getItem("user_id");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=14&id="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        return obj;
+    }
+    else{
+        return false;
+    }
+}
+
+
+function showMyConfirmedTasks(){
+
+    $("#nurse_tasks_div").html("");
+    var obj = getMyConfirmedTasks();
+    var unread = 0;
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+            unread ++;
+        }
+
+
+        if(obj.clinic_tasks[index].date_completed != "0000-00-00"){
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
+        }
+
+        task_list += '<td class="subject"><a href="javascript: getTaskDetails('+obj.clinic_tasks[index].task_id
+            +')">'+obj.clinic_tasks[index].task_title+'</a><br>';
+        task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+
+        task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
+            ' <span class="ion ion-android-archive"/></span></a></td>';
+        task_list += '</tr>';
+
+        $("#nurse_tasks_div").append(task_list);
+    }
+
+    getTaskDetails(obj.clinic_tasks[0].task_id);
+
+}
+
+
+function getMyDueTasks(){
+    var id = localStorage.getItem("user_id");
+    var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
+        "cmd=6&id="+id;
+    var obj=sendRequest(theUrl);		//send request to the above url
+    if(obj.result===1) {					//check result
+        return obj;
+    }
+    else{
+        return false;
+    }
+}
+
+
+function showMyDueTasks(){
+
+    $("#nurse_tasks_div").html("");
+    var obj = getMyDueTasks();
+    var unread = 0;
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
+
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+            unread ++;
+        }
+
+
+        if(obj.clinic_tasks[index].date_completed != "0000-00-00"){
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
+        }
+
+        task_list += '<td class="subject"><a href="javascript: getTaskDetails('+obj.clinic_tasks[index].task_id
+            +')">'+obj.clinic_tasks[index].task_title+'</a><br>';
+        task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+
+        task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
+            ' <span class="ion ion-android-archive"/></span></a></td>';
+        task_list += '</tr>';
+
+        $("#nurse_tasks_div").append(task_list);
+    }
+
+    getTaskDetails(obj.clinic_tasks[0].task_id);
+
+}
+
 function getMyCompletedTasks(){
     var id = localStorage.getItem("user_id");
     var theUrl="http://localhost/SE/software_engineering_project/version_2/controllers/clinic_task_controller.php?" +
@@ -37,45 +142,41 @@ function getMyCompletedTasks(){
 
 
 function showMyCompletedTasks(){
-    function showMyTaskPane(){
-        $("#nurse_tasks_div").html("");
-        var obj = getMyCompletedTasks();
-        var unread = 0;
-        for(var index in obj.clinic_tasks){
-            var task_list = "";
 
-            if(obj.clinic_tasks[index].confirmed == "confirmed"){
-                task_list = '<tr class="read">';
-            }else{
-                task_list = '<tr class="unread">';
-                unread ++;
-            }
+    $("#nurse_tasks_div").html("");
+    var obj = getMyCompletedTasks();
+    var unread = 0;
+    for(var index in obj.clinic_tasks){
+        var task_list = "";
 
-
-
-
-            if(obj.clinic_tasks[index].date_completed != "0000-00-00"){
-
-                task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
-            }else{
-                task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
-            }
-
-            task_list += '<td class="subject"><a href="javascript: getTaskDetails('+obj.clinic_tasks[index].task_id
-                +')">'+obj.clinic_tasks[index].task_title+'</a><br>';
-            task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
-
-            task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
-                ' <span class="ion ion-android-archive"/></span></a></td>';
-            task_list += '</tr>';
-
-            $("#nurse_tasks_div").append(task_list);
+        if(obj.clinic_tasks[index].confirmed == "confirmed"){
+            task_list = '<tr class="read">';
+        }else{
+            task_list = '<tr class="unread">';
+            unread ++;
         }
 
-        getTaskDetails(obj.clinic_tasks[0].task_id);
 
-        $("#unread_tasks").text("("+unread+")");
+        if(obj.clinic_tasks[index].date_completed != "0000-00-00"){
+
+            task_list += '<td class="small-col"><i class="fa fa-check"></i></td>';
+        }else{
+            task_list += '<td class="small-col"><i class="ion ion-android-alarm"></i></td>';
+        }
+
+        task_list += '<td class="subject"><a href="javascript: getTaskDetails('+obj.clinic_tasks[index].task_id
+            +')">'+obj.clinic_tasks[index].task_title+'</a><br>';
+        task_list += '<i class="fa fa-clock-o"></i> '+obj.clinic_tasks[index].due_date+'</td>';
+
+        task_list += '<td class="time"><a href="javascript: completeTask('+obj.clinic_tasks[index].task_id+')">' +
+            ' <span class="ion ion-android-archive"/></span></a></td>';
+        task_list += '</tr>';
+
+        $("#nurse_tasks_div").append(task_list);
     }
+
+    getTaskDetails(obj.clinic_tasks[0].task_id);
+
 }
 
 
@@ -284,7 +385,7 @@ function setTasks(id){
 
 
 function loadNurseDashboard(){
-    $("#main_content").load("nurse_pages/dashboard.html");
+    $("#sub_content").load("nurse_pages/dashboard.html");
 }
 
 
@@ -302,6 +403,26 @@ function loadReport(){
 function loadMyTasks(){
     $("#sub_content").load("nurse_pages/nurse_task_page.html", function(){
         showMyTaskPane();
+    });
+}
+
+
+function loadMyCompletedTasks(){
+    $("#sub_content").load("nurse_pages/nurse_task_page.html", function(){
+        showMyCompletedTasks();
+    });
+}
+
+function loadMyConfirmedTasks(){
+    $("#sub_content").load("nurse_pages/nurse_task_page.html", function(){
+        showMyConfirmedTasks();
+    });
+}
+
+
+function loadMyDueTasks(){
+    $("#sub_content").load("nurse_pages/nurse_task_page.html", function(){
+        showMyDueTasks();
     });
 }
 
