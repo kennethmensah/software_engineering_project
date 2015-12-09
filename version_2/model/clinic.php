@@ -15,7 +15,7 @@ function clinic(){
 
     function get_clinics()
     {
-        $str_query = "select id, clinic_name, clinic_location from se_clinics";
+        $str_query = "select clinic_id, clinic_name, clinic_location from se_clinics";
         
         return $this->query($str_query);
     }
@@ -28,7 +28,7 @@ function clinic(){
     
     function delete_clinic($id)
     {
-        $str_query = "delete from  se_clinics where id = $id";
+        $str_query = "delete from  se_clinics where clinic_id = $id";
         return $this->query($str_query);
     }
     
