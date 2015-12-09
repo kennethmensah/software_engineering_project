@@ -62,6 +62,65 @@ function getNurseDetails(id){
     }
 }
 
+function setUserReportDetails(id){
+
+    var clinic = getClinic();
+    $("#clinic_name").text(clinic.clinics[0].clinic_name);
+    $("#clinic_location").text(clinic.clinics[0].clinic_location);
+
+    var user = getNurseDetails(id);
+    $("#nurse_email").text("Email: "+ user.user_details[0].email);
+
+}
+
+function setDate(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+
+    today = mm+'/'+dd+'/'+yyyy;
+    $("#report_date").text(today);
+}
+
+
+function setTasks(id){
+    var obj = getNurseTasks(id);
+    $("#nurse_phone").text("Phone: "+ obj.clinic_tasks[0].phone);
+    $("#report_details").html("");
+    for (var index in obj.clinic_tasks){
+        var task_row = '<tr><td>'+obj.clinic_tasks[index].task_title+'</td>';
+        task_row += '<td>'+obj.clinic_tasks[index].task_desc+'</td>';
+        task_row += '<td>'+obj.clinic_tasks[index].date_assigned+'</td>';
+        task_row += '<td>'+obj.clinic_tasks[index].due_date+'</td>';
+        task_row += '<td>'+obj.clinic_tasks[index].date_completed+'</td>';
+        if(obj.clinic_tasks[index].confirmed == 'confirmed'){
+            task_row += '<td><small class="label label-success"><i class="mdi-action-done"></i> Confirmed</small></td>';
+        }else{
+            task_row += '<td><small class="label label-warning"><i class="ion ion-alert"></i> Not Confirmed</small></td></tr>';
+        }
+        $("#report_details").append(task_row);
+
+    }
+}
+
+
+function loadReport(id){
+    $("#sub_content").load("supervisor_pages/report_file.html", function(){
+        setDate();
+        setUserReportDetails(id);
+        setTasks(id);
+    });
+}
+
 
 
 

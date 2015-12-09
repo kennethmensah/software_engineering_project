@@ -407,7 +407,10 @@ class clinic_task extends adb{
                       CT.due_date,
                       CT.due_time,
                       CT.confirmed,
+                      CT.date_completed,
                       N.fname,
+                      N.phone,
+                      N.nurse_id,
                       N.sname
                       FROM se_clinic_tasks CT, se_nurses N
                       WHERE CT.assigned_to = N.nurse_id
