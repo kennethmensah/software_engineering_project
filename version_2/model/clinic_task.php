@@ -459,11 +459,10 @@ class clinic_task extends adb{
 
 
     /**
-     * Executes a query to get all confirmed tasks assigned to a nurse
+     * Executes a query to update a completed task
      *
-     * This method executes a query that allows a nurses to view
-     * all their confirmed tasks.
-     *
+     * This method executes a query that allows a nurses to update
+     * a completed task.
      *
      * @param $task_id: id of task completed
      * @param $nurse_id: id of nurse
@@ -478,8 +477,12 @@ class clinic_task extends adb{
     }
 
     /**
-     * Function to get completed tasks for the week
-     * @return bool
+     * Executes a query to get all tasks completed in a week
+     *
+     * This method executes a query that fetches all completed tasks
+     * in a week.
+     *
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_completed_for_week(){
         $str_query = "SELECT
@@ -501,9 +504,12 @@ class clinic_task extends adb{
     }
 
     /**
-     * executes a search query to find a task by the given title
-     * @param $search_task
-     * @return bool
+     * Executes a search query to find a task by the given title
+     *
+     * This method executes a query to find a task by the task title
+     *
+     * @param $search_task: search text for the search query
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function search_task($search_task){
         $str_query = "SELECT
@@ -526,10 +532,14 @@ class clinic_task extends adb{
     }
 
     /**
-     * executes search query to search task for given nurses
-     * @param $nurse
-     * @param $search_text
-     * @return bool
+     * Executes search query to search task for given nurses
+     *
+     * This method executes a query to find a task assigned to a particular
+     * nurse
+     *
+     * @param $nurse: id of the nurse
+     * @param $search_text: search text for the search query
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function search_task_by_nurse($nurse, $search_text){
         $str_query = "SELECT
@@ -554,10 +564,13 @@ class clinic_task extends adb{
 
 
     /**
-     * executes a query to show tasks assigned to nurses in the
-     * last 30 days
-     * @param $nurse
-     * @return bool
+     * Executes a query to show tasks assigned to a nurse in the last 30 days
+     *
+     * This method executes a query to show all tasks to assigned to a nurse
+     * over the last 30 days
+     *
+     * @param $nurse: nurse id
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_all_nurse_tasks($nurse){
         $str_query = "SELECT
