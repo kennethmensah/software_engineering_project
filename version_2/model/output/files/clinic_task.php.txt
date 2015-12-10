@@ -596,3 +596,4 @@ class clinic_task extends adb{
         return $this->query($str_query);
     }
 }
+
