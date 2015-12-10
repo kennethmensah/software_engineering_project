@@ -1,23 +1,43 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/22/15
- * Time: 4:09 AM
+ * This class interfaces contains queries that interface with the
+ * nurses database. It contains relevant queries necessary for
+ * adding nurses, retrieving nurses and updating nurse details.
+ *
+ * PHP version 5.6
+ *
+ * @category   Model
+ * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
+ * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
+ * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
+ * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
+ * @version    SVN: 2.0.0
+ */
+
+/**
+ * A database interface class
+ *
+ * The class below contains functions that interface with the database
+ * via MYSQL
  */
 
 include_once 'adb.php';
 
 class nurses extends adb{
 
+    /**
+     * nurses constructor.
+     *
+     * this method instantiates an object of the nurses class
+     */
     function nurses(){}
 
     /**
-     * @param $nurses_id
-     * @param $fname
-     * @param $sname
-     * @param $district_zone
-     * @param $phone
+     * @param int $nurses_id
+     * @param string $fname
+     * @param string $sname
+     * @param string $district_zone
+     * @param string $phone
      * @return bool
      */
     function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone,$gender){

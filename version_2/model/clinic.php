@@ -10,9 +10,10 @@ include_once 'adb.php';
 class clinic extends adb{
 
 
-    /*
-    This is a constructor for the clinic class 
-    */
+    /**
+     * This is a constructor for the clinic class
+     *
+     */
     function clinic()
     {
         
