@@ -100,18 +100,6 @@ class nurses extends adb{
 
 }
 
-/**
- * Unit Test and usage
- */
-//$obj = new nurses();
-
-//$obj->add_nurses(1,'Araba','Maison',2,'+233244393945');
-//$obj = new nurses();
-//$obj->get_nurse_by_location(2);
-//if($row = $obj->fetch()){
-//    echo "nurses name:  ".$row['fname'];
-//}
-
 
 
 

@@ -3,7 +3,7 @@
 /**
  * This class interfaces contains queries that interface with the
  * users database. It contains relevant queries necessary for
- * assigning tasks, retrieving tasks and updating tasks.
+ * adding users, retrieving users and updating user details.
  *
  * PHP version 5.6
  *
@@ -26,9 +26,24 @@ include_once 'adb.php';
 
 class user extends adb{
 
+    /**
+     * user constructor.
+     *
+     * this method instantiates an object of the user class
+     */
     function user(){}
 
-
+    /**
+     * Executes a query to add a new user
+     *
+     * This method executes a query to assign a new user.
+     *
+     * @param $username: username
+     * @param $password: password
+     * @param $user_type: user type ie. admin, supervisor, nurse
+     * @param $email: email
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
     function add_user($username, $password, $user_type, $email){
         $str_query =  "INSERT into se_users SET
                username = '$username',
@@ -41,7 +56,13 @@ class user extends adb{
 
 
     /**
-     * function edit user password details
+     * Executes a query to edit user password
+     *
+     * This method executes a query to edit a user's password
+     *
+     * @param $username: username
+     * @param $password: password
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function edit_password($username, $password){
         $str_query = "UPDATE se_users SET
@@ -52,7 +73,13 @@ class user extends adb{
     }
 
     /**
-     * function edit user password details
+     * Executes a query to edit user password
+     *
+     * This method executes a query to edit a user's password
+     *
+     * @param $id: user id
+     * @param $password: password
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function edit_password_byId($id, $password){
         $str_query = "UPDATE se_users SET
@@ -62,8 +89,15 @@ class user extends adb{
         return $this->query($str_query);
     }
 
-    /*
+    /**
+     * Executes a query to get a users details
      *
+     * This method executes a query to get a user's details
+     * by their username and password
+     *
+     * @param $username: username
+     * @param $pass: password
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
     function get_user($username, $pass){
         $str_query = "SELECT * FROM se_users
@@ -72,6 +106,15 @@ class user extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * Executes a query to get a users details
+     *
+     * This method executes a query to get a user's details
+     * by their user id
+     *
+     * @param $id: user id
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
     function get_user_byId($id){
         $str_query = "SELECT * FROM se_users
             WHERE user_id = $id";
