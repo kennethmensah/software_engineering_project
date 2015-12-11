@@ -29,7 +29,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 }
 
 /**
- *
+ *@method void user_signup_control() Signs a user into the system.
  */
 function user_signup_control(){
     
@@ -70,6 +70,7 @@ function user_signup_control(){
 }
 
 /**
+ *@method admin_signup() Signs an administrater into the system
  * @param $admin_id
  */
 function admin_signup($admin_id){
@@ -94,6 +95,13 @@ function admin_signup($admin_id){
     }
 }
 
+/*
+*@method setUserSessionDetails() inputs data for user to start a session in the system.
+* @param $username
+* @param $user_id
+* @param $user_type
+* @param $email
+*/
 function setUserSessionDetails($username, $user_id, $user_type, $email){
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $user_id;
@@ -102,6 +110,14 @@ function setUserSessionDetails($username, $user_id, $user_type, $email){
     $_SESSION['logged_in'] = 'true';
 }
 
+/*
+*@method setUserSessionValues() inputs data for user to start a session in the system.
+* @param $sname
+* @param $fname
+* @param $phone
+* @param $district
+* @param $gender
+*/
 function setUserSessionValues($sname, $fname, $phone, $district, $gender){
     $_SESSION['sname'] = $sname;
     $_SESSION['fname'] = $fname;

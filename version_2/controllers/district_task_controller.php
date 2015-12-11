@@ -51,6 +51,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 
 /**
  * function to get a particular task
+ * @method void get_task_control() Gets a particular task in database
  */
 function get_task_control(){
     if( filter_input (INPUT_GET, 'id')){
@@ -76,6 +77,8 @@ function get_task_control(){
 
 /**
  * function to get all tasks
+ *@method void get_tasks_control() Gets all district tasks in database
+ */
  */
 function get_tasks_control(){
     $obj = get_district_task();
@@ -95,7 +98,8 @@ function get_tasks_control(){
 }
 
 /**
- * controller method to add a task
+ * @method void add_task_control() Adds taks to the database
+ */
  */
 function add_task_control(){
     if( filter_input (INPUT_GET, 'task_title') && filter_input (INPUT_GET, 'task_desc')
