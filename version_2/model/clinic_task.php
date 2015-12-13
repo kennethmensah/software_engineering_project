@@ -18,7 +18,7 @@
 /**
  * A database interface class
  *
- * The class below contains functions that interface with the database
+ * The included class contains functions that interface with the database
  * via MYSQL
  */
 include_once 'adb.php';
