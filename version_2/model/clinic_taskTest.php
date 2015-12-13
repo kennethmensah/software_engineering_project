@@ -26,8 +26,8 @@ class clinicTaskTest extends PHPUnit_Framework_TestCase
      * test for the adding a clinic task
      */
     function test_add_task(){
-        $obj = new clinic_task();
-        $this->assertEquals(true,$obj->add_clinic_task('Vaccination','Vacc',1,17,'2015-12-09',
+        $obj = new Clinic_Task();
+        $this->assertEquals(true,$obj->addClinicTask('Vaccination','Vacc',1,17,'2015-12-09',
             '12:00:00',2));
     }
 
@@ -35,7 +35,7 @@ class clinicTaskTest extends PHPUnit_Framework_TestCase
      * test for viewing all assigned tasks in the database
      */
     function test_get_all_tasks(){
-        $obj = new clinic_task();
+        $obj = new Clinic_Task();
         $this->assertEquals(true, $obj->get_all_tasks());
     }
 
@@ -45,8 +45,8 @@ class clinicTaskTest extends PHPUnit_Framework_TestCase
      * nurse
      */
     function test_get_all_nurse_tasks(){
-        $obj = new clinic_task();
-        $this->assertEquals(true, $obj->get_all_nurse_tasks(1));
+        $obj = new Clinic_Task();
+        $this->assertEquals(true, $obj->getAllNurseTasks(1));
     }
 
 
@@ -55,7 +55,7 @@ class clinicTaskTest extends PHPUnit_Framework_TestCase
      * clinic
      */
     function test_get_all_clinic_tasks(){
-        $obj = new clinic_task();
-        $this->assertEquals(true, $obj->get_all_clinic_tasks(2));
+        $obj = new Clinic_Task();
+        $this->assertEquals(true, $obj->getAllClinicTasks(2));
     }
 }
