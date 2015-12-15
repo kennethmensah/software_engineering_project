@@ -13,7 +13,7 @@ session_start();
  *
  * PHP version 5.6
  *
- * @category   Model
+ * @category   Controller
  * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
  * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
  * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
