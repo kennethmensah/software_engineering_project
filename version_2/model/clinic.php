@@ -45,6 +45,7 @@ function clinic(){
     }
     
 }
+}
 
 ?>
      * @param $clinic_name
