@@ -1,4 +1,7 @@
 <?php
+/**
+*@method void session_start() Starts the session
+*/
 session_start();
 
 if(filter_input (INPUT_GET, 'cmd')){
@@ -8,28 +11,46 @@ if(filter_input (INPUT_GET, 'cmd')){
                                     
     switch ($cmd){
         case 1:
+            /*
+            *sign up a user
+            */
             user_signup_control();
             break;
         case 2:
+            /*
+            *log in a user
+            */
             user_login_control();
             break;
         case 3:
+            /*
+            *edits a user
+            */
             user_edit_control();
             break;
         case 4:
+            /*
+            *edits a password for a user
+            */
             edit_password_control();
             break;
         case 5:
+            /*
+            *log out a user
+            */
             user_logout_control();
             break;
         default:
+            /*
+            *Default value returns an error message
+            */
             echo '{"result":0, "message":"Invalid Command Entered"}';
             break;
     }
 }
 
 /**
- *
+ *@method void user_signup_control() Controls user sign up
  */
 function user_signup_control(){
     
@@ -70,7 +91,8 @@ function user_signup_control(){
 }
 
 /**
- * @param $admin_id
+ * @method void admin_signup() admin_signup($admin_id) Controls administrator sign up 
+ * @param int $admin_id Administrator ID
  */
 function admin_signup($admin_id){
     $obj = $sname = $fname = $phone = '';
@@ -94,6 +116,13 @@ function admin_signup($admin_id){
     }
 }
 
+/**
+    *@method void setUserSessionDetails() setUserSessionDetails($username, $user_id, $user_type, $email) Sets details for sessions
+    *@param string $username The username of user
+    *@param int $user_id The ID of the user
+    *@param string $user_type Specifies the type of user
+    *@param string $email The email of the user
+*/
 function setUserSessionDetails($username, $user_id, $user_type, $email){
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $user_id;
@@ -102,6 +131,13 @@ function setUserSessionDetails($username, $user_id, $user_type, $email){
     $_SESSION['logged_in'] = 'true';
 }
 
+/**
+    *@method void setUserSessionValues() setUserSessionValues($sname, $fname, $phone, $district, $gender) Sets values for sessions
+    *@param string $sname The surname of user
+    *@param string $fname The firstname of the user
+    *@param string $district The district of the user
+    *@param string $gender The gender of the user
+*/
 function setUserSessionValues($sname, $fname, $phone, $district, $gender){
     $_SESSION['sname'] = $sname;
     $_SESSION['fname'] = $fname;
@@ -111,7 +147,8 @@ function setUserSessionValues($sname, $fname, $phone, $district, $gender){
 }
 
 /**
- * @param $supervisor_id
+ * @method void supervisor_signup() supervisor_signup($supervisor_id) Controls supervisor sign up
+ * @param int $supervisor_id The supervisor ID
  */
 function supervisor_signup($supervisor_id){
     $obj = $sname = $fname = $district = $phone = '';
@@ -136,7 +173,8 @@ function supervisor_signup($supervisor_id){
 
 
 /**
- * @param $nurse_id
+ * @method void nurse_signup() nurse_signup($nurse_id) Controls the nurse sign up
+ * @param int $nurse_id The nurse ID
  */
 function nurse_signup($nurse_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
@@ -161,7 +199,7 @@ function nurse_signup($nurse_id){
 
 
 /**
- * controller function to login users
+ *@method void user_login_control() Controls the user login
  */
 function user_login_control(){
 
@@ -247,7 +285,7 @@ function user_edit_control(){
 }
 
 /**
- * controller function to edit user password
+ * @method void edit_password_control() Controls editing user password
  */
 function edit_password_control(){
     $obj  = $username = $password = '';
@@ -271,7 +309,7 @@ function edit_password_control(){
 }
 
 /**
- *
+ *@method void user_logout_control() Controls loging out
  */
 function user_logout_control(){
     session_destroy();
@@ -280,8 +318,8 @@ function user_logout_control(){
 }
 
 /**
- * sanitize input from url
- * @param $val
+ * @method string sanitize_string() sanitize_string($val) sanitize input from url
+ * @param string $val A string value
  * @return string
  */
 function sanitize_string($val){
@@ -293,7 +331,8 @@ function sanitize_string($val){
 }
 
 /**
- * @param $pass
+ * @method string encrypt() encrypt($pass) Encrupts password
+ * @param string $pass The password
  * @return string
  */
 function encrypt($pass){
@@ -304,6 +343,7 @@ function encrypt($pass){
 }
 
 /**
+ * @method user get_user_model() Instantiates an object for the user class
  * @return user
  */
 function get_user_model(){
@@ -314,6 +354,7 @@ function get_user_model(){
 
 
 /**
+ * * @method nurses get_nurse_model() Instantiates an object for the user class
  * @return nurses
  */
 function get_nurse_model(){

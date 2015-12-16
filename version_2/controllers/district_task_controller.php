@@ -50,7 +50,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 }
 
 /**
- * function to get a particular task
+ * @method get_task_control() Gets a particular task
  */
 function get_task_control(){
     if( filter_input (INPUT_GET, 'id')){

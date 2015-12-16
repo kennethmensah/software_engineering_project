@@ -8,11 +8,11 @@
  * description: A root class for all manage classes. This class communicates with DB
  */
 
-define("DB_HOST", 'localhost:8888');
+define("DB_HOST", 'localhost');
 //define("DB_NAME", 'csashesi_fredrick-abayie');
 
 define("DB_NAME", 'nurse_task_managerV2');
-define("DB_PORT", 8889);
+define("DB_PORT", 3306);
 define("DB_USER","root");
 define("DB_PWORD","root");
 

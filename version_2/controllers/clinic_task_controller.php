@@ -213,6 +213,7 @@ function sanitize_string($val){
 
 
 /**
+ * @method clinic_task get_clinic_task_model() Instantiates an object for clinic_task class
  * @return clinic_task
  */
 function get_clinic_task_model(){
