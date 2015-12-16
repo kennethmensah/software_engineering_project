@@ -3,14 +3,12 @@
 
 
 /**
- * author:
- * date:
- * description: A root class for all manage classes. This class communicates with DB
- */
+    *@author Group 4
+    *@version 2.0.0
+    *@copyright Copyright (c) 2015, Group 4
+    */
 
 define("DB_HOST", 'localhost');
-//define("DB_NAME", 'csashesi_fredrick-abayie');
-
 define("DB_NAME", 'nurse_task_managerV2');
 define("DB_PORT", 3306);
 define("DB_USER","root");
@@ -35,6 +33,9 @@ define("LOG_LEVEL_DB_FAIL",0);
 
 define("PAGE_SIZE",10);
 
+/**
+*@method int log_msg() log_msg ( $level, $er_code, $msg, $mysql_msg ) Keeps a log of information on database
+*/
 function log_msg ( $level, $er_code, $msg, $mysql_msg ) {
 	return 0;
 }
