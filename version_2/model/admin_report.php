@@ -9,8 +9,8 @@ class admin_report extends adb{
     }
 
    /**
-    *This function retrives the information for all tasks stored in the database have been completed.
-    *@return bool the result will return true/false whether the sql query is successful
+    *@method boolean get_confirmed_report() Gets confirmed reports
+    *@return boolean
     */
     function get_comfirmed_report()
     {
@@ -20,7 +20,7 @@ class admin_report extends adb{
     }
 
 	/**
-    *This function retrives the information for all tasks stored in the database that have not been completed
+    *@method boolean get_uncompleted_report() Gets uncompleteed reports
     *@return bool the result will return true/false whether the sql query is successful
     */
     function get_uncompleted_report()
@@ -29,7 +29,12 @@ class admin_report extends adb{
         
         return $this->query($str_query);
     }
-
+    
+    /**
+    *@method boolean get_nurse_work() get_nurse_work($nurse_id) Gets work done b aparticular nurse
+    *@param int $nurse_id Nurse ID
+    *@return boolean
+    */
     function get_nurse_work($nurse_id){
     	$str_query = " select task_title, task_desc, clinics"
     }
