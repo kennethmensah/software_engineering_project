@@ -12,7 +12,7 @@ class district_task extends adb{
 
   
     /*
-    This is a constructor for the district_task class 
+     *@constructor  district_task() Constructor for the district_task class 
     */
     function district_task()
     {
@@ -20,14 +20,13 @@ class district_task extends adb{
     }
     
     /**
-    * This function adds a new district_task given the required parameters
-    * 
-    *@param int $id this represents the unique identifier for each district task
+    *@method boolean add_district_task() add_district_task($taskTitle, $taskDesc, $clinics, $date) Adds a new district_task given the required parameters
+    *@param int $id The District ID
     *@param String $taskTitle this is the title given to the task 
     *@param String $taskDes this is description for all activities involved in the task
     *@param String $clinics this represents the names one or more clinics assigned this task
     *@param String $date this is the date on which the new task was added  
-    *@return bool the result will return true/false whether the sql query is successful
+    *@return boolean
     */
     
     function add_district_task($taskTitle, $taskDesc, $clinics, $date)
@@ -38,8 +37,7 @@ class district_task extends adb{
     }
     
     /**
-    * This function updates an existing district_task given the required parameters
-    *
+    *@method boolean edit_district_task() edit_district_task($taskTitle, $taskDesc, $clinics,$date) Updates an existing district_task given the required parameters
     *@param int $id this represents the unique identifier for each district task
     *@param String $taskTitle this is the title given to the task 
     *@param String $taskDes this is description for all activities involved in the task
@@ -55,9 +53,9 @@ class district_task extends adb{
     
     
     /**
-    *This function retrives the information for a given district task using its id
-    *@param int $id this represents the unique identifier for each district task
-    *@return bool the result will return true/false whether the sql query is successful
+    *@method boolean get_district_task() get_district_task($id) Retrives the information for a given district task using its id
+    *@param int $id The District ID
+    *@return boolean
     */
     function get_district_task($id)
     {
@@ -67,8 +65,8 @@ class district_task extends adb{
     }
     
     /**
-    *This function adds retrives the information for all district_tasks stored in the database
-    *@return bool the result will return true/false whether the sql query is successful
+    *@method boolean get_district_tasks() Retrives the information for all district_tasks stored in the database
+    *@return boolean
     */
 
     function get_district_tasks()
@@ -79,8 +77,8 @@ class district_task extends adb{
     }
 
     /**
-    *This function adds deletes the row storing data for a given district task using its id
-    *@param int $id this represents the unique identifier for each district task
+    *@method boolean delete_district_task() delete_district_task($id) Deletes the row storing data for a given district task using its id
+    *@param int $id district task ID
     *@return bool the result will return true/false whether the sql query is successful
     */
     
@@ -91,9 +89,9 @@ class district_task extends adb{
     }
     
     /**
-    *This function adds searches for the rows with names of district_tasks that match the pattern
-    *@param int $sn this represents the name of the district_task
-    *@return bool the result will return true/false whether the sql query is successful
+    *@method boolean search_district_task_by_name() search_district_task_by_name($sn) Searches for the rows with names of district_tasks that match the pattern
+    *@param int $sn The name of the district_task
+    *@return boolean
     */
     
     function search_district_task_by_name($sn)
