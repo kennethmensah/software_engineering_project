@@ -50,7 +50,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 }
 
 /**
- *@method void user_signup_control() Controls user sign up
+ *@method void user_signup_control() Signs a user into the system.
  */
 function user_signup_control(){
     
@@ -91,7 +91,7 @@ function user_signup_control(){
 }
 
 /**
- * @method void admin_signup() admin_signup($admin_id) Controls administrator sign up 
+ * @method void admin_signup() admin_signup($admin_id) Signs an administrater into the system 
  * @param int $admin_id Administrator ID
  */
 function admin_signup($admin_id){
@@ -116,8 +116,9 @@ function admin_signup($admin_id){
     }
 }
 
+<<<<<<< HEAD
 /**
-    *@method void setUserSessionDetails() setUserSessionDetails($username, $user_id, $user_type, $email) Sets details for sessions
+    *@method void setUserSessionDetails() setUserSessionDetails($username, $user_id, $user_type, $email) inputs data for user to start a session in the system.
     *@param string $username The username of user
     *@param int $user_id The ID of the user
     *@param string $user_type Specifies the type of user
@@ -131,10 +132,12 @@ function setUserSessionDetails($username, $user_id, $user_type, $email){
     $_SESSION['logged_in'] = 'true';
 }
 
+<<<<<<< HEAD
 /**
-    *@method void setUserSessionValues() setUserSessionValues($sname, $fname, $phone, $district, $gender) Sets values for sessions
+    *@method void setUserSessionValues() setUserSessionValues($sname, $fname, $phone, $district, $gender) inputs data for user to start a session in the system.
     *@param string $sname The surname of user
     *@param string $fname The firstname of the user
+    *@param string $phone The phone number of the user
     *@param string $district The district of the user
     *@param string $gender The gender of the user
 */
@@ -331,7 +334,7 @@ function sanitize_string($val){
 }
 
 /**
- * @method string encrypt() encrypt($pass) Encrupts password
+ * @method string encrypt() encrypt($pass) Encrypts password
  * @param string $pass The password
  * @return string
  */
@@ -354,7 +357,7 @@ function get_user_model(){
 
 
 /**
- * * @method nurses get_nurse_model() Instantiates an object for the user class
+ * @method nurses get_nurse_model() Instantiates an object for the user class
  * @return nurses
  */
 function get_nurse_model(){
@@ -364,6 +367,7 @@ function get_nurse_model(){
 }
 
 /**
+ * @method supervisors get_supervisor_model() Instantiates an object for supervisors class
  * @return supervisors
  */
 function get_supervisor_model(){
@@ -374,6 +378,7 @@ function get_supervisor_model(){
 
 
 /**
+ * @method admin get_admin_model() Instantiates an object for admin class
  * @return admin
  */
 function get_admin_model(){
