@@ -10,20 +10,23 @@ include_once 'adb.php';
 
 class clinic_task extends adb{
 
+    /*
+    *
+    *@constructor clinic_task() Contructor of clinic_task class
+    */
     function clinic_task(){
 
     }
-<<<<<<< Updated upstream
 
     /**
-     * executes a query to add a new task
-     * @param $title
-     * @param $desc
-     * @param $nurses
-     * @param $supervisor
-     * @param $due
-     * @param $clinic
-     * @return bool
+     * @method boolean add_clinic_task() add_clinic_task($title, $desc, $nurses, $supervisor, $due_date, $due_time, $clinic ) executes a query to add a new task
+     * @param string $title The title of task
+     * @param string $desc Description of task
+     * @param int $nurses Nurse ID
+     * @param int $supervisor Supervisor ID
+     * @param date $due The due date
+     * @param string $clinic The Clinic
+     * @return boolean
      */
     function add_clinic_task($title, $desc, $nurses, $supervisor, $due_date, $due_time, $clinic ){
         $str_query = "INSERT INTO se_clinic_tasks SET
@@ -43,8 +46,8 @@ class clinic_task extends adb{
 
 
     /**
-     * executes a query to select all tasks
-     * @return bool
+     * @method boolean get_clinic_tasks() executes a query to select all tasks
+     * @return boolean
      */
     function get_clinic_tasks(){
 
@@ -65,8 +68,9 @@ class clinic_task extends adb{
     }
 
     /**
-     * @param $id
-     * @return bool
+     * @method boolean get_task_by_Id() get_task_by_Id($id) Gets task by ID
+     * @param int $id The Task ID
+     * @return boolean
      */
     function get_task_by_Id($id){
 
@@ -88,8 +92,9 @@ class clinic_task extends adb{
     }
 
     /**
-     * @param $date
-     * @return bool
+     * @method boolean get_by_date_completed() get_by_date_completed($date) Gets tasks by date completed
+     * @param Date $date The completed date
+     * @return boolean
      */
     function get_by_date_completed($date){
         $str_query = "SELECT
@@ -110,8 +115,9 @@ class clinic_task extends adb{
     }
 
     /**
-     * @param $date
-     * @return bool
+     * @method boolean get_by_date_assigned() get_by_date_assigned($date) Gets tasks by date assigned
+     * @param date $date The date assigned
+     * @return boolean
      */
     function get_by_date_assigned($date){
         $str_query = "SELECT
@@ -154,8 +160,8 @@ class clinic_task extends adb{
 //    }
 //    
     /**
-     * Function For supervisors to view overdue tasks of all nurses
-     * @return bool
+     * @method boolean get_overdue_tasks() Gets overdue tasks of all nurses
+     * @return boolean
      */
     function get_overdue_tasks(){
         $str_query = "SELECT
@@ -176,9 +182,9 @@ class clinic_task extends adb{
 
 
     /**
-     * Function for supervisors to confirm tasks
-     * @param $id
-     * @return bool
+     * @method boolean confirm_task() confirm_task($id) confirm tasks
+     * @param int $id The Task ID
+     * @return boolean
      */
     function confirm_task($id){
         $str_query = "UPDATE se_clinic_tasks SET
@@ -189,9 +195,9 @@ class clinic_task extends adb{
     }
 
     /**
-     * Function to view overdue tasks assigned to nurse
-     * @param $id
-     * @return bool
+     * @method boolean  get_nurse_due_task()  get_nurse_due_task($id) Gets overdue tasks assigned to nurse
+     * @param int $id The nurse ID
+     * @return boolean
      */
     function get_nurse_due_task($id){
         $str_query = "SELECT
@@ -215,8 +221,8 @@ class clinic_task extends adb{
     }
 
     /**
-     * function to get all tasks
-     * @return bool
+     * @method boolean get_all_tasks() Get all tasks
+     * @return boolean
      */
     function get_all_tasks(){
         $str_query = "SELECT
@@ -238,10 +244,10 @@ class clinic_task extends adb{
 
 
     /**
-     * function to set task completed time
-     * @param $task_id
-     * @param $nurse_id
-     * @return bool
+     * @method boolean update_time_completed() update_time_completed($task_id, $nurse_id) Set task completed time
+     * @param int $task_id Task ID
+     * @param int $nurse_id Nurse ID
+     * @return boolean
      */
     function update_time_completed($task_id, $nurse_id){
         $str_query = "UPDATE se_clinic_tasks SET
@@ -252,8 +258,8 @@ class clinic_task extends adb{
     }
 
     /**
-     * Function to get completed tasks for the year
-     * @return bool
+     * @method boolean get_completed_for_week() Get completed tasks for the week
+     * @return boolean
      */
     function get_completed_for_week(){
         $str_query = "SELECT
@@ -274,9 +280,9 @@ class clinic_task extends adb{
     }
 
     /**
-     * executes a search query to find a task by the given title
-     * @param $search_task
-     * @return bool
+     * @method boolean search_task() search_task($search_task) executes a search query to find a task by the given title
+     * @param string $search_task The search item
+     * @return boolean
      */
     function search_task($search_task){
         $str_query = "SELECT
@@ -298,10 +304,10 @@ class clinic_task extends adb{
     }
 
     /**
-     * executes search query to search task for given nurses
-     * @param $nurse
-     * @param $search_text
-     * @return bool
+     * @method boolean search_task_by_nurse() search_task_by_nurse($nurse, $search_text) executes search query to search task for given nurses
+     * @param string $nurse The nurse
+     * @param string $search_text The search item
+     * @return boolean
      */
     function search_task_by_nurse($nurse, $search_text){
         $str_query = "SELECT
@@ -325,10 +331,9 @@ class clinic_task extends adb{
 
 
     /**
-     * executes a query to show tasks assigned to nurses in the
-     * last 30 days
-     * @param $nurse
-     * @return bool
+     * @method boolean get_all_nurse_tasks() get_all_nurse_tasks($nurse) executes a query to show tasks assigned to nurses in the last 30 days
+     * @param string $nurse The nurse
+     * @return boolean
      */
     function get_all_nurse_tasks($nurse){
         $str_query = "SELECT
@@ -369,10 +374,10 @@ class clinic_task extends adb{
 //}
 //$obj->confirm_task(1);
 //$obj->update_time_completed(3, 1);
-=======
- /*This functions updates the tasks date of completion by the nurse in the database.
- *@param int $task_id this represents the unique identifier for each task
- *@return bool the result will return true/false whether the sql query is successful
+
+ /*@method boolean update_task_date() update_task_date($task_id) Updates the tasks date of completion by the nurse in the database.
+  *@param int $task_id The task ID
+  *@return boolean
   */
     function update_task_date($task_id){
     	$date = date("Y,=/m/d");
@@ -381,13 +386,12 @@ class clinic_task extends adb{
     	return $this->query($str_query);
     }
 
- /*This function is to delete tasks form the database.
- *@param int $task_id this represents the unique identifier for each task
- *@return bool the result will return true/false whether the sql query is successful
+ /*@method boolean delete_task() delete_task($task_id) Delete tasks form the database.
+  *@param int $task_id The task ID
+  *@return boolean
   */
     function delete_task($task_id){
     	$str_query = "delete from clinic_task where id = $task_id";
     	return $this->query($str_query);
     }
 }
->>>>>>> Stashed changes
