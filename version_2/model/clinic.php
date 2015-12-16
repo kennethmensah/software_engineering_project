@@ -12,7 +12,10 @@ class clinic extends adb{
 
 function clinic(){
 
-
+    /*
+    *@method boolean get_clinic() Gets all clinics from the database
+    *@return boolean
+    */
     function get_clinics()
     {
         $str_query = "select clinic_id, clinic_name, clinic_location from se_clinics";
@@ -21,9 +24,9 @@ function clinic(){
     }
 
     /**
-    *This function adds deletes the row storing data for a given clinic using its id
+    *@methood boolean delete_clinic() get_clinic($id) Deletes the row storing data for a given clinic using its id
     *@param int $id this represents the unique identifier for each clinic
-    *@return bool the result will return true/false whether the sql query is successful
+    *@return boolean
     */
     
     function delete_clinic($id)
@@ -33,9 +36,9 @@ function clinic(){
     }
     
     /**
-    *This function adds searches for the rows with names of clinics that match the pattern
+    *@method boolean search_clinic_by_name() search_clinic_by_name($sn) Searches for the rows with names of clinics that match the pattern
     *@param int $sn this represents the name of the clinic
-    *@return bool the result will return true/false whether the sql query is successful
+    *@return boolean
     */
     
     function search_clinic_by_name($sn)
