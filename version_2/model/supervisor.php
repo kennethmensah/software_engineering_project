@@ -1,21 +1,25 @@
 <?php
 /**
-    *@author Group 4
-    *@version 2.0.0
-    *@copyright Copyright (c) 2015, Group 4
-*/
+ *@author Group 4
+ *@version 2.0.0
+ *@copyright Copyright (c) 2015, Group 4
+ */
 
 include_once 'adb.php';
 
-class supervisors extends adb{
-
-    /*
-     *@constructor  supervisors() Constructor for the supervisors class 
-    */
-    function supervisors(){}
+class supervisors extends adb
+{
 
     /**
-     * @method boolean add_supervisors() add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender) Adds supervisor tp database
+     *@constructor  supervisors() Constructor for the supervisors class 
+     */
+    function supervisors()
+    {
+        
+    }
+
+    /**
+     * @method boolean addSupervisors() addSupervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender) Adds supervisor tp database
      * @param int $supervisors_id Supervisor ID
      * @param string $fname The firstname
      * @param string $sname The lastname
@@ -24,7 +28,8 @@ class supervisors extends adb{
      * @param string $gender The gender
      * @return boolean
      */
-    function add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender){
+    function addSupervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender)
+    {
         $str_query =  "INSERT into se_supervisors SET
                    supervisor_id = $supervisor_id,
                    fname = '$fname',
@@ -38,7 +43,7 @@ class supervisors extends adb{
 
 
     /**
-     * @method update_supervisors_details() update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone,$gender) Updates supervisor details
+     * @method updateSupervisorsDetails() updateSupervisorsDetails($supervisor_id, $fname, $sname, $district_zone, $phone,$gender) Updates supervisor details
      * @param int $supervisors_id Supervisor ID
      * @param string $fname The firstname
      * @param string $sname The lastname
@@ -47,7 +52,8 @@ class supervisors extends adb{
      * @param string $gender The gender
      * @return boolean
      */
-    function update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone,$gender){
+    function updateSupervisorsDetails($supervisor_id, $fname, $sname, $district_zone, $phone,$gender)
+    {
         $str_query = "UPDATE se_supervisors SET
                    fname = '$fname',
                    sname = '$sname',
@@ -60,12 +66,13 @@ class supervisors extends adb{
     }
 
     /**
-     * @method boolean update_district_zone() update_district_zone($supervisor_id, $district_zone) Update district zone
+     * @method boolean updateDistrictZone() updateDistrictZone($supervisor_id, $district_zone) Update district zone
      * @param int $supervisors_id Supervisor ID
      * @param string $district_zone The district zone
      * @return boolean
      */
-    function update_district_zone($supervisor_id, $district_zone){
+    function updateDistrictZone($supervisor_id, $district_zone)
+    {
         $str_query = "UPDATE se_supervisors SET
                    district_zone = $district_zone
                 WHERE supervisor_id = $supervisor_id";
@@ -74,12 +81,13 @@ class supervisors extends adb{
     }
 
     /**
-     * @method boolean update_phone() update_phone($supervisor_id, $phone) Updates the phone number
+     * @method boolean updatePhone() updatePhone($supervisor_id, $phone) Updates the phone number
      * @param int $supervisors_id Supervisor ID
      * @param string $phone Phone number
      * @return boolean
      */
-    function update_phone($supervisor_id, $phone){
+    function updatePhone($supervisor_id, $phone)
+    {
         $str_query = "UPDATE se_supervisors SET
                    phone = '$phone'
                 WHERE supervisor_id = $supervisor_id";
@@ -89,18 +97,20 @@ class supervisors extends adb{
 
 
     /**
-     * @method boolean get_details() get_details($supervisor_id) Gets details of supervisor
+     * @method boolean getDetails() getDetails($supervisor_id) Gets details of supervisor
      * @param $supervisors_id Supervisor ID
      * @return boolean
      */
-    function get_details($supervisor_id){
+    function getDetails($supervisor_id)
+    {
         $str_query = "SELECT * FROM se_supervisors
                 WHERE supervisor_id = $supervisor_id";
 
         return $this->query($str_query);
     }
 
-    function alert_superviser(){
+    function alertSuperviser()
+    {
         
 
     }
@@ -119,6 +129,6 @@ class supervisors extends adb{
 //}
 
 
-
+?>
 
 
