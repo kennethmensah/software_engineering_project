@@ -1,20 +1,28 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/23/15
- * Time: 6:18 PM
+ * This class interfaces contains queries that interface with the
+ * district tasks database. It contains relevant queries necessary for
+ * assigning tasks, retrieving tasks and updating tasks at a district level.
+ *
+ * PHP version 5.6
+ *
+ * @category   Model
+ * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
+ * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
+ * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
+ * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
+ * @version    SVN: 2.0.0
  */
 
 include_once 'adb.php';
 
-class district_task extends adb{
+class District_Task extends adb{
 
   
     /*
     This is a constructor for the district_task class 
     */
-    function district_task()
+    function District_Task()
     {
         
     }
@@ -30,10 +38,14 @@ class district_task extends adb{
     *@return bool the result will return true/false whether the sql query is successful
     */
     
-    function add_district_task($taskTitle, $taskDesc, $clinics, $date)
+    function addDistrictTask($taskTitle, $taskDesc, $clinics, $date)
     {
         
-        $str_query = "insert into se_district_tasks set " . " task_title = '$taskTitle'," . "task_desc = '$taskDesc',". "clinics = '$clinics'," . "due_date = '$date'";
+        $str_query = "INSERT INTO se_district_tasks SET
+                      task_title = '$taskTitle',
+                      task_desc = '$taskDesc',
+                      clinics = '$clinics',
+                      due_date = '$date'";
         return $this->query($str_query);
     }
     
@@ -47,14 +59,14 @@ class district_task extends adb{
     *@param String $date this is the date on which the new task was added  
     *@return bool the result will return true/false whether the sql query is successful
     */
-    function edit_district_task($taskTitle, $taskDesc, $clinics,$date, $id)
+    function editDistrictTask($taskTitle, $taskDesc, $clinics,$date, $id)
     {
-        $str_query = "update se_district_tasks set " .
-            "task_title = '$taskTitle'," .
-            "task_desc = '$taskDesc'".
-            "clinics = '$clinics'," .
-            "due_date = '$date'".
-            "where task_id = '$id'";
+        $str_query = "UPDATE se_district_tasks SET
+                      task_title = '$taskTitle',
+                      task_desc = '$taskDesc',
+                      clinics = '$clinics',
+                      due_date = '$date'
+                      WHERE task_id = '$id'";
         return $this->query($str_query);
     }
     
@@ -64,10 +76,15 @@ class district_task extends adb{
     *@param int $id this represents the unique identifier for each district task
     *@return bool the result will return true/false whether the sql query is successful
     */
-    function get_district_task($id)
+    function getDistrictTask($id)
     {
-        $str_query = "select task_title, task_desc,clinics,due_date from se_district_tasks
-                where task_id = $id";
+        $str_query = "SELECT
+                      task_title,
+                      task_desc,
+                      clinics,
+                      due_date
+                      FROM se_district_tasks
+                      WHERE task_id = $id";
         return $this->query($str_query);
     }
     
@@ -76,9 +93,15 @@ class district_task extends adb{
     *@return bool the result will return true/false whether the sql query is successful
     */
 
-    function get_district_tasks()
+    function getDistrictTasks()
     {
-        $str_query = "select task_id, task_title, task_desc,clinics,due_date from se_district_tasks";
+        $str_query = "SELECT
+                      task_id,
+                      task_title,
+                      task_desc,
+                      clinics,
+                      due_date
+                      FROM se_district_tasks";
         
         return $this->query($str_query);
     }
@@ -89,9 +112,11 @@ class district_task extends adb{
     *@return bool the result will return true/false whether the sql query is successful
     */
     
-    function delete_district_task($id)
+    function deleteDistrictTask($id)
     {
-        $str_query = "delete from  se_district_tasks where task_id = $id";
+        $str_query = "DELETE FROM
+                      se_district_tasks
+                      WHERE task_id = $id";
         return $this->query($str_query);
     }
     
@@ -101,9 +126,16 @@ class district_task extends adb{
     *@return bool the result will return true/false whether the sql query is successful
     */
     
-    function search_district_task_by_name($sn)
+    function searchDistrictTaskByName($sn)
     {
-        $str_query = "select task_id, task_title, task_desc,clinics,due_date from se_district_tasks where task_name like '%$sn%'";
+        $str_query = "SELECT
+                      task_id,
+                      task_title,
+                      task_desc,
+                      clinics,
+                      due_date
+                      FROM se_district_tasks
+                      WHERE task_name LIKE '%$sn%'";
         return $this->query($str_query);
     }
     
