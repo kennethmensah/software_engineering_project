@@ -1,26 +1,9 @@
 <?php
 /**
- * This class interfaces contains queries that interface with the
- * clinics database. It contains relevant queries necessary for
- * adding clinics, retrieving clinics and updating clinic details.
- *
- * PHP version 5.6
- *
- * @category   Model
- * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
- * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
- * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
- * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
- * @version    SVN: 2.0.0
+ * @author: Kenneth Mintah Mensah, Edwina Baddoo, Joshua Aherdermla, Norbert Sackey
+ * Date: 11/23/15
+ * Time: 6:23 PM
  */
-
-/**
- * A database interface class
- *
- * The class below contains functions that interface with the database
- * via MYSQL
- */
-
 
 include_once 'adb.php';
 
@@ -28,9 +11,8 @@ class clinic extends adb{
 
 
     /**
-     * clinic constructor
-     *
      * This is a constructor for the clinic class
+     *
      */
     function clinic()
     {
