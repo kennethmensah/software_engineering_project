@@ -25,12 +25,13 @@ function validateLogin(user, pass){
             window.location.href = "http://localhost/SE/software_engineering_project/version_2/view/admin_home.php";
             //window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/admin_home.php");
         }else if(obj.user_type == "supervisor"){
-            alert(obj.user_id);
+
             localStorage.setItem("user_id", obj.user_id);
             localStorage.setItem("district", obj.district);
             window.location.href = "http://localhost/SE/software_engineering_project/version_2/view/supervisor_home.php";
             //window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/supervisor_home.php");
         }else {
+            alert(obj.user_id);
             localStorage.setItem("user_id", obj.user_id);
             localStorage.setItem("district", obj.district);
             window.location.replace("http://localhost/SE/software_engineering_project/version_2/view/nurse_home.php");

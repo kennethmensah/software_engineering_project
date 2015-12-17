@@ -18,19 +18,19 @@
 /**
  * A database interface class
  *
- * The class below contains functions that interface with the database
+ * The included class contains functions that interface with the database
  * via MYSQL
  */
 include_once 'adb.php';
 
-class clinic_task extends adb{
+class Clinic_Task extends adb{
 
     /**
      * clinic_task constructor.
      *
      * this method instantiates an object of the clinic_task class
      */
-    function clinic_task(){
+    function Clinic_Task(){
 
     }
 
@@ -41,16 +41,16 @@ class clinic_task extends adb{
      * Tasks are assigned to nurses only by supervisors. This method inserts a
      * a new task into the se_clinic_tasks table if it is successful.
      *
-     * @param $title: task title
-     * @param $desc: task description
-     * @param $nurses: id of nurse the task is assigned to
-     * @param $supervisor: id of supervisor the task is assigned to
-     * @param $due_date: the due date of the task
-     * @param $due_time: the due time of the task
-     * @param $clinic: id of clinic that the task is being assigned
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param String $title task title
+     * @param String $desc task description
+     * @param int $nurses id of nurse the task is assigned to
+     * @param String $supervisor id of supervisor the task is assigned to
+     * @param String $due_date the due date of the task
+     * @param String $due_time the due time of the task
+     * @param int $clinic id of clinic that the task is being assigned
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function add_clinic_task($title, $desc, $nurses, $supervisor, $due_date, $due_time, $clinic ){
+    function addClinicTask($title, $desc, $nurses, $supervisor, $due_date, $due_time, $clinic ){
         $str_query = "INSERT INTO se_clinic_tasks SET
                       task_title = '$title',
                       task_desc = '$desc',
@@ -74,9 +74,9 @@ class clinic_task extends adb{
      * all tasks assigned in various clinics within the district. It should
      * be accessible to only district administrators
      *
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_clinic_tasks(){
+    function getClinicTasks(){
 
         $str_query = "SELECT
                       CT.task_id,
@@ -103,10 +103,10 @@ class clinic_task extends adb{
      * all confirmed tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
-     * @param $clinic: id of clinic
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $clinic id of clinic
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_all_confirmed_tasks($clinic){
+    function getAllConfirmedTasks($clinic){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -135,10 +135,10 @@ class clinic_task extends adb{
      * all completed tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
-     * @param $clinic: id of clinic
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $clinic id of clinic
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_completed_tasks_by_clinic($clinic){
+    function getCompletedTasksByClinic($clinic){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -166,10 +166,10 @@ class clinic_task extends adb{
      * all tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
-     * @param $clinic: id of clinic
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $clinic id of clinic
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_all_clinic_tasks($clinic){
+    function getAllClinicTasks($clinic){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -194,10 +194,10 @@ class clinic_task extends adb{
      * This method executes a query to select the details of a single task
      * by using the tasks unique id
      *
-     * @param $id: id of the task
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $id id of the task
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_task_by_Id($id){
+    function getTaskById($id){
 
         $str_query = "SELECT
                       CT.task_id,
@@ -223,10 +223,10 @@ class clinic_task extends adb{
      * This method executes a query to select all tasks that were
      * completed on a given date
      *
-     * @param $date: date task was completed
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param String $date date task was completed
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_by_date_completed($date){
+    function getByDateCompleted($date){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -252,10 +252,10 @@ class clinic_task extends adb{
      * This method executes a query to select all tasks that were
      * assigned on a given date
      *
-     * @param $date: date task was assigned
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param String $date date task was assigned
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_by_date_assigned($date){
+    function getByDateAssigned($date){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -282,10 +282,10 @@ class clinic_task extends adb{
      * all due tasks in their clinic. It should be accessible to only
      * clinic supervisors
      *
-     * @param $clinic: id of clinic
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $clinic id of clinic
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_due_tasks($clinic){
+    function getDueTasks($clinic){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -317,10 +317,10 @@ class clinic_task extends adb{
      * the confirmation status of a given task.
      * It should be accessible to only clinic supervisors
      *
-     * @param $id: id of task
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $id id of task
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function confirm_task($id){
+    function confirmTask($id){
         $str_query = "UPDATE se_clinic_tasks SET
                       confirmed = 'confirmed'
                       WHERE task_id = $id";
@@ -334,10 +334,10 @@ class clinic_task extends adb{
      * This method executes a query that allows a nurses to view
      * all their due tasks.
      *
-     * @param $nurse: id of nurse
+     * @param int $nurse id of nurse
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_due_task($nurse){
+    function getNurseDueTask($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -367,10 +367,10 @@ class clinic_task extends adb{
      * This method executes a query that allows a nurses to view
      * all their tasks.
      *
-     * @param $nurse: id of nurse
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $nurse id of nurse
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_completed_tasks($nurse){
+    function getNurseCompletedTasks($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -402,10 +402,10 @@ class clinic_task extends adb{
      * This method executes a query that allows a nurses to view
      * all their confirmed tasks.
      *
-     * @param $nurse: id of nurse
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $nurse id of nurse
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_nurse_cofirmed_tasks($nurse){
+    function getNurseConfirmedTasks($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -436,9 +436,9 @@ class clinic_task extends adb{
      * all tasks assigned in various clinics within the district. It should
      * be accessible to only district administrators
      *
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_all_tasks(){
+    function getAllTasks(){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -464,11 +464,11 @@ class clinic_task extends adb{
      * This method executes a query that allows a nurses to update
      * a completed task.
      *
-     * @param $task_id: id of task completed
-     * @param $nurse_id: id of nurse
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $task_id id of task completed
+     * @param int $nurse_id id of nurse
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function update_time_completed($task_id, $nurse_id){
+    function updateTimeCompleted($task_id, $nurse_id){
         $str_query = "UPDATE se_clinic_tasks SET
                       date_completed = CURDATE()
                       WHERE task_id = $task_id AND assigned_to = $nurse_id";
@@ -482,9 +482,9 @@ class clinic_task extends adb{
      * This method executes a query that fetches all completed tasks
      * in a week.
      *
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_completed_for_week(){
+    function getCompletedForWeek(){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -508,10 +508,10 @@ class clinic_task extends adb{
      *
      * This method executes a query to find a task by the task title
      *
-     * @param $search_task: search text for the search query
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param String $search_task search text for the search query
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function search_task($search_task){
+    function searchTask($search_task){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -537,11 +537,11 @@ class clinic_task extends adb{
      * This method executes a query to find a task assigned to a particular
      * nurse
      *
-     * @param $nurse: id of the nurse
-     * @param $search_text: search text for the search query
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $nurse id of the nurse
+     * @param String $search_text search text for the search query
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function search_task_by_nurse($nurse, $search_text){
+    function searchTaskByNurse($nurse, $search_text){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
@@ -569,10 +569,10 @@ class clinic_task extends adb{
      * This method executes a query to show all tasks to assigned to a nurse
      * over the last 30 days
      *
-     * @param $nurse: nurse id
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $nurse nurse id
+     * @return bool returns true/false indicating whether the query is successful of not
      */
-    function get_all_nurse_tasks($nurse){
+    function getAllNurseTasks($nurse){
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,

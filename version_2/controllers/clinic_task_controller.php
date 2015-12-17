@@ -1,78 +1,100 @@
 <?php
-session_start();
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/25/15
- * Time: 10:50 AM
+ * start a session to allow access to user values
  */
+session_start();
+
+
+/**
+ * This class interfaces with the javascript and produces
+ * JSON response to respond to request made from the user interface
+ * It contains relevant controller function for adding a clinic task
+ * editing, and viewing clinic tasks.
+ *
+ * PHP version 5.6
+ *
+ * @category   Model
+ * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
+ * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
+ * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
+ * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
+ * @version    SVN: 2.0.0
+ */
+
 
 
 if(filter_input (INPUT_GET, 'cmd')){
     $cmd = $cmd_sanitize = '';
-    $cmd_sanitize = sanitize_string( filter_input (INPUT_GET, 'cmd'));
+    $cmd_sanitize = sanitizeString( filter_input (INPUT_GET, 'cmd'));
     $cmd = intval($cmd_sanitize);
 
     switch ($cmd){
         case 1:
-            add_task_control();
+            addTaskControl();
             break;
         case 2:
             /**
              * retrieve all tasks
              */
-            get_tasks_control();
+            getTasksControl();
             break;
         case 3:
-            confirm_task_control();
+            confirmTaskControl();
             break;
         case 4:
             /**
              * retrieve particular task
              */
-            get_task_control();
+            getTaskControl();
             break;
         case 5:
             /**
              * get task by nurse id
              */
-            get_nurse_task_control();
+            getNurseTaskControl();
             break;
         case 6:
             /**
              * get tasks overdue
              */
-            get_nurse_due_tasks_control();
+            getNurseDueTasksControl();
             break;
         case 7:
-            get_clinic_tasks();
+            //get_clinic_tasks();
+
             break;
 
         case 8:
-            generate_report();
+            /**
+             * function to generate report
+             */
             break;
         case 9:
-            get_completed_tasks();
+            getCompletedTasksControl();
             break;
         case 10:
-            get_confirmed_tasks();
+            getConfirmedTasksControl();
             break;
         case 11:
-            get_due_tasks();
+            getDueTasksControl();
             break;
 
         case 12:
-            complete_task_control();
+            /**
+             * function to indicate that a task has been completed
+             */
+            completeTaskControl();
             break;
 
         case 13:
-
-            get_nurse_completed_task_control();
-
+            /**
+             * function to get the competed tasks of a nurse
+             */
+            getNurseCompletedTaskControl();
             break;
 
         case 14:
-            get_nurse_confirmed_task_control();
+            getNurseConfirmedTaskControl();
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
@@ -80,51 +102,28 @@ if(filter_input (INPUT_GET, 'cmd')){
     }
 }
 
-
-function generate_report(){
-    if( filter_input (INPUT_GET, 'nurse_id')){
-
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'nurse_id'));
-
-        if ($obj->get_task_by_Id($id)){
-            echo '{"result":1, "clinic_tasks":[';
-            $row = $obj->fetch();
-            while($row){
-                echo json_encode($row);
-                if( $row = $obj->fetch()){
-                    echo ',';
-                }
-            }
-            echo ']}';
-        }else{
-            echo '{"result":0,"message": "query unsuccessful"}';
-        }
-    }
-}
-
 /**
  * controller method to add a task
  */
-function add_task_control(){
+function addTaskControl(){
 
     if( filter_input (INPUT_GET, 'title') && filter_input (INPUT_GET, 'desc')
         && filter_input (INPUT_GET, 'nurse') && filter_input (INPUT_GET, 'supervisor')
         && filter_input (INPUT_GET, 'date') && filter_input (INPUT_GET, 'time')
         && filter_input (INPUT_GET, 'clinic')){
 
-        $obj =  get_clinic_task_model();
+        $obj =  getClinicTaskModel();
 
-        $title = sanitize_string(filter_input (INPUT_GET, 'title'));
-        $desc = sanitize_string(filter_input (INPUT_GET, 'desc'));
-        $nurse = sanitize_string(filter_input (INPUT_GET, 'nurse'));
-        $supervisor = sanitize_string(filter_input (INPUT_GET, 'supervisor'));
-        $due_date = sanitize_string(filter_input (INPUT_GET, 'date'));
-        $due_time = sanitize_string(filter_input (INPUT_GET, 'time'));
-        $clinic  = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $title = sanitizeString(filter_input (INPUT_GET, 'title'));
+        $desc = sanitizeString(filter_input (INPUT_GET, 'desc'));
+        $nurse = sanitizeString(filter_input (INPUT_GET, 'nurse'));
+        $supervisor = sanitizeString(filter_input (INPUT_GET, 'supervisor'));
+        $due_date = sanitizeString(filter_input (INPUT_GET, 'date'));
+        $due_time = sanitizeString(filter_input (INPUT_GET, 'time'));
+        $clinic  = sanitizeString(filter_input (INPUT_GET, 'clinic'));
 
 
-        if ($obj->add_clinic_task($title, $desc, $nurse, $supervisor, $due_date, $due_time, $clinic)){
+        if ($obj->addClinicTask($title, $desc, $nurse, $supervisor, $due_date, $due_time, $clinic)){
             echo '{"result":1,"message": "task added successfully"}';
         }
         else
@@ -138,9 +137,9 @@ function add_task_control(){
 /**
  * function to get all tasks
  */
-function get_tasks_control(){
-    $obj = get_clinic_task_model();
-    if ($obj->get_clinic_tasks()){
+function getTasksControl(){
+    $obj = getClinicTaskModel();
+    if ($obj->getClinicTasks()){
         echo '{"result":1, "clinic_tasks":[';
         $row = $obj->fetch();
         while($row){
@@ -158,13 +157,13 @@ function get_tasks_control(){
 /**
  * function that retrieve a particular task
  */
-function get_task_control(){
+function getTaskControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if ($obj->get_task_by_Id($id)){
+        if ($obj->getTaskById($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -184,13 +183,13 @@ function get_task_control(){
 /**
  * returns all nurse task for the last 30 days
  */
-function get_nurse_task_control(){
+function getNurseTaskControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if ($obj->get_all_nurse_tasks($id)){
+        if ($obj->getAllNurseTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -209,13 +208,13 @@ function get_nurse_task_control(){
 /**
  * confirm task
  */
-function confirm_task_control(){
+function confirmTaskControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if($obj->confirm_task($id)){
+        if($obj->confirmTask($id)){
             echo '{"result":1,"message":"task confirmed"}';
         }else{
             echo '{"result":0,"message":"query unsuccessful"}';
@@ -226,13 +225,13 @@ function confirm_task_control(){
 /**
  * this function fetches all tasks assigned in a particular clinic
  */
-function get_clinic_tasks(){
+function getClinicTasksControl(){
     if( filter_input (INPUT_GET, 'clinic')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'clinic'));
 
-        if ($obj->get_all_clinic_tasks($id)){
+        if ($obj->getAllClinicTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -249,13 +248,13 @@ function get_clinic_tasks(){
 }
 
 
-function get_completed_tasks(){
+function getCompletedTasksControl(){
     if( filter_input (INPUT_GET, 'clinic')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'clinic'));
 
-        if ($obj->get_completed_tasks_by_clinic($id)){
+        if ($obj->getCompletedTasksByClinic($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -274,13 +273,13 @@ function get_completed_tasks(){
 /**
  * this function retrieves confirmed tasks
  */
-function get_confirmed_tasks(){
+function getConfirmedTasksControl(){
     if( filter_input (INPUT_GET, 'clinic')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'clinic'));
 
-        if ($obj->get_all_confirmed_tasks($id)){
+        if ($obj->getAllConfirmedTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -297,13 +296,13 @@ function get_confirmed_tasks(){
 }
 
 
-function get_due_tasks(){
+function getDueTasksControl(){
     if( filter_input (INPUT_GET, 'clinic')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'clinic'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'clinic'));
 
-        if ($obj->get_due_tasks($id)){
+        if ($obj->getDueTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -319,14 +318,14 @@ function get_due_tasks(){
     }
 }
 
-function complete_task_control(){
+function completeTaskControl(){
     if( filter_input (INPUT_GET, 'nurse') && filter_input (INPUT_GET, 'task')){
 
-        $obj = get_clinic_task_model();
-        $nurse = sanitize_string(filter_input (INPUT_GET, 'nurse'));
-        $task = sanitize_string(filter_input (INPUT_GET, 'task'));
+        $obj = getClinicTaskModel();
+        $nurse = sanitizeString(filter_input (INPUT_GET, 'nurse'));
+        $task = sanitizeString(filter_input (INPUT_GET, 'task'));
 
-        if($obj->update_time_completed($task, $nurse)){
+        if($obj->updateTimeCompleted($task, $nurse)){
             echo '{"result":1,"message":"task marked as complete"}';
         }else{
             echo '{"result":0,"message":"query unsuccessful"}';
@@ -335,13 +334,13 @@ function complete_task_control(){
 }
 
 
-function get_nurse_completed_task_control(){
+function getNurseCompletedTaskControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if ($obj->get_nurse_completed_tasks($id)){
+        if ($obj->getNurseCompletedTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -358,13 +357,13 @@ function get_nurse_completed_task_control(){
 }
 
 
-function get_nurse_confirmed_task_control(){
+function getNurseConfirmedTaskControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if ($obj->get_nurse_cofirmed_tasks($id)){
+        if ($obj->getNurseConfirmedTasks($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -381,13 +380,13 @@ function get_nurse_confirmed_task_control(){
 }
 
 
-function get_nurse_due_tasks_control(){
+function getNurseDueTasksControl(){
     if( filter_input (INPUT_GET, 'id')){
 
-        $obj = get_clinic_task_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $obj = getClinicTaskModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
 
-        if ($obj->get_nurse_due_task($id)){
+        if ($obj->getNurseDueTask($id)){
             echo '{"result":1, "clinic_tasks":[';
             $row = $obj->fetch();
             while($row){
@@ -403,7 +402,11 @@ function get_nurse_due_tasks_control(){
     }
 }
 
-function sanitize_string($val){
+/**
+ * @param string $val value from the post/get request method
+ * @return string
+ */
+function sanitizeString($val){
     $val = stripslashes($val);
     $val = strip_tags($val);
     $val = htmlentities($val);
@@ -413,10 +416,10 @@ function sanitize_string($val){
 
 
 /**
- * @return clinic_task
+ * @return Clinic_Task
  */
-function get_clinic_task_model(){
+function getClinicTaskModel(){
     require_once '../model/clinic_task.php';
-    $obj = new clinic_task();
+    $obj = new Clinic_Task();
     return $obj;
 }

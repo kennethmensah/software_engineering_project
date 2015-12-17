@@ -33,18 +33,12 @@ class nurses extends adb{
     function nurses(){}
 
     /**
-     * Executes a query to add a new nurse details
-     *
-     * This method executes a query to add a new nurse
-     * given the required details
-     *
-     * @param int $nurse_id: nurse's id
-     * @param string $fname: first name
-     * @param string $sname: surname
-     * @param int $district_zone: clinic or district zone
-     * @param int $phone: phone
-     * @param string $gender: gender
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param int $nurses_id
+     * @param string $fname
+     * @param string $sname
+     * @param string $district_zone
+     * @param string $phone
+     * @return bool
      */
     function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone,$gender){
         $str_query =  "INSERT into se_nurses SET
@@ -60,18 +54,12 @@ class nurses extends adb{
 
 
     /**
-     * Executes a query to edit a nurse's details
-     *
-     * This method executes a query to edit a nurse's details
-     * given the required details
-     *
-     * @param int $nurse_id: nurse's id
-     * @param string $fname: first name
-     * @param string $sname: surname
-     * @param int $district_zone: clinic or district zone
-     * @param int $phone: phone
-     * @param string $gender: gender
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param $nurses_id
+     * @param $fname
+     * @param $sname
+     * @param $district_zone
+     * @param $phone
+     * @return bool
      */
     function update_nurses_details($nurse_id, $fname, $sname, $district_zone, $phone, $gender){
         $str_query = "UPDATE se_nurses SET
@@ -86,14 +74,9 @@ class nurses extends adb{
     }
 
     /**
-     * Executes a query to edit a nurse's district zone or clinic
-     *
-     * This method executes a query to edit a nurse's district zone
-     * or clinic given the required details
-     *
-     * @param int $nurse_id: nurse id
-     * @param int $district_zone: district zone or clinic id
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param $nurses_id
+     * @param $district_zone
+     * @return bool
      */
     function update_district_zone($nurse_id, $district_zone){
         $str_query = "UPDATE se_nurses SET
@@ -104,14 +87,9 @@ class nurses extends adb{
     }
 
     /**
-     * Executes a query to edit a nurse's phone number
-     *
-     * This method executes a query to edit a nurse's phone
-     * number given the required details
-     *
-     * @param int $nurse_id: nurse id
-     * @param string $phone: phone number
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param $nurses_id
+     * @param $phone
+     * @return bool
      */
     function update_phone($nurse_id, $phone){
         $str_query = "UPDATE se_nurses SET
@@ -123,13 +101,8 @@ class nurses extends adb{
 
 
     /**
-     * Executes a query to get a nurse's details
-     *
-     * This method executes a query to get a nurse's details
-     * given the supervisors id
-     *
-     * @param int $nurse_id: nurse id
-     * @return bool: returns true/false indicating whether the query is successful of not
+     * @param $nurses_id
+     * @return bool
      */
     function get_details($nurse_id){
         $str_query = "SELECT * FROM se_nurses
@@ -138,16 +111,6 @@ class nurses extends adb{
         return $this->query($str_query);
     }
 
-
-    /**
-     * Executes a query to get a nurse's details by location
-     *
-     * This method executes a query to get a nurse's details
-     * given the nurse's clinic
-     *
-     * @param int $district: clinic id
-     * @return bool: returns true/false indicating whether the query is successful of not
-     */
     function get_nurse_by_location($district){
         $str_query = "SELECT * FROM se_nurses
                 WHERE district_zone = $district";
