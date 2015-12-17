@@ -9,6 +9,9 @@ include_once 'adb.php';
 
 class supervisors extends adb{
 
+    /*
+     *@constructor  supervisors() Constructor for the supervisors class 
+    */
     function supervisors(){}
 
     /**

@@ -1,10 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: StreetHustling
- * Date: 11/22/15
- * Time: 7:47 AM
- */
+    *@author Group 4
+    *@version 2.0.0
+    *@copyright Copyright (c) 2015, Group 4
+*/
 
 $con = mysqli_connect("localhost","root","","nurse_task_managerV2");
 
