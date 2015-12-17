@@ -6,7 +6,7 @@
     *@author Group 4
     *@version 2.0.0
     *@copyright Copyright (c) 2015, Group 4
-    */
+*/
 
 define("DB_HOST", 'localhost');
 define("DB_NAME", 'nurse_task_managerV2');
