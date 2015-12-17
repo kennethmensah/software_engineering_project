@@ -112,8 +112,10 @@ function addTaskControl(){
         && filter_input (INPUT_GET, 'date') && filter_input (INPUT_GET, 'time')
         && filter_input (INPUT_GET, 'clinic')){
 
+        //create an object of the Clinic Task Class
         $obj =  getClinicTaskModel();
 
+        //obtain task assignment details from the url / browser
         $title = sanitizeString(filter_input (INPUT_GET, 'title'));
         $desc = sanitizeString(filter_input (INPUT_GET, 'desc'));
         $nurse = sanitizeString(filter_input (INPUT_GET, 'nurse'));
@@ -124,10 +126,14 @@ function addTaskControl(){
 
 
         if ($obj->addClinicTask($title, $desc, $nurse, $supervisor, $due_date, $due_time, $clinic)){
+
+            //encode the JSON message for a successfully added task
             echo '{"result":1,"message": "task added successfully"}';
         }
         else
         {
+
+            //encode the JSON message for an unsuccessful query execution
             echo '{"result":0,"message": "unable to add task"}';
         }
 
@@ -138,6 +144,7 @@ function addTaskControl(){
  * function to get all tasks
  */
 function getTasksControl(){
+
     $obj = getClinicTaskModel();
     if ($obj->getClinicTasks()){
         echo '{"result":1, "clinic_tasks":[';
