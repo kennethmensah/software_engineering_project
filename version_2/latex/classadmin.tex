@@ -1,0 +1,162 @@
+\hypertarget{classadmin}{}\section{admin Class Reference}
+\label{classadmin}\index{admin@{admin}}
+Inheritance diagram for admin\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classadmin}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classadmin_a0418d22e14785132c232ef68a32d0659}{admin} ()
+\item 
+\hyperlink{classadmin_a91081e56c5f73539a6da952dafeee708}{add\+\_\+admin} (\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender)
+\item 
+\hyperlink{classadmin_a4ab72be98fb33a23a74801af62b8291c}{update\+\_\+admin\+\_\+details} (\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender)
+\item 
+\hyperlink{classadmin_a6a2db62abcb2cff67b3c3e709cc2eb2a}{update\+\_\+district} (\$admin\+\_\+id, \$district)
+\item 
+\hyperlink{classadmin_ac3647f61b1151e2adf2e8871d43adfc6}{update\+\_\+phone} (\$admin\+\_\+id, \$phone)
+\item 
+\hyperlink{classadmin_a4c930c61e605dcebacaec97c32b59f30}{get\+\_\+details} (\$admin\+\_\+id)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Group 4 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2015, Group 4 
+\end{DoxyCopyright}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_a91081e56c5f73539a6da952dafeee708}{}\index{admin@{admin}!add\+\_\+admin@{add\+\_\+admin}}
+\index{add\+\_\+admin@{add\+\_\+admin}!admin@{admin}}
+\subsubsection[{add\+\_\+admin(\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender)}]{\setlength{\rightskip}{0pt plus 5cm}add\+\_\+admin (
+\begin{DoxyParamCaption}
+\item[{}]{\$admin\+\_\+id, }
+\item[{}]{\$fname, }
+\item[{}]{\$sname, }
+\item[{}]{\$district, }
+\item[{}]{\$phone, }
+\item[{}]{\$gender}
+\end{DoxyParamCaption}
+)}\label{classadmin_a91081e56c5f73539a6da952dafeee708}
+boolean \hyperlink{classadmin_a91081e56c5f73539a6da952dafeee708}{add\+\_\+admin()} add\+\_\+admin(\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender) Adds Administrator to the database 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$admin\+\_\+id} & Administrator I\+D \\
+\hline
+string & {\em \$fname} & Administrator firstname \\
+\hline
+string & {\em \$sname} & Administrator lastname \\
+\hline
+string & {\em \$district} & District of Administrator \\
+\hline
+string & {\em \$phone} & The phone number of Administrator \\
+\hline
+string & {\em \$gender} & The gender of Administrator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classadmin_a0418d22e14785132c232ef68a32d0659}{}\index{admin@{admin}!admin@{admin}}
+\index{admin@{admin}!admin@{admin}}
+\subsubsection[{admin()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf admin} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classadmin_a0418d22e14785132c232ef68a32d0659}
+\hypertarget{classadmin_a4c930c61e605dcebacaec97c32b59f30}{}\index{admin@{admin}!get\+\_\+details@{get\+\_\+details}}
+\index{get\+\_\+details@{get\+\_\+details}!admin@{admin}}
+\subsubsection[{get\+\_\+details(\$admin\+\_\+id)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+details (
+\begin{DoxyParamCaption}
+\item[{}]{\$admin\+\_\+id}
+\end{DoxyParamCaption}
+)}\label{classadmin_a4c930c61e605dcebacaec97c32b59f30}
+boolean \hyperlink{classadmin_a4c930c61e605dcebacaec97c32b59f30}{get\+\_\+details()} get\+\_\+details(\$admin\+\_\+id) Gets the details of Administrator 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$admin\+\_\+id} & Administrator I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classadmin_a4ab72be98fb33a23a74801af62b8291c}{}\index{admin@{admin}!update\+\_\+admin\+\_\+details@{update\+\_\+admin\+\_\+details}}
+\index{update\+\_\+admin\+\_\+details@{update\+\_\+admin\+\_\+details}!admin@{admin}}
+\subsubsection[{update\+\_\+admin\+\_\+details(\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender)}]{\setlength{\rightskip}{0pt plus 5cm}update\+\_\+admin\+\_\+details (
+\begin{DoxyParamCaption}
+\item[{}]{\$admin\+\_\+id, }
+\item[{}]{\$fname, }
+\item[{}]{\$sname, }
+\item[{}]{\$district, }
+\item[{}]{\$phone, }
+\item[{}]{\$gender}
+\end{DoxyParamCaption}
+)}\label{classadmin_a4ab72be98fb33a23a74801af62b8291c}
+boolean \hyperlink{classadmin_a4ab72be98fb33a23a74801af62b8291c}{update\+\_\+admin\+\_\+details()} update\+\_\+admin\+\_\+details(\$admin\+\_\+id, \$fname, \$sname, \$district, \$phone, \$gender) Edits Administrator details in database 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$admin\+\_\+id} & Administrator I\+D \\
+\hline
+string & {\em \$fname} & Administrator firstname \\
+\hline
+string & {\em \$sname} & Administrator lastname \\
+\hline
+string & {\em \$district} & District of Administrator \\
+\hline
+string & {\em \$phone} & The phone number of Administrator \\
+\hline
+string & {\em \$gender} & The gender of Administrator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classadmin_a6a2db62abcb2cff67b3c3e709cc2eb2a}{}\index{admin@{admin}!update\+\_\+district@{update\+\_\+district}}
+\index{update\+\_\+district@{update\+\_\+district}!admin@{admin}}
+\subsubsection[{update\+\_\+district(\$admin\+\_\+id, \$district)}]{\setlength{\rightskip}{0pt plus 5cm}update\+\_\+district (
+\begin{DoxyParamCaption}
+\item[{}]{\$admin\+\_\+id, }
+\item[{}]{\$district}
+\end{DoxyParamCaption}
+)}\label{classadmin_a6a2db62abcb2cff67b3c3e709cc2eb2a}
+boolean \hyperlink{classadmin_a6a2db62abcb2cff67b3c3e709cc2eb2a}{update\+\_\+district()} update\+\_\+district(\$admin\+\_\+id, \$district) Updates the district of The Administrator 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$admin\+\_\+id} & Administrator I\+D \\
+\hline
+string & {\em \$district} & District of Administrator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classadmin_ac3647f61b1151e2adf2e8871d43adfc6}{}\index{admin@{admin}!update\+\_\+phone@{update\+\_\+phone}}
+\index{update\+\_\+phone@{update\+\_\+phone}!admin@{admin}}
+\subsubsection[{update\+\_\+phone(\$admin\+\_\+id, \$phone)}]{\setlength{\rightskip}{0pt plus 5cm}update\+\_\+phone (
+\begin{DoxyParamCaption}
+\item[{}]{\$admin\+\_\+id, }
+\item[{}]{\$phone}
+\end{DoxyParamCaption}
+)}\label{classadmin_ac3647f61b1151e2adf2e8871d43adfc6}
+boolean \hyperlink{classadmin_ac3647f61b1151e2adf2e8871d43adfc6}{update\+\_\+phone()} update\+\_\+phone(\$admin\+\_\+id, \$phone) Updates phone number of Administrator 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$admin\+\_\+id} & Administrator I\+D \\
+\hline
+string & {\em \$phone} & Phone number of Administrator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model/\hyperlink{admin_8php}{admin.\+php}\end{DoxyCompactItemize}

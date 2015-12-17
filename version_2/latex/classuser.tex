@@ -1,0 +1,144 @@
+\hypertarget{classuser}{}\section{user Class Reference}
+\label{classuser}\index{user@{user}}
+Inheritance diagram for user\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classuser}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classuser_ae8a275690ff1b618e1947378b0ed73ae}{user} ()
+\item 
+\hyperlink{classuser_adffa9d60b80915c54900431cf1e8a62f}{add\+\_\+user} (\$username, \$password, \$user\+\_\+type, \$email)
+\item 
+\hyperlink{classuser_abd42228b455689f2531c0a99cab7c108}{edit\+\_\+password} (\$username, \$password)
+\item 
+\hyperlink{classuser_a6c61b18644b606b5cce97c4625a0f74a}{edit\+\_\+password\+\_\+by\+Id} (\$id, \$password)
+\item 
+\hyperlink{classuser_a0cbdcbef1264b45ca0fd86e25a00ab30}{get\+\_\+user} (\$username, \$pass)
+\item 
+\hyperlink{classuser_afa7762627f81ba410e471074d2def977}{get\+\_\+user\+\_\+by\+Id} (\$id)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Group 4 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2015, Group 4 
+\end{DoxyCopyright}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classuser_adffa9d60b80915c54900431cf1e8a62f}{}\index{user@{user}!add\+\_\+user@{add\+\_\+user}}
+\index{add\+\_\+user@{add\+\_\+user}!user@{user}}
+\subsubsection[{add\+\_\+user(\$username, \$password, \$user\+\_\+type, \$email)}]{\setlength{\rightskip}{0pt plus 5cm}add\+\_\+user (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$password, }
+\item[{}]{\$user\+\_\+type, }
+\item[{}]{\$email}
+\end{DoxyParamCaption}
+)}\label{classuser_adffa9d60b80915c54900431cf1e8a62f}
+boolean \hyperlink{classuser_adffa9d60b80915c54900431cf1e8a62f}{add\+\_\+user()} add\+\_\+user(\$username, \$password, \$user\+\_\+type, \$email) Adds a user to the database 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & The username \\
+\hline
+ & {\em string} & password Password \\
+\hline
+string & {\em \$user\+\_\+type} & The user type \\
+\hline
+ & {\em string} & email The email \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classuser_abd42228b455689f2531c0a99cab7c108}{}\index{user@{user}!edit\+\_\+password@{edit\+\_\+password}}
+\index{edit\+\_\+password@{edit\+\_\+password}!user@{user}}
+\subsubsection[{edit\+\_\+password(\$username, \$password)}]{\setlength{\rightskip}{0pt plus 5cm}edit\+\_\+password (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)}\label{classuser_abd42228b455689f2531c0a99cab7c108}
+boolean \hyperlink{classuser_abd42228b455689f2531c0a99cab7c108}{edit\+\_\+password()} edit\+\_\+password(\$username, \$password, \$user\+\_\+type, \$email) Edit user in the database 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & The username \\
+\hline
+ & {\em string} & password Password \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classuser_a6c61b18644b606b5cce97c4625a0f74a}{}\index{user@{user}!edit\+\_\+password\+\_\+by\+Id@{edit\+\_\+password\+\_\+by\+Id}}
+\index{edit\+\_\+password\+\_\+by\+Id@{edit\+\_\+password\+\_\+by\+Id}!user@{user}}
+\subsubsection[{edit\+\_\+password\+\_\+by\+Id(\$id, \$password)}]{\setlength{\rightskip}{0pt plus 5cm}edit\+\_\+password\+\_\+by\+Id (
+\begin{DoxyParamCaption}
+\item[{}]{\$id, }
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)}\label{classuser_a6c61b18644b606b5cce97c4625a0f74a}
+boolean \hyperlink{classuser_a6c61b18644b606b5cce97c4625a0f74a}{edit\+\_\+password\+\_\+by\+Id()} edit\+\_\+password\+\_\+by\+Id(\$id, \$password) Edit a user password to the database 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$id} & User I\+D \\
+\hline
+ & {\em string} & password Password \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classuser_a0cbdcbef1264b45ca0fd86e25a00ab30}{}\index{user@{user}!get\+\_\+user@{get\+\_\+user}}
+\index{get\+\_\+user@{get\+\_\+user}!user@{user}}
+\subsubsection[{get\+\_\+user(\$username, \$pass)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+user (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$pass}
+\end{DoxyParamCaption}
+)}\label{classuser_a0cbdcbef1264b45ca0fd86e25a00ab30}
+boolean \hyperlink{classuser_a0cbdcbef1264b45ca0fd86e25a00ab30}{get\+\_\+user()} get\+\_\+user(\$username, \$pass) Gets a user from the database 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & The username \\
+\hline
+ & {\em string} & pass Password \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classuser_afa7762627f81ba410e471074d2def977}{}\index{user@{user}!get\+\_\+user\+\_\+by\+Id@{get\+\_\+user\+\_\+by\+Id}}
+\index{get\+\_\+user\+\_\+by\+Id@{get\+\_\+user\+\_\+by\+Id}!user@{user}}
+\subsubsection[{get\+\_\+user\+\_\+by\+Id(\$id)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+user\+\_\+by\+Id (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}\label{classuser_afa7762627f81ba410e471074d2def977}
+booolean \hyperlink{classuser_afa7762627f81ba410e471074d2def977}{get\+\_\+user\+\_\+by\+Id()} get\+\_\+user\+\_\+by\+Id(\$id) Gets user by I\+D 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & User I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classuser_ae8a275690ff1b618e1947378b0ed73ae}{}\index{user@{user}!user@{user}}
+\index{user@{user}!user@{user}}
+\subsubsection[{user()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf user} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classuser_ae8a275690ff1b618e1947378b0ed73ae}
+\hyperlink{classuser_ae8a275690ff1b618e1947378b0ed73ae}{user()} Constructor for the user class 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model/\hyperlink{user_8php}{user.\+php}\end{DoxyCompactItemize}

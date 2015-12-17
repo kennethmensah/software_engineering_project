@@ -1,0 +1,283 @@
+\hypertarget{classclinic__task}{}\section{clinic\+\_\+task Class Reference}
+\label{classclinic__task}\index{clinic\+\_\+task@{clinic\+\_\+task}}
+Inheritance diagram for clinic\+\_\+task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classclinic__task}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classclinic__task_ad45ccdef499f67301361bb62e2e3b477}{clinic\+\_\+task} ()
+\item 
+\hyperlink{classclinic__task_a9a390919bc9e593044b5836f4a2e5264}{add\+\_\+clinic\+\_\+task} (\$title, \$desc, \$\hyperlink{classnurses}{nurses}, \$supervisor, \$due\+\_\+date, \$due\+\_\+time, \$\hyperlink{classclinic}{clinic})
+\item 
+\hyperlink{classclinic__task_a87ee712ccf8a72ca3bec7582c06b3d3f}{get\+\_\+clinic\+\_\+tasks} ()
+\item 
+\hyperlink{classclinic__task_a9e8f0e21c1b1e1a545d578c735b76af2}{get\+\_\+task\+\_\+by\+\_\+\+Id} (\$id)
+\item 
+\hyperlink{classclinic__task_a44e46a0dc086799f3d9de01528c8474c}{get\+\_\+by\+\_\+date\+\_\+completed} (\$date)
+\item 
+\hyperlink{classclinic__task_a5d07bb4142d15f2a45d6fc458cce448d}{get\+\_\+by\+\_\+date\+\_\+assigned} (\$date)
+\item 
+\hyperlink{classclinic__task_aca978c43dcfc293c370021c5dc919eb3}{get\+\_\+overdue\+\_\+tasks} ()
+\item 
+\hyperlink{classclinic__task_a7c3ea25b6ad1b4f8844a59a2ac545369}{confirm\+\_\+task} (\$id)
+\item 
+\hyperlink{classclinic__task_a6df8415e5c1c1c71ae0fcbf1d0283d9d}{get\+\_\+nurse\+\_\+due\+\_\+task} (\$id)
+\item 
+\hyperlink{classclinic__task_a21262aed6c7561cbf841233299cb6c63}{get\+\_\+all\+\_\+tasks} ()
+\item 
+\hyperlink{classclinic__task_af449944c89fdf56326b49f8681e422df}{update\+\_\+time\+\_\+completed} (\$task\+\_\+id, \$nurse\+\_\+id)
+\item 
+\hyperlink{classclinic__task_a3eead44cbde40578ca0709dfcd894625}{get\+\_\+completed\+\_\+for\+\_\+week} ()
+\item 
+\hyperlink{classclinic__task_a12aad76a7529187c159ab4110384cd00}{search\+\_\+task} (\$search\+\_\+task)
+\item 
+\hyperlink{classclinic__task_af1f566a47278e8a7fb84ad8aa9cd619d}{search\+\_\+task\+\_\+by\+\_\+nurse} (\$nurse, \$search\+\_\+text)
+\item 
+\hyperlink{classclinic__task_aacbcb37bad746858047d29bb313bea16}{get\+\_\+all\+\_\+nurse\+\_\+tasks} (\$nurse)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Group 4 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2015, Group 4 
+\end{DoxyCopyright}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classclinic__task_a9a390919bc9e593044b5836f4a2e5264}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!add\+\_\+clinic\+\_\+task@{add\+\_\+clinic\+\_\+task}}
+\index{add\+\_\+clinic\+\_\+task@{add\+\_\+clinic\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{add\+\_\+clinic\+\_\+task(\$title, \$desc, \$nurses, \$supervisor, \$due\+\_\+date, \$due\+\_\+time, \$clinic)}]{\setlength{\rightskip}{0pt plus 5cm}add\+\_\+clinic\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{}]{\$title, }
+\item[{}]{\$desc, }
+\item[{}]{\$nurses, }
+\item[{}]{\$supervisor, }
+\item[{}]{\$due\+\_\+date, }
+\item[{}]{\$due\+\_\+time, }
+\item[{}]{\$clinic}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a9a390919bc9e593044b5836f4a2e5264}
+boolean \hyperlink{classclinic__task_a9a390919bc9e593044b5836f4a2e5264}{add\+\_\+clinic\+\_\+task()} add\+\_\+clinic\+\_\+task(\$title, \$desc, \$nurses, \$supervisor, \$due\+\_\+date, \$due\+\_\+time, \$clinic ) executes a query to add a new task 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$title} & The title of task \\
+\hline
+string & {\em \$desc} & Description of task \\
+\hline
+int & {\em \$nurses} & Nurse I\+D \\
+\hline
+int & {\em \$supervisor} & Supervisor I\+D \\
+\hline
+date & {\em \$due} & The due date \\
+\hline
+string & {\em \$clinic} & The Clinic \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_ad45ccdef499f67301361bb62e2e3b477}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\index{clinic\+\_\+task@{clinic\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{clinic\+\_\+task()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf clinic\+\_\+task} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_ad45ccdef499f67301361bb62e2e3b477}
+\hypertarget{classclinic__task_a7c3ea25b6ad1b4f8844a59a2ac545369}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!confirm\+\_\+task@{confirm\+\_\+task}}
+\index{confirm\+\_\+task@{confirm\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{confirm\+\_\+task(\$id)}]{\setlength{\rightskip}{0pt plus 5cm}confirm\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a7c3ea25b6ad1b4f8844a59a2ac545369}
+boolean \hyperlink{classclinic__task_a7c3ea25b6ad1b4f8844a59a2ac545369}{confirm\+\_\+task()} confirm\+\_\+task(\$id) confirm tasks 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & The Task I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_aacbcb37bad746858047d29bb313bea16}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+all\+\_\+nurse\+\_\+tasks@{get\+\_\+all\+\_\+nurse\+\_\+tasks}}
+\index{get\+\_\+all\+\_\+nurse\+\_\+tasks@{get\+\_\+all\+\_\+nurse\+\_\+tasks}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+all\+\_\+nurse\+\_\+tasks(\$nurse)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+all\+\_\+nurse\+\_\+tasks (
+\begin{DoxyParamCaption}
+\item[{}]{\$nurse}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_aacbcb37bad746858047d29bb313bea16}
+boolean \hyperlink{classclinic__task_aacbcb37bad746858047d29bb313bea16}{get\+\_\+all\+\_\+nurse\+\_\+tasks()} get\+\_\+all\+\_\+nurse\+\_\+tasks(\$nurse) executes a query to show tasks assigned to nurses in the last 30 days 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$nurse} & The nurse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a21262aed6c7561cbf841233299cb6c63}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+all\+\_\+tasks@{get\+\_\+all\+\_\+tasks}}
+\index{get\+\_\+all\+\_\+tasks@{get\+\_\+all\+\_\+tasks}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+all\+\_\+tasks()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+all\+\_\+tasks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a21262aed6c7561cbf841233299cb6c63}
+boolean \hyperlink{classclinic__task_a21262aed6c7561cbf841233299cb6c63}{get\+\_\+all\+\_\+tasks()} Get all tasks \begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a5d07bb4142d15f2a45d6fc458cce448d}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+by\+\_\+date\+\_\+assigned@{get\+\_\+by\+\_\+date\+\_\+assigned}}
+\index{get\+\_\+by\+\_\+date\+\_\+assigned@{get\+\_\+by\+\_\+date\+\_\+assigned}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+by\+\_\+date\+\_\+assigned(\$date)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+by\+\_\+date\+\_\+assigned (
+\begin{DoxyParamCaption}
+\item[{}]{\$date}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a5d07bb4142d15f2a45d6fc458cce448d}
+boolean \hyperlink{classclinic__task_a5d07bb4142d15f2a45d6fc458cce448d}{get\+\_\+by\+\_\+date\+\_\+assigned()} get\+\_\+by\+\_\+date\+\_\+assigned(\$date) Gets tasks by date assigned 
+\begin{DoxyParams}[1]{Parameters}
+date & {\em \$date} & The date assigned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a44e46a0dc086799f3d9de01528c8474c}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+by\+\_\+date\+\_\+completed@{get\+\_\+by\+\_\+date\+\_\+completed}}
+\index{get\+\_\+by\+\_\+date\+\_\+completed@{get\+\_\+by\+\_\+date\+\_\+completed}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+by\+\_\+date\+\_\+completed(\$date)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+by\+\_\+date\+\_\+completed (
+\begin{DoxyParamCaption}
+\item[{}]{\$date}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a44e46a0dc086799f3d9de01528c8474c}
+boolean \hyperlink{classclinic__task_a44e46a0dc086799f3d9de01528c8474c}{get\+\_\+by\+\_\+date\+\_\+completed()} get\+\_\+by\+\_\+date\+\_\+completed(\$date) Gets tasks by date completed 
+\begin{DoxyParams}[1]{Parameters}
+Date & {\em \$date} & The completed date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a87ee712ccf8a72ca3bec7582c06b3d3f}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+clinic\+\_\+tasks@{get\+\_\+clinic\+\_\+tasks}}
+\index{get\+\_\+clinic\+\_\+tasks@{get\+\_\+clinic\+\_\+tasks}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+clinic\+\_\+tasks()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+clinic\+\_\+tasks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a87ee712ccf8a72ca3bec7582c06b3d3f}
+boolean \hyperlink{classclinic__task_a87ee712ccf8a72ca3bec7582c06b3d3f}{get\+\_\+clinic\+\_\+tasks()} executes a query to select all tasks \begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a3eead44cbde40578ca0709dfcd894625}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+completed\+\_\+for\+\_\+week@{get\+\_\+completed\+\_\+for\+\_\+week}}
+\index{get\+\_\+completed\+\_\+for\+\_\+week@{get\+\_\+completed\+\_\+for\+\_\+week}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+completed\+\_\+for\+\_\+week()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+completed\+\_\+for\+\_\+week (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a3eead44cbde40578ca0709dfcd894625}
+boolean \hyperlink{classclinic__task_a3eead44cbde40578ca0709dfcd894625}{get\+\_\+completed\+\_\+for\+\_\+week()} Get completed tasks for the week \begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a6df8415e5c1c1c71ae0fcbf1d0283d9d}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+nurse\+\_\+due\+\_\+task@{get\+\_\+nurse\+\_\+due\+\_\+task}}
+\index{get\+\_\+nurse\+\_\+due\+\_\+task@{get\+\_\+nurse\+\_\+due\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+nurse\+\_\+due\+\_\+task(\$id)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+nurse\+\_\+due\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a6df8415e5c1c1c71ae0fcbf1d0283d9d}
+boolean \hyperlink{classclinic__task_a6df8415e5c1c1c71ae0fcbf1d0283d9d}{get\+\_\+nurse\+\_\+due\+\_\+task()} get\+\_\+nurse\+\_\+due\+\_\+task(\$id) Gets overdue tasks assigned to nurse 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & The nurse I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_aca978c43dcfc293c370021c5dc919eb3}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+overdue\+\_\+tasks@{get\+\_\+overdue\+\_\+tasks}}
+\index{get\+\_\+overdue\+\_\+tasks@{get\+\_\+overdue\+\_\+tasks}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+overdue\+\_\+tasks()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+overdue\+\_\+tasks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_aca978c43dcfc293c370021c5dc919eb3}
+Function For supervisors to view due tasks of all nurses \begin{DoxyReturn}{Returns}
+bool  boolean \hyperlink{classclinic__task_aca978c43dcfc293c370021c5dc919eb3}{get\+\_\+overdue\+\_\+tasks()} Gets overdue tasks of all nurses 
+
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a9e8f0e21c1b1e1a545d578c735b76af2}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!get\+\_\+task\+\_\+by\+\_\+\+Id@{get\+\_\+task\+\_\+by\+\_\+\+Id}}
+\index{get\+\_\+task\+\_\+by\+\_\+\+Id@{get\+\_\+task\+\_\+by\+\_\+\+Id}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{get\+\_\+task\+\_\+by\+\_\+\+Id(\$id)}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+task\+\_\+by\+\_\+\+Id (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a9e8f0e21c1b1e1a545d578c735b76af2}
+boolean \hyperlink{classclinic__task_a9e8f0e21c1b1e1a545d578c735b76af2}{get\+\_\+task\+\_\+by\+\_\+\+Id()} get\+\_\+task\+\_\+by\+\_\+\+Id(\$id) Gets task by I\+D 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & The Task I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_a12aad76a7529187c159ab4110384cd00}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!search\+\_\+task@{search\+\_\+task}}
+\index{search\+\_\+task@{search\+\_\+task}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{search\+\_\+task(\$search\+\_\+task)}]{\setlength{\rightskip}{0pt plus 5cm}search\+\_\+task (
+\begin{DoxyParamCaption}
+\item[{}]{\$search\+\_\+task}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_a12aad76a7529187c159ab4110384cd00}
+boolean \hyperlink{classclinic__task_a12aad76a7529187c159ab4110384cd00}{search\+\_\+task()} search\+\_\+task(\$search\+\_\+task) executes a search query to find a task by the given title 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$search\+\_\+task} & The search item \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_af1f566a47278e8a7fb84ad8aa9cd619d}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!search\+\_\+task\+\_\+by\+\_\+nurse@{search\+\_\+task\+\_\+by\+\_\+nurse}}
+\index{search\+\_\+task\+\_\+by\+\_\+nurse@{search\+\_\+task\+\_\+by\+\_\+nurse}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{search\+\_\+task\+\_\+by\+\_\+nurse(\$nurse, \$search\+\_\+text)}]{\setlength{\rightskip}{0pt plus 5cm}search\+\_\+task\+\_\+by\+\_\+nurse (
+\begin{DoxyParamCaption}
+\item[{}]{\$nurse, }
+\item[{}]{\$search\+\_\+text}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_af1f566a47278e8a7fb84ad8aa9cd619d}
+boolean \hyperlink{classclinic__task_af1f566a47278e8a7fb84ad8aa9cd619d}{search\+\_\+task\+\_\+by\+\_\+nurse()} search\+\_\+task\+\_\+by\+\_\+nurse(\$nurse, \$search\+\_\+text) executes search query to search task for given nurses 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$nurse} & The nurse \\
+\hline
+string & {\em \$search\+\_\+text} & The search item \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classclinic__task_af449944c89fdf56326b49f8681e422df}{}\index{clinic\+\_\+task@{clinic\+\_\+task}!update\+\_\+time\+\_\+completed@{update\+\_\+time\+\_\+completed}}
+\index{update\+\_\+time\+\_\+completed@{update\+\_\+time\+\_\+completed}!clinic\+\_\+task@{clinic\+\_\+task}}
+\subsubsection[{update\+\_\+time\+\_\+completed(\$task\+\_\+id, \$nurse\+\_\+id)}]{\setlength{\rightskip}{0pt plus 5cm}update\+\_\+time\+\_\+completed (
+\begin{DoxyParamCaption}
+\item[{}]{\$task\+\_\+id, }
+\item[{}]{\$nurse\+\_\+id}
+\end{DoxyParamCaption}
+)}\label{classclinic__task_af449944c89fdf56326b49f8681e422df}
+boolean \hyperlink{classclinic__task_af449944c89fdf56326b49f8681e422df}{update\+\_\+time\+\_\+completed()} update\+\_\+time\+\_\+completed(\$task\+\_\+id, \$nurse\+\_\+id) Set task completed time 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$task\+\_\+id} & Task I\+D \\
+\hline
+int & {\em \$nurse\+\_\+id} & Nurse I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model/\hyperlink{clinic__task_8php}{clinic\+\_\+task.\+php}\end{DoxyCompactItemize}

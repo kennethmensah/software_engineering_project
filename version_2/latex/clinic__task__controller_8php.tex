@@ -1,0 +1,97 @@
+\hypertarget{clinic__task__controller_8php}{}\section{controllers/clinic\+\_\+task\+\_\+controller.php File Reference}
+\label{clinic__task__controller_8php}\index{controllers/clinic\+\_\+task\+\_\+controller.\+php@{controllers/clinic\+\_\+task\+\_\+controller.\+php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ec2c8835c9f9fbb7b8cd36464b491e73_8js_ad1eade1809460358d53dba6e1c599a79}{if}(filter\+\_\+input(I\+N\+P\+U\+T\+\_\+\+G\+E\+T, \textquotesingle{}cmd\textquotesingle{})) \hyperlink{clinic__task__controller_8php_a17aca2a08fd0cf173c8501a56a3defd1}{add\+\_\+task\+\_\+control} ()
+\item 
+\hyperlink{clinic__task__controller_8php_a4a9a8bef2fe6b7439d117b05aca94e97}{get\+\_\+tasks\+\_\+control} ()
+\item 
+\hyperlink{clinic__task__controller_8php_aa7808eb2ba0e055e0f6769d26e7b08e3}{get\+\_\+task\+\_\+control} ()
+\item 
+\hyperlink{clinic__task__controller_8php_ae8139eaebf065bf36531c8529ad99840}{get\+\_\+nurse\+\_\+task\+\_\+control} ()
+\item 
+\hyperlink{clinic__task__controller_8php_af17351df47df98ffb0b4ec039499dfff}{confirm\+\_\+task\+\_\+control} ()
+\item 
+\hyperlink{clinic__task__controller_8php_ad7a9ae1b2ebca30d9844179f62d4ab6f}{overdue\+\_\+tasks} ()
+\item 
+\hyperlink{clinic__task__controller_8php_a9868caae1189096380e6af11dfb72d7a}{sanitize\+\_\+string} (\$val)
+\item 
+\hyperlink{clinic__task__controller_8php_a6409fd9aac8d9eb935389ada0329e59e}{get\+\_\+clinic\+\_\+task\+\_\+model} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{clinic__task__controller_8php_a17aca2a08fd0cf173c8501a56a3defd1}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!add\+\_\+task\+\_\+control@{add\+\_\+task\+\_\+control}}
+\index{add\+\_\+task\+\_\+control@{add\+\_\+task\+\_\+control}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{add\+\_\+task\+\_\+control()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf if} (filter\+\_\+input(I\+N\+P\+U\+T\+\_\+\+G\+E\+T, \textquotesingle{}cmd\textquotesingle{})) add\+\_\+task\+\_\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_a17aca2a08fd0cf173c8501a56a3defd1}
+void \hyperlink{clinic__task__controller_8php_a17aca2a08fd0cf173c8501a56a3defd1}{add\+\_\+task\+\_\+control()} Adds a task to the database retrieve all tasks
+
+retrieve a particular task
+
+get task by nurse id
+
+get tasks overdue\hypertarget{clinic__task__controller_8php_af17351df47df98ffb0b4ec039499dfff}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!confirm\+\_\+task\+\_\+control@{confirm\+\_\+task\+\_\+control}}
+\index{confirm\+\_\+task\+\_\+control@{confirm\+\_\+task\+\_\+control}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{confirm\+\_\+task\+\_\+control()}]{\setlength{\rightskip}{0pt plus 5cm}confirm\+\_\+task\+\_\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_af17351df47df98ffb0b4ec039499dfff}
+void \hyperlink{clinic__task__controller_8php_af17351df47df98ffb0b4ec039499dfff}{confirm\+\_\+task\+\_\+control()} Confirms tasks finished by nurse \hypertarget{clinic__task__controller_8php_a6409fd9aac8d9eb935389ada0329e59e}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!get\+\_\+clinic\+\_\+task\+\_\+model@{get\+\_\+clinic\+\_\+task\+\_\+model}}
+\index{get\+\_\+clinic\+\_\+task\+\_\+model@{get\+\_\+clinic\+\_\+task\+\_\+model}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{get\+\_\+clinic\+\_\+task\+\_\+model()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+clinic\+\_\+task\+\_\+model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_a6409fd9aac8d9eb935389ada0329e59e}
+\hyperlink{classclinic__task}{clinic\+\_\+task} \hyperlink{clinic__task__controller_8php_a6409fd9aac8d9eb935389ada0329e59e}{get\+\_\+clinic\+\_\+task\+\_\+model()} Instantiates an object for \hyperlink{classclinic__task}{clinic\+\_\+task} class \begin{DoxyReturn}{Returns}
+\hyperlink{classclinic__task}{clinic\+\_\+task} 
+\end{DoxyReturn}
+\hypertarget{clinic__task__controller_8php_ae8139eaebf065bf36531c8529ad99840}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!get\+\_\+nurse\+\_\+task\+\_\+control@{get\+\_\+nurse\+\_\+task\+\_\+control}}
+\index{get\+\_\+nurse\+\_\+task\+\_\+control@{get\+\_\+nurse\+\_\+task\+\_\+control}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{get\+\_\+nurse\+\_\+task\+\_\+control()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+nurse\+\_\+task\+\_\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_ae8139eaebf065bf36531c8529ad99840}
+void \hyperlink{clinic__task__controller_8php_ae8139eaebf065bf36531c8529ad99840}{get\+\_\+nurse\+\_\+task\+\_\+control()} Gets tasks assigned a particular nurse \hypertarget{clinic__task__controller_8php_aa7808eb2ba0e055e0f6769d26e7b08e3}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!get\+\_\+task\+\_\+control@{get\+\_\+task\+\_\+control}}
+\index{get\+\_\+task\+\_\+control@{get\+\_\+task\+\_\+control}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{get\+\_\+task\+\_\+control()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+task\+\_\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_aa7808eb2ba0e055e0f6769d26e7b08e3}
+\hyperlink{clinic__task__controller_8php_aa7808eb2ba0e055e0f6769d26e7b08e3}{get\+\_\+task\+\_\+control()} Get a task from the database \hypertarget{clinic__task__controller_8php_a4a9a8bef2fe6b7439d117b05aca94e97}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!get\+\_\+tasks\+\_\+control@{get\+\_\+tasks\+\_\+control}}
+\index{get\+\_\+tasks\+\_\+control@{get\+\_\+tasks\+\_\+control}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{get\+\_\+tasks\+\_\+control()}]{\setlength{\rightskip}{0pt plus 5cm}get\+\_\+tasks\+\_\+control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_a4a9a8bef2fe6b7439d117b05aca94e97}
+void \hyperlink{clinic__task__controller_8php_a4a9a8bef2fe6b7439d117b05aca94e97}{get\+\_\+tasks\+\_\+control()} Gets tasks from the database \hypertarget{clinic__task__controller_8php_ad7a9ae1b2ebca30d9844179f62d4ab6f}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!overdue\+\_\+tasks@{overdue\+\_\+tasks}}
+\index{overdue\+\_\+tasks@{overdue\+\_\+tasks}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{overdue\+\_\+tasks()}]{\setlength{\rightskip}{0pt plus 5cm}overdue\+\_\+tasks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_ad7a9ae1b2ebca30d9844179f62d4ab6f}
+void \hyperlink{clinic__task__controller_8php_ad7a9ae1b2ebca30d9844179f62d4ab6f}{overdue\+\_\+tasks()} Gets all overdue tasks in database \hypertarget{clinic__task__controller_8php_a9868caae1189096380e6af11dfb72d7a}{}\index{clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}!sanitize\+\_\+string@{sanitize\+\_\+string}}
+\index{sanitize\+\_\+string@{sanitize\+\_\+string}!clinic\+\_\+task\+\_\+controller.\+php@{clinic\+\_\+task\+\_\+controller.\+php}}
+\subsubsection[{sanitize\+\_\+string(\$val)}]{\setlength{\rightskip}{0pt plus 5cm}sanitize\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{}]{\$val}
+\end{DoxyParamCaption}
+)}\label{clinic__task__controller_8php_a9868caae1189096380e6af11dfb72d7a}
+
+\begin{DoxyParams}{Parameters}
+{\em \$val} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
