@@ -1,6 +1,6 @@
 <?php
 /**
- * This class interfaces contains queries that interface with the
+ * This class contains queries that interface with the
  * district tasks database. It contains relevant queries necessary for
  * assigning tasks, retrieving tasks and updating tasks at a district level.
  *
@@ -14,6 +14,13 @@
  * @version    SVN: 2.0.0
  */
 
+
+/**
+ * A database interface class
+ *
+ * The included class contains functions that interface with the database
+ * via MYSQL
+ */
 include_once 'adb.php';
 
 class District_Task extends adb{
@@ -108,6 +115,7 @@ class District_Task extends adb{
 
     /**
     *This function adds deletes the row storing data for a given district task using its id
+     *
     *@param int $id this represents the unique identifier for each district task
     *@return bool the result will return true/false whether the sql query is successful
     */
@@ -122,6 +130,7 @@ class District_Task extends adb{
     
     /**
     *This function adds searches for the rows with names of district_tasks that match the pattern
+     *
     *@param int $sn this represents the name of the district_task
     *@return bool the result will return true/false whether the sql query is successful
     */

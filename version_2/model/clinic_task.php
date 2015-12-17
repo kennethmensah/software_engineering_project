@@ -1,6 +1,6 @@
 <?php
 /**
- * This class interfaces contains queries that interface with the
+ * This class contains queries that interface with the
  * clinic tasks database. It contains relevant queries necessary for
  * assigning tasks, retrieving tasks and updating tasks.
  *
@@ -30,7 +30,8 @@ class Clinic_Task extends adb{
      *
      * this method instantiates an object of the clinic_task class
      */
-    function Clinic_Task(){
+    function Clinic_Task()
+    {
 
     }
 
@@ -76,7 +77,8 @@ class Clinic_Task extends adb{
      *
      * @return bool returns true/false indicating whether the query is successful of not
      */
-    function getClinicTasks(){
+    function getClinicTasks()
+    {
 
         $str_query = "SELECT
                       CT.task_id,
@@ -106,7 +108,8 @@ class Clinic_Task extends adb{
      * @param int $clinic id of clinic
      * @return bool returns true/false indicating whether the query is successful of not
      */
-    function getAllConfirmedTasks($clinic){
+    function getAllConfirmedTasks($clinic)
+    {
         $str_query = "SELECT
                       CT.task_id,
                       CT.task_title,
