@@ -1,6 +1,6 @@
 <?php
 /**
- * This class interfaces contains queries that interface with the
+ * This class contains queries that interface with the
  * supervisors database. It contains relevant queries necessary for
  * adding supervisors, retrieving supervisors and updating
  * supervisors details.
@@ -24,14 +24,14 @@
 
 include_once 'adb.php';
 
-class supervisors extends adb{
+class Supervisors extends adb{
 
     /**
      *supervisors constructor.
      *
      *this method instantiates an object of the supervisors class
      */
-    function supervisors(){}
+    function Supervisors(){}
 
     /**
      * Executes a query to add a new supervisor details
@@ -39,7 +39,7 @@ class supervisors extends adb{
      * This method executes a query to add a new supervisor
      * given the required details
      *
-     * @param int $supervisors_id: supervisor's id
+     * @param int $supervisor_id: supervisor's id
      * @param string $fname: first name
      * @param string $sname: surname
      * @param int $district_zone: clinic or district zone
@@ -47,7 +47,7 @@ class supervisors extends adb{
      * @param string $gender: gender
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function add_supervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender){
+    function addSupervisors($supervisor_id, $fname, $sname, $district_zone, $phone, $gender){
         $str_query =  "INSERT into se_supervisors SET
                    supervisor_id = $supervisor_id,
                    fname = '$fname',
@@ -74,7 +74,7 @@ class supervisors extends adb{
      * @param string $gender: gender
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function update_supervisors_details($supervisor_id, $fname, $sname, $district_zone, $phone,$gender){
+    function updateSupervisorsDetails($supervisor_id, $fname, $sname, $district_zone, $phone,$gender){
         $str_query = "UPDATE se_supervisors SET
                    fname = '$fname',
                    sname = '$sname',
@@ -96,7 +96,7 @@ class supervisors extends adb{
      * @param int $district_zone: district zone or clinic id
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function update_district_zone($supervisor_id, $district_zone){
+    function updateDistrictZone($supervisor_id, $district_zone){
         $str_query = "UPDATE se_supervisors SET
                    district_zone = $district_zone
                 WHERE supervisor_id = $supervisor_id";
@@ -114,7 +114,7 @@ class supervisors extends adb{
      * @param string $phone: phone number
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function update_phone($supervisor_id, $phone){
+    function updatePhone($supervisor_id, $phone){
         $str_query = "UPDATE se_supervisors SET
                    phone = '$phone'
                 WHERE supervisor_id = $supervisor_id";
@@ -132,7 +132,7 @@ class supervisors extends adb{
      * @param int $supervisor_id: supervisor id
      * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function get_details($supervisor_id){
+    function getDetails($supervisor_id){
         $str_query = "SELECT * FROM se_supervisors
                 WHERE supervisor_id = $supervisor_id";
 

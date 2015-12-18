@@ -3,7 +3,7 @@ session_start();
 
 if(filter_input (INPUT_GET, 'cmd')){
     $cmd = $cmd_sanitize = '';
-    $cmd_sanitize = sanitize_string( filter_input (INPUT_GET, 'cmd'));
+    $cmd_sanitize = sanitizeString( filter_input (INPUT_GET, 'cmd'));
     $cmd = intval($cmd_sanitize);
                                     
     switch ($cmd){
@@ -45,11 +45,11 @@ function userSignupControl(){
         && filter_input(INPUT_GET, 'type') && filter_input(INPUT_GET, 'email')){
     
         $obj = get_user_model();
-        $username = sanitize_string(filter_input (INPUT_GET, 'user'));
-        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
+        $username = sanitizeString(filter_input (INPUT_GET, 'user'));
+        $password = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
-        $usertype = sanitize_string(filter_input (INPUT_GET, 'type'));
-        $email = sanitize_string(filter_input(INPUT_GET, 'email'));
+        $usertype = sanitizeString(filter_input (INPUT_GET, 'type'));
+        $email = sanitizeString(filter_input(INPUT_GET, 'email'));
         
         if ($obj->add_user($username, $password, $usertype, $email)){
              if( strcmp($usertype, 'admin') == 0)
@@ -84,11 +84,11 @@ function adminSignup($admin_id){
         && filter_input(INPUT_GET, 'phone')
         && filter_input(INPUT_GET, 'district') && filter_input(INPUT_GET, 'gender')){
         $obj = get_admin_model();
-        $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
-        $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
-        $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
-        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
-        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
+        $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
+        $district = sanitizeString(filter_input (INPUT_GET, 'district'));
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
         
         if($obj->addAdmin($admin_id, $sname, $fname,$district, $phone, $gender)){
 
@@ -129,7 +129,7 @@ function supervisorSignup($supervisor_id){
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
         $district = filter_input (INPUT_GET, 'district');
-        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
         
         if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
@@ -149,11 +149,11 @@ function nurseSignup($nurse_id){
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
         && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
         $obj = get_nurse_model();
-        $sname = sanitize_string(filter_input (INPUT_GET, 'sname'));
-        $fname = sanitize_string(filter_input (INPUT_GET, 'fname'));
-        $phone = sanitize_string(filter_input (INPUT_GET, 'phone'));
-        $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
-        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+        $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
+        $district = sanitizeString(filter_input (INPUT_GET, 'district'));
 
 
         if($obj->add_nurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
@@ -176,8 +176,8 @@ function userLoginControl(){
     if(filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')){
         
         $obj = get_user_model();
-        $username = sanitize_string(filter_input (INPUT_GET, 'user'));
-        $pass = sanitize_string(filter_input (INPUT_GET, 'pass'));
+        $username = sanitizeString(filter_input (INPUT_GET, 'user'));
+        $pass = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $pass = encrypt($pass);
         
         if($obj->get_user($username, $pass)){
@@ -265,7 +265,7 @@ function user_edit_control(){
 function getUserDetails(){
     if( filter_input (INPUT_GET, 'id')){
         $obj = get_user_model();
-        $id = sanitize_string(filter_input (INPUT_GET, 'id'));
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
         if($obj->get_user_byId($id)){
             echo '{"result":1, "user_details":[';
             $row = $obj->fetch();
@@ -286,7 +286,7 @@ function getUserDetails(){
 function getNursesInDistrict(){
     if( filter_input (INPUT_GET, 'district')){
         $obj = get_nurse_model();
-        $district = sanitize_string(filter_input (INPUT_GET, 'district'));
+        $district = sanitizeString(filter_input (INPUT_GET, 'district'));
         if($obj->get_nurse_by_location($district)){
             echo '{"result":1, "clinic_nurses":[';
             $row = $obj->fetch();
@@ -312,8 +312,8 @@ function editPasswordControl(){
     if( filter_input (INPUT_GET, 'id') && filter_input(INPUT_GET, 'pass')){
 
         $obj = get_user_model();
-        $user_id = sanitize_string(filter_input (INPUT_GET, 'id'));
-        $password = sanitize_string(filter_input (INPUT_GET, 'pass'));
+        $user_id = sanitizeString(filter_input (INPUT_GET, 'id'));
+        $password = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
 
         if ($obj->edit_password_byId($user_id,$password)){
@@ -338,10 +338,11 @@ function userLogoutControl(){
 
 /**
  * sanitize input from url
+ * 
  * @param $val
  * @return string
  */
-function sanitize_string($val){
+function sanitizeString($val){
     $val = stripslashes($val);
     $val = strip_tags($val);
     $val = htmlentities($val);
