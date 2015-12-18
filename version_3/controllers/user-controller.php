@@ -77,6 +77,73 @@ function userSignupControl(){
 }
 
 
+function setUserSessionDetails($username, $user_id, $user_type, $email){
+    $_SESSION['username'] = $username;
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_type'] = $user_type;
+    $_SESSION['email'] = $email;
+    $_SESSION['logged_in'] = 'true';
+}
+
+function setUserSessionValues($sname, $fname, $phone, $district, $gender){
+    $_SESSION['sname'] = $sname;
+    $_SESSION['fname'] = $fname;
+    $_SESSION['phone'] = $phone;
+    $_SESSION['district'] = $district;
+    $_SESSION['gender'] = $gender;
+}
+
+/**
+ * @param $supervisor_id
+ */
+function supervisorSignup($supervisor_id){
+    $obj = $sname = $fname = $district = $phone = '';
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')
+        && filter_input(INPUT_GET, 'gender')){
+        $obj = getSupervisorModel();
+        $sname = filter_input (INPUT_GET, 'sname');
+        $fname = filter_input (INPUT_GET, 'fname');
+        $phone = filter_input (INPUT_GET, 'phone');
+        $district = filter_input (INPUT_GET, 'district');
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
+
+        if($obj->addSupervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
+            echo '{"result":1,"message": "signup successful"}';
+        }
+        else{
+            echo '{"result":0,"message": "signup unsuccesful"}';
+        }
+    }
+}
+
+
+/**
+ * @param $nurse_id
+ */
+function nurseSignup($nurse_id){
+    $obj = $sname = $fname = $phone = $gender = $email = '';
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
+        $obj = getNurseModel();
+        $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
+        $district = sanitizeString(filter_input (INPUT_GET, 'district'));
+
+
+        if($obj->addNurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
+            echo '{"result":1,"message": "signup successful"}';
+        }
+        else{
+            echo '{"result":0,"message": "signup unsuccesful"}';
+        }
+    }
+}
+
+
+
 
 /**
  * sanitize input from url
