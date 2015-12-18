@@ -61,4 +61,29 @@ class Nurses extends adb
         return $this->query($str_query);
     }
 
+
+    /**
+     * @param $nurse_id
+     * @return bool
+     */
+    function getDetails($nurse_id){
+        $str_query = "SELECT * FROM se_nurses
+                      WHERE nurse_id = $nurse_id";
+
+        return $this->query($str_query);
+    }
+
+    /**
+     * Executes a query to fetch all nurses in a clinic
+     *
+     * @param $clinic
+     * @return bool
+     */
+    function getNurseByLocation($clinic){
+        $str_query = "SELECT * FROM se_nurses
+                      WHERE district_zone = $clinic";
+
+        return $this->query($str_query);
+    }
+
 }
