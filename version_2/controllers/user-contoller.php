@@ -376,7 +376,7 @@ function get_user_model(){
  */
 function get_nurse_model(){
     require_once '../model/nurse.php';
-    $obj = new nurses();
+    $obj = new Nurses();
     return $obj;
 }
 

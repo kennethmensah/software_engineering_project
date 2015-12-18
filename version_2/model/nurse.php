@@ -59,18 +59,22 @@ class Nurses extends adb{
 
 
     /**
-     * @param $nurses_id
-     * @param $fname
-     * @param $sname
-     * @param $district_zone
-     * @param $phone
-     * @return bool
+     * Executes a query to update a nurse
+     *
+     * This query executes an sql query to update the details of a nurse
+     *
+     * @param int $nurse_id id of nurse
+     * @param string $fname first name of nurse
+     * @param string $sname surname of nurse
+     * @param string $clinic_id id of clinic
+     * @param string $phone phone number of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function update_nurses_details($nurse_id, $fname, $sname, $district_zone, $phone, $gender){
+    function updateNursesDetails($nurse_id, $fname, $sname, $clinic_id, $phone, $gender){
         $str_query = "UPDATE se_nurses SET
                    fname = '$fname',
                    sname = '$sname',
-                   district_zone = $district_zone,
+                   district_zone = $clinic_id,
                    gender = '$gender',
                    phone = '$phone'
                 WHERE nurse_id = $nurse_id";
@@ -79,11 +83,11 @@ class Nurses extends adb{
     }
 
     /**
-     * @param $nurses_id
+     * @param $nurse_id
      * @param $district_zone
      * @return bool
      */
-    function update_district_zone($nurse_id, $district_zone){
+    function updateDistrictZone($nurse_id, $district_zone){
         $str_query = "UPDATE se_nurses SET
                    district_zone = $district_zone
                 WHERE nurse_id = $nurse_id";
@@ -92,36 +96,30 @@ class Nurses extends adb{
     }
 
     /**
-     * @param $nurses_id
+     * @param $nurse_id
      * @param $phone
      * @return bool
      */
-    function update_phone($nurse_id, $phone){
+    function updatePhone($nurse_id, $phone){
         $str_query = "UPDATE se_nurses SET
-                   phone = '$phone'
-                WHERE nurse_id = $nurse_id";
+                      phone = '$phone'
+                      WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
 
 
     /**
-     * @param $nurses_id
+     * @param $nurse_id
      * @return bool
      */
-    function get_details($nurse_id){
+    function getDetails($nurse_id){
         $str_query = "SELECT * FROM se_nurses
-                WHERE nurse_id = $nurse_id";
+                      WHERE nurse_id = $nurse_id";
 
         return $this->query($str_query);
     }
 
-    function get_nurse_by_location($district){
-        $str_query = "SELECT * FROM se_nurses
-                WHERE district_zone = $district";
-
-        return $this->query($str_query);
-    }
 
 }
 
