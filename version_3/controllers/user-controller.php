@@ -34,7 +34,9 @@ if(filter_input (INPUT_GET, 'cmd')){
 
 
 /**
- * This
+ * This function takes parameters from the the url
+ * and adds the details of the user from the url
+ * parameters to the database
  */
 function userSignupControl(){
 
