@@ -229,6 +229,30 @@ function userLoginControl(){
 }
 
 
+/**
+ * this function retrieves a user's details fromthe database
+ * by using parameters from the url
+ */
+function getUserDetails(){
+    if( filter_input (INPUT_GET, 'id')){
+        $obj = getUserModel();
+        $id = sanitizeString(filter_input (INPUT_GET, 'id'));
+        if($obj->getUserById($id)){
+            echo '{"result":1, "user_details":[';
+            $row = $obj->fetch();
+            while($row){
+                echo json_encode($row);
+                if( $row = $obj->fetch()){
+                    echo ',';
+                }
+            }
+            echo ']}';
+        }else{
+            echo '{"result":0,"message": "query unsuccessful"}';
+        }
+    }
+}
+
 
 
 /**
