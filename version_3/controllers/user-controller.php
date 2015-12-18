@@ -93,6 +93,10 @@ function sanitizeString($val){
 }
 
 /**
+ * this function encrypts a users password
+ * with the ripe md 128 encryption
+ *
+ *
  * @param $pass
  * @return string
  */
