@@ -55,4 +55,21 @@ class Admin extends adb
 
         return $this->query($str_query);
     }
+
+
+    /**
+     * Executes an sql query to get the details of a given admin
+     *
+     * This function executes an sql query to get the details of an admin
+     * given the admin's id
+     *
+     * @param $admin_id
+     * @return bool
+     */
+    function getDetails($admin_id){
+        $str_query = "SELECT * FROM se_admin
+                      WHERE admin_id = $admin_id";
+
+        return $this->query($str_query);
+    }
 }
