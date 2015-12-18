@@ -142,6 +142,92 @@ function nurseSignup($nurse_id){
     }
 }
 
+/**
+ * controller function to login users
+ */
+function userLoginControl(){
+
+    $obj = $username = $pass = '';
+
+    if(filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')){
+
+        $obj = getUserModel();
+        $username = sanitizeString(filter_input (INPUT_GET, 'user'));
+        $pass = sanitizeString(filter_input (INPUT_GET, 'pass'));
+        $pass = encrypt($pass);
+
+        if($obj->getUser($username, $pass)){
+            $row = $obj->fetch();
+
+            if($row == 0){
+                echo "Invalid user";
+            }else {
+                $username = $row['username'];
+                $user_id = $row['user_id'];
+                $user_type = $row['user_type'];
+                $email = $row['email'];
+
+                setUserSessionDetails($username,$user_id, $user_type,$email);
+
+
+                if(strcmp($user_type, 'admin') == 0){
+                    $admin = getAdminModel();
+                    if($admin->getDetails($user_id)){
+                        $row = $admin->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/admin_home.php");
+                    }
+
+                }elseif(strcmp($user_type, 'nurse') == 0){
+                    $nurse = getNurseModel();
+                    if($nurse->getDetails($user_id)){
+                        $row = $nurse->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district_zone'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
+                        //echo "user_name ". $sname. " phone ". $phone;
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/nurse_home.php");
+                    }
+                }elseif(strcmp($user_type, 'supervisor') == 0){
+                    $supervisor = getSupervisorModel();
+                    if($supervisor->getDetails($user_id)){
+                        $row = $supervisor->fetch();
+                        $sname = $row['sname'];
+                        $fname = $row['fname'];
+                        $district = $row['district_zone'];
+                        $phone = $row['phone'];
+                        $gender = $row['gender'];
+                        setUserSessionValues($sname,$fname,$phone, $district,$gender);
+                        echo '{"result":1,"user_type":"' . $user_type . '", "district": "'.$district.'",
+                         "user_id": "'.$user_id.'"}';
+                        //echo "user_name ". $sname. " phone ". $phone;
+                        //header("Location: http://localhost/SE/software_engineering_project/version_2/view/supervisor_home.php");
+                    }
+                }
+            }
+        }
+        else{
+            echo '{"result":0,"message": "Invalid User"}';
+            $_SESSION['logged_in'] = false;
+        }
+    }else{
+        echo '{"result":0,"message": "Invalid Credentials"}';
+        $_SESSION['logged_in'] = false;
+    }
+}
+
 
 
 
