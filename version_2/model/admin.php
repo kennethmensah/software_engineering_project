@@ -23,19 +23,24 @@
  */
 include_once 'adb.php';
 
-class admin extends adb{
+class Admin extends adb{
 
-    function admin(){}
+    function Admin(){}
 
     /**
-     * @param $admin_id
-     * @param $fname
-     * @param $sname
-     * @param $district
-     * @param $phone
-     * @return bool
+     * Executes an sql query to add a new admin
+     *
+     * This function executes an sql query to add a new admin given the following
+     * parameters
+     *
+     * @param int $admin_id id of the admin
+     * @param string $fname first name of the admin
+     * @param string $sname surname of the admin
+     * @param string $district id of district
+     * @param string $phone phone number of the admin
+     * @return bool the result will return true/false whether the sql query is successful
      */
-    function add_admin($admin_id, $fname, $sname, $district, $phone, $gender){
+    function addAdmin($admin_id, $fname, $sname, $district, $phone, $gender){
         $str_query =  "INSERT into se_admin SET
                    admin_id = $admin_id,
                    fname = '$fname',
@@ -49,14 +54,19 @@ class admin extends adb{
 
 
     /**
-     * @param $admin_id
-     * @param $fname
-     * @param $sname
-     * @param $district
-     * @param $phone
-     * @return bool
+     * Executes an sql query to update a existing admin
+     *
+     * This function executes an sql query to update a existing admin
+     * given the following parameters
+     *
+     * @param int $admin_id id of the admin
+     * @param string $fname first name of the admin
+     * @param string $sname surname of the admin
+     * @param string $district id of district
+     * @param string $phone phone number of the admin
+     * @return bool the result will return true/false whether the sql query is successful
      */
-    function update_admin_details($admin_id, $fname, $sname, $district, $phone, $gender){
+    function updateAdminDetails($admin_id, $fname, $sname, $district, $phone, $gender){
         $str_query = "UPDATE se_admin SET
                    fname = '$fname',
                    sname = '$sname',
@@ -73,7 +83,7 @@ class admin extends adb{
      * @param $district
      * @return bool
      */
-    function update_district($admin_id, $district){
+    function updateDistrict($admin_id, $district){
         $str_query = "UPDATE se_admin SET
                    district = $district
                 WHERE admin_id = $admin_id";
@@ -86,7 +96,7 @@ class admin extends adb{
      * @param $phone
      * @return bool
      */
-    function update_phone($admin_id, $phone){
+    function updatePhone($admin_id, $phone){
         $str_query = "UPDATE se_admin SET
                    phone = '$phone'
                 WHERE admin_id = $admin_id";
@@ -96,10 +106,15 @@ class admin extends adb{
 
 
     /**
+     * Executes an sql query to get the details of a given admin
+     *
+     * This function executes an sql query to get the details of an admin
+     * given the admin's id
+     *
      * @param $admin_id
      * @return bool
      */
-    function get_details($admin_id){
+    function getDetails($admin_id){
         $str_query = "SELECT * FROM se_admin
                 WHERE admin_id = $admin_id";
 
@@ -108,14 +123,6 @@ class admin extends adb{
 
 }
 
-/**
- * Unit Test and usage
- */
-//$obj = new admin();
-//$obj->get_details(1);
-//if($row = $obj->fetch()){
-//    echo "admin name:  ".$row['fname'];
-//}
 
 
 

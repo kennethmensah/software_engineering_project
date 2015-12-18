@@ -8,25 +8,25 @@ if(filter_input (INPUT_GET, 'cmd')){
                                     
     switch ($cmd){
         case 1:
-            user_signup_control();
+            userSignupControl();
             break;
         case 2:
-            user_login_control();
+            userLoginControl();
             break;
         case 3:
-            user_edit_control();
+            //userEditControl();
             break;
         case 4:
-            edit_password_control();
+            editPasswordControl();
             break;
         case 5:
-            user_logout_control();
+            userLogoutControl();
             break;
         case 6:
-            get_nurses_in_district();
+            getNursesInDistrict();
             break;
         case 7:
-            get_user_details();
+            getUserDetails();
             break;
         default:
             echo '{"result":0, "message":"Invalid Command Entered"}';
@@ -37,7 +37,7 @@ if(filter_input (INPUT_GET, 'cmd')){
 /**
  *
  */
-function user_signup_control(){
+function userSignupControl(){
     
     $obj  = $username = $password = $usertype = $row = '';
     
@@ -55,16 +55,16 @@ function user_signup_control(){
              if( strcmp($usertype, 'admin') == 0)
              {
                 //if user type is admin
-                admin_signup($obj->get_insert_id());
+                adminSignup($obj->get_insert_id());
              }
              elseif( strcmp($usertype, 'nurse') == 0)
              {
                 //if user is a nurse
-                 nurse_signup($obj->get_insert_id());
+                 nurseSignup($obj->get_insert_id());
              }
              elseif( strcmp($usertype, 'supervisor') == 0) {
                  //if user is a supervisor
-                 supervisor_signup($obj->get_insert_id());
+                 supervisorSignup($obj->get_insert_id());
              }
         }
         else
@@ -78,7 +78,7 @@ function user_signup_control(){
 /**
  * @param $admin_id
  */
-function admin_signup($admin_id){
+function adminSignup($admin_id){
     $obj = $sname = $fname = $phone = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
         && filter_input(INPUT_GET, 'phone')
@@ -90,7 +90,7 @@ function admin_signup($admin_id){
         $district = sanitize_string(filter_input (INPUT_GET, 'district'));
         $gender = sanitize_string(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_admin($admin_id, $sname, $fname,$district, $phone, $gender)){
+        if($obj->addAdmin($admin_id, $sname, $fname,$district, $phone, $gender)){
 
             echo '{"result":1,"message": "signup successful"}';
         }
@@ -119,7 +119,7 @@ function setUserSessionValues($sname, $fname, $phone, $district, $gender){
 /**
  * @param $supervisor_id
  */
-function supervisor_signup($supervisor_id){
+function supervisorSignup($supervisor_id){
     $obj = $sname = $fname = $district = $phone = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
         && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')
@@ -144,7 +144,7 @@ function supervisor_signup($supervisor_id){
 /**
  * @param $nurse_id
  */
-function nurse_signup($nurse_id){
+function nurseSignup($nurse_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
         && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
@@ -169,7 +169,7 @@ function nurse_signup($nurse_id){
 /**
  * controller function to login users
  */
-function user_login_control(){
+function userLoginControl(){
 
     $obj = $username = $pass = '';
 
@@ -196,7 +196,7 @@ function user_login_control(){
 
                 if(strcmp($user_type, 'admin') == 0){
                     $admin = get_admin_model();
-                    if($admin->get_details($user_id)){
+                    if($admin->getDetails($user_id)){
                         $row = $admin->fetch();
                         $sname = $row['sname'];
                         $fname = $row['fname'];
@@ -262,7 +262,7 @@ function user_edit_control(){
 }
 
 
-function get_user_details(){
+function getUserDetails(){
     if( filter_input (INPUT_GET, 'id')){
         $obj = get_user_model();
         $id = sanitize_string(filter_input (INPUT_GET, 'id'));
@@ -283,7 +283,7 @@ function get_user_details(){
 }
 
 
-function get_nurses_in_district(){
+function getNursesInDistrict(){
     if( filter_input (INPUT_GET, 'district')){
         $obj = get_nurse_model();
         $district = sanitize_string(filter_input (INPUT_GET, 'district'));
@@ -306,7 +306,7 @@ function get_nurses_in_district(){
 /**
  * controller function to edit user password
  */
-function edit_password_control(){
+function editPasswordControl(){
     $obj  = $username = $password = '';
 
     if( filter_input (INPUT_GET, 'id') && filter_input(INPUT_GET, 'pass')){
@@ -330,7 +330,7 @@ function edit_password_control(){
 /**
  *
  */
-function user_logout_control(){
+function userLogoutControl(){
     session_destroy();
     //redirect to logout screen
     header("Location: http://localhost/SE/software_engineering_project/version_2/view/login.html");
@@ -394,7 +394,7 @@ function get_supervisor_model(){
  */
 function get_admin_model(){
     require_once '../model/admin.php';
-    $obj = new admin();
+    $obj = new Admin();
     return $obj;
 }
 
