@@ -77,6 +77,34 @@ function userSignupControl(){
 }
 
 
+/**
+ * This function signs up a user as an admin
+ *
+ * @param $admin_id
+ */
+function adminSignup($admin_id){
+    $obj = $sname = $fname = $phone = '';
+    if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
+        && filter_input(INPUT_GET, 'phone')
+        && filter_input(INPUT_GET, 'district') && filter_input(INPUT_GET, 'gender')){
+        $obj = getAdminModel();
+        $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
+        $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
+        $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
+        $district = sanitizeString(filter_input (INPUT_GET, 'district'));
+        $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
+
+        if($obj->addAdmin($admin_id, $sname, $fname,$district, $phone, $gender)){
+
+            echo '{"result":1,"message": "signup successful"}';
+        }
+        else{
+            echo '{"result":0,"message": "signup unsuccesful"}';
+        }
+    }
+}
+
+
 
 /**
  * sanitize input from url
