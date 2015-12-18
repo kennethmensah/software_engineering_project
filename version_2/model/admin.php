@@ -1,5 +1,26 @@
 <?php
+/**
+ * This class contains queries that interface with the
+ * se_admin database. It contains relevant queries necessary for
+ * adding admins, retrieving admins and updating admin details.
+ *
+ * PHP version 5.6
+ *
+ * @category   Model
+ * @author     Kenneth Mintah Mensah <kenneth.mensah@ashesi.edu.gh>
+ * @author     Joshua Atsu Aherdemla <joshua.aherdemla@ashesi.edu.gh>
+ * @author     Norbert Sackey <norbert.sackey@ashesi.edu.gh>
+ * @author     Edwina Baddoo <edwina.baddoo@ashesi.edu.gh>
+ * @version    SVN: 2.0.0
+ */
 
+
+/**
+ * A database interface class
+ *
+ * The included class contains functions that interface with the database
+ * via MYSQL
+ */
 include_once 'adb.php';
 
 class admin extends adb{
