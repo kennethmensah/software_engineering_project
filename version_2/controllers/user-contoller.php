@@ -51,7 +51,7 @@ function userSignupControl(){
         $usertype = sanitizeString(filter_input (INPUT_GET, 'type'));
         $email = sanitizeString(filter_input(INPUT_GET, 'email'));
         
-        if ($obj->add_user($username, $password, $usertype, $email)){
+        if ($obj->addUser($username, $password, $usertype, $email)){
              if( strcmp($usertype, 'admin') == 0)
              {
                 //if user type is admin
@@ -180,7 +180,7 @@ function userLoginControl(){
         $pass = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $pass = encrypt($pass);
         
-        if($obj->get_user($username, $pass)){
+        if($obj->getUser($username, $pass)){
             $row = $obj->fetch();
 
             if($row == 0){
@@ -266,7 +266,7 @@ function getUserDetails(){
     if( filter_input (INPUT_GET, 'id')){
         $obj = getUserModel();
         $id = sanitizeString(filter_input (INPUT_GET, 'id'));
-        if($obj->get_user_byId($id)){
+        if($obj->getUserById($id)){
             echo '{"result":1, "user_details":[';
             $row = $obj->fetch();
             while($row){
@@ -316,7 +316,7 @@ function editPasswordControl(){
         $password = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
 
-        if ($obj->edit_password_byId($user_id,$password)){
+        if ($obj->editPasswordById($user_id,$password)){
             echo '{"result":1,"message": "password changed successfully"}';
         }
         else
@@ -366,7 +366,7 @@ function encrypt($pass){
  */
 function getUserModel(){
     require_once '../model/user.php';
-    $obj = new user();
+    $obj = new User();
     return $obj;
 }
 
