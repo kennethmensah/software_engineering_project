@@ -83,7 +83,7 @@ class Nurses extends adb{
     }
 
     /**
-     * @param $nurse_id
+     * @param $nurses_id
      * @param $district_zone
      * @return bool
      */
@@ -120,6 +120,17 @@ class Nurses extends adb{
         return $this->query($str_query);
     }
 
+    /**
+     * Executes a query to fetch all nurses in a clinic
+     * @param $clinic
+     * @return bool
+     */
+    function getNurseByLocation($clinic){
+        $str_query = "SELECT * FROM se_nurses
+                      WHERE district_zone = $clinic";
+
+        return $this->query($str_query);
+    }
 
 }
 

@@ -44,7 +44,7 @@ function userSignupControl(){
     if( filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')
         && filter_input(INPUT_GET, 'type') && filter_input(INPUT_GET, 'email')){
     
-        $obj = get_user_model();
+        $obj = getUserModel();
         $username = sanitizeString(filter_input (INPUT_GET, 'user'));
         $password = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
@@ -83,7 +83,7 @@ function adminSignup($admin_id){
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
         && filter_input(INPUT_GET, 'phone')
         && filter_input(INPUT_GET, 'district') && filter_input(INPUT_GET, 'gender')){
-        $obj = get_admin_model();
+        $obj = getAdminModel();
         $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
         $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
         $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
@@ -124,7 +124,7 @@ function supervisorSignup($supervisor_id){
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname')
         && filter_input(INPUT_GET, 'phone') && filter_input(INPUT_GET, 'district')
         && filter_input(INPUT_GET, 'gender')){
-        $obj = get_supervisor_model();
+        $obj = getSupervisorModel();
         $sname = filter_input (INPUT_GET, 'sname');
         $fname = filter_input (INPUT_GET, 'fname');
         $phone = filter_input (INPUT_GET, 'phone');
@@ -148,7 +148,7 @@ function nurseSignup($nurse_id){
     $obj = $sname = $fname = $phone = $gender = $email = '';
     if(filter_input (INPUT_GET, 'sname') && filter_input(INPUT_GET, 'fname') && filter_input(INPUT_GET, 'phone')
         && filter_input(INPUT_GET, 'gender') && filter_input(INPUT_GET, 'district')){
-        $obj = get_nurse_model();
+        $obj = getNurseModel();
         $sname = sanitizeString(filter_input (INPUT_GET, 'sname'));
         $fname = sanitizeString(filter_input (INPUT_GET, 'fname'));
         $phone = sanitizeString(filter_input (INPUT_GET, 'phone'));
@@ -175,7 +175,7 @@ function userLoginControl(){
 
     if(filter_input (INPUT_GET, 'user') && filter_input(INPUT_GET, 'pass')){
         
-        $obj = get_user_model();
+        $obj = getUserModel();
         $username = sanitizeString(filter_input (INPUT_GET, 'user'));
         $pass = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $pass = encrypt($pass);
@@ -195,7 +195,7 @@ function userLoginControl(){
 
 
                 if(strcmp($user_type, 'admin') == 0){
-                    $admin = get_admin_model();
+                    $admin = getAdminModel();
                     if($admin->getDetails($user_id)){
                         $row = $admin->fetch();
                         $sname = $row['sname'];
@@ -210,7 +210,7 @@ function userLoginControl(){
                     }
 
                 }elseif(strcmp($user_type, 'nurse') == 0){
-                    $nurse = get_nurse_model();
+                    $nurse = getNurseModel();
                     if($nurse->get_details($user_id)){
                         $row = $nurse->fetch();
                         $sname = $row['sname'];
@@ -225,7 +225,7 @@ function userLoginControl(){
                         //header("Location: http://localhost/SE/software_engineering_project/version_2/view/nurse_home.php");
                     }
                 }elseif(strcmp($user_type, 'supervisor') == 0){
-                    $supervisor = get_supervisor_model();
+                    $supervisor = getSupervisorModel();
                     if($supervisor->get_details($user_id)){
                         $row = $supervisor->fetch();
                         $sname = $row['sname'];
@@ -264,7 +264,7 @@ function user_edit_control(){
 
 function getUserDetails(){
     if( filter_input (INPUT_GET, 'id')){
-        $obj = get_user_model();
+        $obj = getUserModel();
         $id = sanitizeString(filter_input (INPUT_GET, 'id'));
         if($obj->get_user_byId($id)){
             echo '{"result":1, "user_details":[';
@@ -285,9 +285,9 @@ function getUserDetails(){
 
 function getNursesInDistrict(){
     if( filter_input (INPUT_GET, 'district')){
-        $obj = get_nurse_model();
+        $obj = getNurseModel();
         $district = sanitizeString(filter_input (INPUT_GET, 'district'));
-        if($obj->get_nurse_by_location($district)){
+        if($obj->getNurseByLocation($district)){
             echo '{"result":1, "clinic_nurses":[';
             $row = $obj->fetch();
             while($row){
@@ -311,7 +311,7 @@ function editPasswordControl(){
 
     if( filter_input (INPUT_GET, 'id') && filter_input(INPUT_GET, 'pass')){
 
-        $obj = get_user_model();
+        $obj = getUserModel();
         $user_id = sanitizeString(filter_input (INPUT_GET, 'id'));
         $password = sanitizeString(filter_input (INPUT_GET, 'pass'));
         $password = encrypt($password);
@@ -364,7 +364,7 @@ function encrypt($pass){
 /**
  * @return user
  */
-function get_user_model(){
+function getUserModel(){
     require_once '../model/user.php';
     $obj = new user();
     return $obj;
@@ -372,28 +372,28 @@ function get_user_model(){
 
 
 /**
- * @return nurses
+ * @return Nurses
  */
-function get_nurse_model(){
+function getNurseModel(){
     require_once '../model/nurse.php';
     $obj = new Nurses();
     return $obj;
 }
 
 /**
- * @return supervisors
+ * @return Supervisors
  */
-function get_supervisor_model(){
+function getSupervisorModel(){
     require_once '../model/supervisor.php';
-    $obj = new supervisors();
+    $obj = new Supervisors();
     return $obj;
 }
 
 
 /**
- * @return admin
+ * @return Admin
  */
-function get_admin_model(){
+function getAdminModel(){
     require_once '../model/admin.php';
     $obj = new Admin();
     return $obj;
