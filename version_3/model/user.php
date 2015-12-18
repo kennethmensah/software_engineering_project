@@ -57,4 +57,41 @@ class User extends adb
         return $this->query($str_query);
     }
 
+
+    /**
+     * Executes a query to get a users details
+     *
+     * This method executes a query to get a user's details
+     * by their username and password
+     *
+     * @param $username: username
+     * @param $pass: password
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
+    function getUser($username, $pass)
+    {
+        $str_query = "SELECT * FROM se_users
+                      WHERE username = '$username'
+                      AND password = '$pass'";
+
+        return $this->query($str_query);
+    }
+
+    /**
+     * Executes a query to get a users details
+     *
+     * This method executes a query to get a user's details
+     * by their user id
+     *
+     * @param $id: user id
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
+    function getUserById($id)
+    {
+        $str_query = "SELECT * FROM se_users
+                      WHERE user_id = $id";
+
+        return $this->query($str_query);
+    }
+
 }
