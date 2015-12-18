@@ -122,6 +122,7 @@ class Nurses extends adb{
 
     /**
      * Executes a query to fetch all nurses in a clinic
+     *
      * @param $clinic
      * @return bool
      */
