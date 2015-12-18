@@ -64,4 +64,19 @@ class Supervisors extends adb
     }
 
 
+    /**
+     * Executes a query to get a supervisor's details
+     *
+     * This method executes a query to get a supervisor's details
+     * given the supervisors id
+     *
+     * @param int $supervisor_id: supervisor id
+     * @return bool: returns true/false indicating whether the query is successful of not
+     */
+    function getDetails($supervisor_id){
+        $str_query = "SELECT * FROM se_supervisors
+                WHERE supervisor_id = $supervisor_id";
+
+        return $this->query($str_query);
+    }
 }
