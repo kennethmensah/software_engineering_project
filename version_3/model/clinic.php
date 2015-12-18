@@ -53,4 +53,17 @@ class Clinic extends adb
         return $this->query($str_query);
     }
 
+
+    /**
+     *This function retrieves the information for a given clinic using its id
+     *@param int $id this represents the unique identifier for each clinic
+     *@return bool the result will return true/false whether the sql query is successful
+     */
+    function get_clinic($id){
+        $str_query = "SELECT * FROM se_clinics
+                      WHERE clinic_id = $id";
+
+        return $this->query($str_query);
+    }
+
 }
