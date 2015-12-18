@@ -23,29 +23,34 @@
 
 include_once 'adb.php';
 
-class nurses extends adb{
+class Nurses extends adb{
 
     /**
      * nurses constructor.
      *
      * this method instantiates an object of the nurses class
      */
-    function nurses(){}
+    function Nurses(){}
 
     /**
-     * @param int $nurses_id
-     * @param string $fname
-     * @param string $sname
-     * @param string $district_zone
-     * @param string $phone
-     * @return bool
+     * Executes an sql query to add nurse
+     *
+     * This function executes an sql query to add a nurse to the
+     * nurse database given the following details
+     *
+     * @param int $nurse_id id of nurse
+     * @param string $fname first name of nurse
+     * @param string $sname surname of nurse
+     * @param string $clinic_id id of clinic
+     * @param string $phone phone number of nurse
+     * @return bool: returns true/false indicating whether the query is successful of not
      */
-    function add_nurses($nurse_id, $fname, $sname, $district_zone, $phone,$gender){
+    function addNurses($nurse_id, $fname, $sname, $clinic_id, $phone,$gender){
         $str_query =  "INSERT into se_nurses SET
                    nurse_id = $nurse_id,
                    fname = '$fname',
                    sname = '$sname',
-                   district_zone = $district_zone,
+                   district_zone = $clinic_id,
                    gender = '$gender',
                    phone = '$phone'";
 
