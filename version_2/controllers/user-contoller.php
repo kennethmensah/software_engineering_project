@@ -131,7 +131,7 @@ function supervisorSignup($supervisor_id){
         $district = filter_input (INPUT_GET, 'district');
         $gender = sanitizeString(filter_input (INPUT_GET, 'gender'));
         
-        if($obj->add_supervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
+        if($obj->addSupervisors($supervisor_id,$fname,$sname,$district,$phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -156,7 +156,7 @@ function nurseSignup($nurse_id){
         $district = sanitizeString(filter_input (INPUT_GET, 'district'));
 
 
-        if($obj->add_nurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
+        if($obj->addNurses($nurse_id, $sname, $fname,$district, $phone,$gender)){
             echo '{"result":1,"message": "signup successful"}';
         }
         else{
@@ -211,7 +211,7 @@ function userLoginControl(){
 
                 }elseif(strcmp($user_type, 'nurse') == 0){
                     $nurse = getNurseModel();
-                    if($nurse->get_details($user_id)){
+                    if($nurse->getDetails($user_id)){
                         $row = $nurse->fetch();
                         $sname = $row['sname'];
                         $fname = $row['fname'];
@@ -226,7 +226,7 @@ function userLoginControl(){
                     }
                 }elseif(strcmp($user_type, 'supervisor') == 0){
                     $supervisor = getSupervisorModel();
-                    if($supervisor->get_details($user_id)){
+                    if($supervisor->getDetails($user_id)){
                         $row = $supervisor->fetch();
                         $sname = $row['sname'];
                         $fname = $row['fname'];
